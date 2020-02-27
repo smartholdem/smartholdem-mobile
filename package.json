@@ -24,6 +24,7 @@
     "dev": "npm run serve"
   },
   "dependencies": {
+    "@inotom/vue-go-top": "^1.2.0",
     "axios": "^0.19.2",
     "bip39": "^3.0.2",
     "bootstrap": "^4.3.0",
