@@ -40,6 +40,7 @@ module.exports = {
       localeDir: 'locales',
       enableInSFC: false
     },
+    cordovaPath: 'src-cordova'
   },
   css: {
     // Enable CSS source maps.
