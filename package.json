@@ -25,7 +25,7 @@
     "fuse.js": "^3.2.0",
     "google-maps": "^3.2.1",
     "jdenticon": "^2.2.0",
-    "jquery": "^1.9.1",
+    "jquery": "^3.4.1",
     "localforage": "^1.7.3",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
