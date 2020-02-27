@@ -1,0 +1,219 @@
+ // Core
+
+@import "dashboard/custom/functions";
+@import "~bootstrap/scss/functions";
+
+@import "dashboard/custom/variables";
+@import "~bootstrap/scss/variables";
+
+@import "dashboard/custom/mixins";
+@import "~bootstrap/scss/mixins";
+
+ // Bootstrap components
+
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/code";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/tables";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/transitions";
+@import "~bootstrap/scss/dropdown";
+@import "~bootstrap/scss/button-group";
+@import "~bootstrap/scss/input-group";
+@import "~bootstrap/scss/custom-forms";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/card";
+@import "~bootstrap/scss/breadcrumb";
+@import "~bootstrap/scss/pagination";
+@import "~bootstrap/scss/badge";
+@import "~bootstrap/scss/jumbotron";
+@import "~bootstrap/scss/alert";
+@import "~bootstrap/scss/progress";
+@import "~bootstrap/scss/media";
+@import "~bootstrap/scss/list-group";
+@import "~bootstrap/scss/close";
+@import "~bootstrap/scss/modal";
+@import "~bootstrap/scss/tooltip";
+@import "~bootstrap/scss/popover";
+@import "~bootstrap/scss/carousel";
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/print";
+
+ // Custom components
+
+ @import "dashboard/custom/reboot.scss";
+ @import "dashboard/custom/global.scss";
+ @import "dashboard/custom/utilities.scss";
+ @import "dashboard/custom/alerts.scss";
+ @import "dashboard/custom/avatars.scss";
+ @import "dashboard/custom/badge.scss";
+ @import "dashboard/custom/buttons.scss";
+ @import "dashboard/custom/close.scss";
+ @import "dashboard/custom/custom-forms.scss";
+ @import "dashboard/custom/dropdown.scss";
+ @import "dashboard/custom/footer.scss";
+ @import "dashboard/custom/forms.scss";
+ @import "dashboard/custom/grid.scss";
+ @import "dashboard/custom/icons.scss";
+ @import "dashboard/custom/images.scss";
+ @import "dashboard/custom/input-group.scss";
+ @import "dashboard/custom/info-areas.scss";
+ @import "dashboard/custom/modal.scss";
+ @import "dashboard/custom/nav.scss";
+ @import "dashboard/custom/navbar.scss";
+ @import "dashboard/custom/pagination.scss";
+ @import "dashboard/custom/tabs.scss";
+ @import "dashboard/custom/pills.scss";
+ @import "dashboard/custom/popover.scss";
+ @import "dashboard/custom/progress.scss";
+ @import "dashboard/custom/type.scss";
+ @import "dashboard/custom/tables";
+ @import "dashboard/custom/checkboxes-radio";
+ @import "dashboard/custom/fixed-plugin";
+ @import "dashboard/custom/sidebar-and-main-panel.scss";
+ @import "dashboard/custom/misc.scss";
+ @import "dashboard/custom/rtl.scss";
+ @import "dashboard/custom/timeline.scss";
+
+ // Vendor / Plugins
+
+@import "dashboard/custom/vendor/plugin-nouislider.scss";
+@import "dashboard/custom/vendor/plugin-sweetalert2.scss";
+@import "dashboard/custom/vendor/plugin-bootstrap-switch.scss";
+@import "dashboard/custom/vendor/plugin-jasny-fileupload.scss";
+@import "dashboard/custom/vendor/plugin-perfect-scrollbar.scss";
+@import "dashboard/custom/vendor/plugin-card-wizard.scss";
+
+// Vendor Element UI plugins
+@import "dashboard/custom/vendor/element-ui/plugin-tags";
+@import "dashboard/custom/vendor/element-ui/plugin-slider";
+@import "dashboard/custom/vendor/element-ui/plugin-select";
+@import "dashboard/custom/vendor/element-ui/plugin-inputs";
+@import "dashboard/custom/vendor/element-ui/plugin-tables";
+@import "dashboard/custom/vendor/element-ui/plugin-datepicker";
+
+// example pages and sections
+
+@import "dashboard/custom/example-pages.scss";
+
+// light mode
+
+@import "dashboard/custom/white-content.scss";
+
+// Cards
+
+@import 'dashboard/custom/card';
+@import "dashboard/custom/cards/card-chart";
+@import "dashboard/custom/cards/card-map";
+@import "dashboard/custom/cards/card-user";
+@import "dashboard/custom/cards/card-task";
+@import "dashboard/custom/cards/card-animation-on-hover";
+@import "dashboard/custom/cards/card-collapse";
+@import "dashboard/custom/cards/card-contributions";
+@import "dashboard/custom/cards/card-lock";
+@import "dashboard/custom/cards/card-pricing";
+@import "dashboard/custom/cards/card-profile";
+@import "dashboard/custom/cards/card-plain";
+@import "dashboard/custom/cards/card-register";
+@import "dashboard/custom/cards/card-stats";
+@import "dashboard/custom/cards/card-subcategories";
+@import "dashboard/custom/cards/card-testimonials";
+@import "dashboard/custom/cards/card-wizard";
+
+
+-moz-scrollbar, ::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+
+::-webkit-scrollbar {
+  background-color: #fefdf9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(-45deg, #fbbe8d 1%, #f74e5a 48%, #fbbe8d);
+  border: 1px solid #434a52;
+}
+
+
+ .noselect {
+   -webkit-touch-callout: none; /* iOS Safari */
+   -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+   -moz-user-select: none; /* Old versions of Firefox */
+   -ms-user-select: none; /* Internet Explorer/Edge */
+   user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+ }
+
+ .color-gold {
+   color: #f76600 !important;
+   /*text-shadow: 0px 0px 0.06em yellow;*/
+ }
+
+ .color-brown {
+   color: #62402c !important;
+ }
+
+ .color-black {
+   color: #000000 !important;
+ }
+
+
+ .text-green {
+   color: #4caf50 !important;
+ }
+
+ .pointer {
+   cursor: pointer;
+ }
+
+
+ .modal-content .modal-header i.tim-icons {
+   font-size: 1.9em;
+ }
+
+ .navbar.bg-white .navbar-nav a.nav-link {
+   vertical-align: middle;
+   font-size: 16px;
+ }
+
+ .navbar.bg-white .navbar-nav a.nav-link i {
+   vertical-align: middle;
+   font-size: 20px;
+ }
+
+ .big-badge {
+   font-size: 1.1em;
+   padding: 5px;
+   padding-top:8px;
+   padding-bottom: 8px;
+   font-weight: normal;
+ }
+
+ .sidebar[data="vue"], .off-canvas-sidebar[data="vue"] {
+   background: #389466;
+   background: -webkit-gradient(linear, left bottom, left top, from(#389466), to(#42b883));
+   background: linear-gradient(10deg, #ff324c 0%, #ff324c 10%, #ff324c 90%);
+ }
+
+ .color-orange {
+   color: #f76600 !important;
+ }
+
+ .wallet-tabs
+ .nav-pills.nav-pills-danger .nav-item .nav-link.active,
+ .nav-pills.nav-pills-danger .nav-item .nav-link.active:focus,
+ .nav-pills.nav-pills-danger .nav-item .nav-link.active:hover {
+   background: #fd5d93;
+   background-image: -webkit-gradient(linear, right top, left bottom, from(#fd5d93), color-stop(#3f51b5), to(#fd5d93)) !important;
+   background-image: linear-gradient(to bottom left, #3fb199, #39bf9a, #1f1c1d) !important;
+   background-size: 210% 210%;
+   background-position: top right;
+ }
