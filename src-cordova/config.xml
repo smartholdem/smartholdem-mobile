@@ -32,7 +32,7 @@
   <preference name="SplashShowOnlyFirstTime" value="false" />
   <preference name="SplashScreen" value="screen" />
   <preference name="SplashScreenDelay" value="5000" />
-  <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" /
+  <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
   <platform name="android">
     <preference name="android-manifest/application/activity/@android:windowSoftInputMode" value="adjustPan" />
     <allow-intent href="market:*"/>
