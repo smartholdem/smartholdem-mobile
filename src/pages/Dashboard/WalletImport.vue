@@ -16,7 +16,7 @@
       <base-alert v-show="isBip39 === false" type="warning" class="mb-1"><i class="tim-icons icon-bell-55"></i>
         {{$t('APP.NO_BIP39')}}
       </base-alert>
-      <p class="text-black-50">{{$t('APP.YOUR_PUB')}}</p>
+      <p class="text-black-50">{{$t('APP.YOUR_PUB_ADDR')}}</p>
       <el-tooltip
         :content="toolTipsContent.copy"
         effect="light"

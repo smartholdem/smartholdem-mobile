@@ -35,7 +35,7 @@
     "I_SAVED": "I saved the secret phrase to a safe place",
     "IF_LOSE": "If I lose my secret phrase, I can’t regain access to my account",
     "YOUR_PUB": "Your Public Address for receiving and sending",
-    "ENTER_SECRET": "Enter Your Wallet Secret Pass Phrase (12 words)",
+    "ENTER_SECRET": "Enter Secret Pass Phrase",
     "GET_NEW_ACC": "Get new account",
     "AGREE1": "I agree to the",
     "AGREE2": "terms and conditions",

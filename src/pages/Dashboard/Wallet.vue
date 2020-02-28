@@ -1,57 +1,60 @@
 <template>
   <div>
-    <div class="row">
-
+    <div class="row" style="overflow-y: hidden;">
       <div class="text-center ml-auto mr-auto">
-      <base-dropdown
-        tag="li"
-        :menu-on-right="!$rtl.isRTL"
-        title-tag="a"
-        title-classes="nav-link"
-        class="navbar-brand currency-balance"
-      >
-        <template
-          slot="title"
-          style="color: rgb(9, 223, 251) !important;"
+        <base-dropdown
+          tag="li"
+          :menu-on-right="!$rtl.isRTL"
+          title-tag="a"
+          title-classes="nav-link"
+          class="navbar-brand currency-balance"
         >
-
-          <el-tooltip
-            :visible-arrow="false"
-            :content="'1 ' + defaultCurrency.ticker + ' = ' + (1 / prices[defaultCurrency.ticker]).toFixed(2) + ' STH'"
-            :open-delay="300"
-            placement="bottom"
+          <template
+            slot="title"
+            style="color: rgb(9, 223, 251) !important;"
           >
-            <span class="text-decoration-none font-weight-normal" style="">Total balance <img src="/images/sth48.png" width="20px"> {{accountBalanceSTH}} <small
-              class="color-brown font-weight-bold">STH </small>
+
+            <el-tooltip
+              :visible-arrow="false"
+              :content="'1 ' + defaultCurrency.ticker + ' = ' + (1 / prices[defaultCurrency.ticker]).toFixed(2) + ' STH'"
+              :open-delay="300"
+              placement="bottom"
+            >
+            <span class="text-decoration-none font-weight-normal" style="">Total <img src="images/sth48.png"
+                                                                                      width="20px"/> {{accountBalanceSTH}} <small
+              class="color-brown font-weight-bold"> </small>
               <span
                 style="font-size: 0.9em;color: lightslategray;border: solid 1px lightslategray;"
                 class="badge badge-white font-weight-normal">{{defaultCurrency.symbol}}{{accountBalance}}</span></span>
-          </el-tooltip>
-        </template>
+            </el-tooltip>
+          </template>
 
-        <li class="nav-link bg-white" v-for="(item, idx) in currencies" :key="idx">
-          <span @click="setDefaultCurrency(item.ticker, item.symbol, item.precision)" class="nav-item dropdown-item">{{item.title}} {{item.symbol}}</span>
-        </li>
-      </base-dropdown>
+          <li class="nav-link bg-white" v-for="(item, idx) in currencies" :key="idx">
+            <span @click="setDefaultCurrency(item.ticker, item.symbol, item.precision)" class="nav-item dropdown-item">{{item.title}} {{item.symbol}}</span>
+          </li>
+        </base-dropdown>
       </div>
 
       <div class="w-100 hide-scroll" style="overflow-x:auto;">
 
         <div :style="'width:'+(360*wallets.length) + 'px;'">
 
-      <card v-for="item in wallets" :key="item.address" class="ml-2 mr-2 account-style bgg1">
-        <router-link :to="'/address/' + item.address" class="text-white">
-        {{item.balance}}
-        <br><span v-if="item.delegate"><i class="tim-icons icon-bank pb-1"></i> {{item.delegate.username}}</span><span v-if="!item.delegate">{{item.address}}</span>
-        </router-link>
-      </card>
+          <card v-for="item in wallets" :key="item.address" class="ml-2 mr-2 account-style bgg1">
+            <router-link :to="'/address/' + item.address" class="text-white">
+              {{item.balance}}
+              <br><span v-if="item.delegate"><i
+              class="tim-icons icon-bank pb-1"></i> {{item.delegate.username}}</span><span v-if="!item.delegate">{{item.address}}</span>
+            </router-link>
+          </card>
 
         </div>
       </div>
 
     </div>
 
-    <BotBtnWlt/>
+
+      <BotBtnWlt/>
+
 
   </div>
 </template>
@@ -145,16 +148,21 @@ export default {
   }
 
   .account-style {
-    width:340px; float:left; color:#fff;height: 100px;-webkit-app-region: drag;
+    width: 340px;
+    float: left;
+    color: #fff;
+    height: 100px;
+    -webkit-app-region: drag;
   }
 
   .bgg0 {
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(69,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(69, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
   }
+
   .bgg1 {
-    background: rgb(131,58,180);
-    background: linear-gradient(36deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%) !important;
+    background: rgb(131, 58, 180);
+    background: linear-gradient(36deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%) !important;
   }
 
   .currency-balance .dropdown-menu {

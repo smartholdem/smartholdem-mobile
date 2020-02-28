@@ -2,7 +2,7 @@
   <div>
     <card class="card-white stacked-form">
       <template slot="header">
-        <h2 class="card-title text-dark font-weight-bold">Create New Wallet
+        <h3 class="card-title text-dark font-weight-bold">Create New Wallet
           <base-button @click="getNewAccount()" type="primary" round icon class="ml-2">
             <el-tooltip
               content="Generate Other Address"
@@ -13,14 +13,14 @@
               <i class="fas fa-dice" style="font-size: 1.1rem;padding:0;"></i>
             </el-tooltip>
           </base-button>
-        </h2>
+        </h3>
       </template>
 
       <p class="text-primary font-weight-bold"  v-clipboard="() => account.secret"><i class="tim-icons icon-lock-circle"></i>{{$t('APP.YOUR_SECRET')}}</p>
       <textarea rows="3" class="w-100 border-dark rounded" v-model="account.secret"></textarea>
 
       <hr>
-      <p class="text-primary font-weight-bold" v-clipboard="() => account.address">{{$t('APP.YOUR_PUB')}}</p>
+      <p class="text-primary font-weight-bold" v-clipboard="() => account.address">{{$t('APP.YOUR_PUB_ADDR')}}</p>
         <base-input
           v-model="account.address"
           addon-left-icon="tim-icons icon-wallet-43"
