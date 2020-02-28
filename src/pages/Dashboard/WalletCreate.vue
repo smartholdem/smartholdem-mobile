@@ -16,17 +16,19 @@
         </h3>
       </template>
 
-      <p class="text-primary font-weight-bold"  v-clipboard="() => account.secret"><i class="tim-icons icon-lock-circle"></i>{{$t('APP.YOUR_SECRET')}}</p>
+      <p class="text-primary font-weight-bold"  v-clipboard="() => account.secret"><i class="tim-icons icon-lock-circle"></i>{{$t('APP.YOUR_SECRET')}}
       <textarea rows="3" class="w-100 border-dark rounded" v-model="account.secret"></textarea>
+      </p>
 
-      <hr>
-      <p class="text-primary font-weight-bold" v-clipboard="() => account.address">{{$t('APP.YOUR_PUB_ADDR')}}</p>
+
+      <p class="text-primary font-weight-bold" v-clipboard="() => account.address">{{$t('APP.YOUR_PUB_ADDR')}}
         <base-input
           v-model="account.address"
           addon-left-icon="tim-icons icon-wallet-43"
           class="pointer"
         >
         </base-input>
+      </p>
 
       <base-checkbox v-model="checks.lose" class="text-left">
         {{$t('APP.IF_LOSE')}}

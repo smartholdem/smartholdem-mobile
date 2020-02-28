@@ -36,9 +36,7 @@
       </div>
 
       <div class="w-100 hide-scroll" style="overflow-x:auto;">
-
         <div :style="'width:'+(360*wallets.length) + 'px;'">
-
           <card v-for="item in wallets" :key="item.address" class="ml-2 mr-2 account-style bgg1">
             <router-link :to="'/address/' + item.address" class="text-white">
               {{item.balance}}
@@ -46,7 +44,6 @@
               class="tim-icons icon-bank pb-1"></i> {{item.delegate.username}}</span><span v-if="!item.delegate">{{item.address}}</span>
             </router-link>
           </card>
-
         </div>
       </div>
 
