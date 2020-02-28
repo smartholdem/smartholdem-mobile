@@ -17,7 +17,7 @@
       </template>
 
       <p class="text-primary font-weight-bold"  v-clipboard="() => account.secret"><i class="tim-icons icon-lock-circle"></i>{{$t('APP.YOUR_SECRET')}}</p>
-      <textarea v-model="account.secret" rows="3" class="w-100 border-dark rounded">{{account.secret}}</textarea>
+      <textarea rows="3" class="w-100 border-dark rounded" v-model="account.secret"></textarea>
 
       <hr>
       <p class="text-primary font-weight-bold" v-clipboard="() => account.address">{{$t('APP.YOUR_PUB')}}</p>
@@ -43,7 +43,6 @@
 </template>
 
 <script>
-import {Modal} from '@/components'
 import {BaseCheckbox} from 'src/components'
 import sth from 'sthjs'
 import {entropyToMnemonic, validateMnemonic} from 'bip39'
@@ -56,7 +55,6 @@ export default {
   components: {
     BaseCheckbox,
     BaseAlert,
-    Modal,
     BotBtnWlt,
   },
   data() {
