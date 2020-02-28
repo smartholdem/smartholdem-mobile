@@ -2,35 +2,31 @@
   <div>
     <card class="card-white stacked-form">
       <template slot="header">
-        <h2 class="card-title text-dark font-weight-bold">Import Wallet</h2>
+        <h2 class="card-title text-dark font-weight-bold">Create New Wallet
+          <base-button @click="getNewAccount()" type="primary" round icon class="ml-2">
+            <el-tooltip
+              content="Generate Other Address"
+              effect="light"
+              :open-delay="300"
+              placement="top"
+            >
+              <i class="fas fa-dice" style="font-size: 1.1rem;padding:0;"></i>
+            </el-tooltip>
+          </base-button>
+        </h2>
       </template>
 
-      <p class="text-black-50">{{$t('APP.ENTER_SECRET')}}</p>
-      <base-input
-        v-model="account.secret"
-        addon-left-icon="tim-icons icon-lock-circle"
-        class="pointer"
-        @input="validateImportAccount()"
-      >
-      </base-input>
-      <base-alert v-show="isBip39 === false" type="warning" class="mb-1"><i class="tim-icons icon-bell-55"></i>
-        {{$t('APP.NO_BIP39')}}
-      </base-alert>
-      <p class="text-black-50">{{$t('APP.YOUR_PUB')}}</p>
-      <el-tooltip
-        :content="toolTipsContent.copy"
-        effect="light"
-        :open-delay="300"
-        placement="top"
-      >
+      <p class="text-primary font-weight-bold"  v-clipboard="() => account.secret"><i class="tim-icons icon-lock-circle"></i>{{$t('APP.YOUR_SECRET')}}</p>
+      <textarea v-model="account.secret" rows="3" class="w-100 border-dark rounded">{{account.secret}}</textarea>
+
+      <hr>
+      <p class="text-primary font-weight-bold" v-clipboard="() => account.address">{{$t('APP.YOUR_PUB')}}</p>
         <base-input
           v-model="account.address"
           addon-left-icon="tim-icons icon-wallet-43"
           class="pointer"
-          v-clipboard="() => account.address"
         >
         </base-input>
-      </el-tooltip>
 
       <base-checkbox v-model="checks.lose" class="text-left">
         {{$t('APP.IF_LOSE')}}
@@ -38,12 +34,11 @@
 
       <base-button :disabled="!checks.lose || !account.address" @click="saveAccount" slot="footer" type="primary" round
                    block size="lg" class="text-uppercase">
-        SAVE & CONTINUE
+        CREATE & SAVE WALLET
       </base-button>
     </card>
 
     <BotBtnWlt/>
-
   </div>
 </template>
 
@@ -57,20 +52,19 @@ import {BaseAlert} from 'src/components'
 import BotBtnWlt from '@/components/Mobile/BotBtnWlt'
 
 export default {
-  name: "WalletImport",
+  name: "WalletCreate",
   components: {
     BaseCheckbox,
     BaseAlert,
     Modal,
-    BotBtnWlt
+    BotBtnWlt,
   },
   data() {
     return {
-      delay: 500,
-      validateTimer: null,
       showConditions: false,
       isMobile: false,
       mobileClass: '',
+      step: 1,
       checks: {
         agree: false,
         lose: false
@@ -83,37 +77,23 @@ export default {
         address: null,
         secret: null,
         pubKey: null,
+        name: 'SmartHoldem'
       },
+      model: {
+        pin: '',
+        name: 'SmartHoldem',
+        pinR: ''
+      }
     }
   },
   methods: {
-    importAccount() {
-      this.account.address = null
-      this.account.secret = null
-      this.account.pubKey = null
-      this.isBip39 = null
-    },
-    getNewAccount() {
+   getNewAccount() {
       const privateKeyHex = cryptoRandomString({length: 32})
       const mnemonic = entropyToMnemonic(privateKeyHex)
       const PUB_KEY = sth.crypto.getKeys(mnemonic).publicKey
       this.account.address = sth.crypto.getAddress(PUB_KEY)
       this.account.secret = mnemonic
       this.account.pubKey = PUB_KEY
-    },
-    async validateImportAccount() {
-      if (this.account.secret.length > 7) {
-        clearTimeout(this.validateTimer)
-        this.validateTimer = setTimeout(async() => {
-          const PUB_KEY = sth.crypto.getKeys(this.account.secret).publicKey
-          this.account.address = sth.crypto.getAddress(PUB_KEY)
-          this.isBip39 = validateMnemonic(this.account.secret)
-          this.account.pubKey = PUB_KEY
-        }, this.delay)
-      } else {
-        this.account.address = null
-        this.isBip39 = null
-      }
     },
     saveAccount() {
       this.$store.dispatch('app/setAccount', {
@@ -143,7 +123,6 @@ export default {
         this.account.address = sth.crypto.getAddress(PUB_KEY)
         this.account.secret = mnemonic
         this.account.pubKey = PUB_KEY
-        // TIP use this.model to send it to api and perform register call
       }
     }
   },
@@ -156,6 +135,7 @@ export default {
     if (this.isMobile) {
       this.mobileClass = 'ismobile'
     }
+    this.getNewAccount()
   }
 }
 </script>
