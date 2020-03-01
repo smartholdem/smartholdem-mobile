@@ -21,7 +21,7 @@ locale.use(lang);
 // asset imports
 import 'src/assets/sass/sth.scss';
 import 'src/assets/css/nucleo-icons.css';
-import 'src/assets/css/demo.css';
+import 'src/assets/css/sth-demo.css';
 
 export default {
   install(Vue) {
