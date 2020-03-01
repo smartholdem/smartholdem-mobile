@@ -1,10 +1,21 @@
 <template>
   <div>
-    <base-button type="primary" @click="showActions = !showActions" round icon :simple="showActions" class="position-absolute"
+    <base-button type="primary" @click="showActions = !showActions" round icon :simple="showActions" class="position-fixed"
                  style="right:10px;bottom: 10px;height:3rem; width:3rem;z-index:10000;">
       <i class="tim-icons icon-sound-wave" style="font-size:1.6rem;padding:0;"></i>
     </base-button>
-    <div @click="showActions = false" v-if="showActions" class="row h-100 w-100 position-absolute"
+
+    <base-button v-if="$route.name === 'Address'" @click="showTabAddress(0); showActions = false" :disabled="activeTab === 0" type="default" :simple="showActions" class="position-fixed" icon
+                 style="left:10px;bottom: 10px;height:3rem; width:3rem;z-index:10000;">
+      <i class="tim-icons icon-bullet-list-67" style="font-size: 1.3rem; padding:0;"></i>
+    </base-button>
+
+    <base-button v-if="$route.name === 'Address'" @click="showTabAddress(2); showActions = false" :disabled="activeTab === 2" type="default" :simple="showActions" class="position-fixed" icon
+                 style="left:70px;bottom: 10px;height:3rem; width:3rem;z-index:10000;">
+      <i class="tim-icons icon-coins" style="font-size: 1.3rem; padding:0;"></i>
+    </base-button>
+
+    <div @click="showActions = false" v-if="showActions" class="row h-100 w-100 position-fixed"
          style="top:0;background: #2125294a;">
       <div class="w-100 position-absolute bg-dark col-md-12 pt-4" style="bottom:0px;padding-bottom:80px;">
 
@@ -17,7 +28,7 @@
         </base-button>
 
         <base-button v-show="$route.path !== '/wallet'" @click="openRouter('/wallet')" type="primary" round simple class="ml-2 text-uppercase w-100 font-weight-bolder" style="">
-          <i class="tim-icons icon-wallet-43 pb-1 mr-2"></i>Wallets
+          <i class="tim-icons icon-wallet-43 pb-1 mr-2"></i>All Wallets
         </base-button>
 
       </div>
@@ -26,21 +37,29 @@
 </template>
 
 <script>
+
+import eventBus from '@/plugins/event-bus'
+
 export default {
   name: "BotBtnWlt",
   data() {
     return {
+      activeTab: 0,
       showActions: false,
     }
   },
   methods: {
+    async showTabAddress(idx) {
+      this.activeTab = idx
+      eventBus.emit('address:tab', idx)
+    },
     openRouter(url){
       this.showActions = false
       this.$router.push({path: url})
     }
   },
   async created() {
-    //console.log(this.$route.path)
+    //console.log(this.$route.name)
   }
 }
 </script>
