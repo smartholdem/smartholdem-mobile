@@ -187,6 +187,36 @@
       </div>
     </div>
 
+
+    <div class="pin-layer p-5">
+      <h4 class="text-center">Enter PIN-Code</h4>
+
+      <div class="fill-pin w-100 p-2 float-left">
+        <span class="fill-pin-item ml-4"></span>
+        <span class="fill-pin-item"></span>
+        <span class="fill-pin-item"></span>
+        <span class="fill-pin-item"></span>
+        <span class="fill-pin-item"></span>
+        <span class="fill-pin-item"></span>
+        <span class="fill-pin-item"></span>
+        <span class="fill-pin-item"></span>
+      </div>
+
+      <base-button type="danger" round simple class="pin-btn font-weight-light">1</base-button>
+      <base-button type="danger" round simple class="pin-btn font-weight-light">2</base-button>
+      <base-button type="danger" round simple class="pin-btn font-weight-light">3</base-button>
+      <base-button type="danger" round simple class="pin-btn font-weight-light">4</base-button>
+      <base-button type="danger" round simple class="pin-btn font-weight-light">5</base-button>
+      <base-button type="danger" round simple class="pin-btn font-weight-light">6</base-button>
+      <base-button type="danger" round simple class="pin-btn font-weight-light">7</base-button>
+      <base-button type="danger" round simple class="pin-btn font-weight-light">8</base-button>
+      <base-button type="danger" round simple class="pin-btn font-weight-light">9</base-button>
+      <div class="text-center">
+      <base-button type="danger" round simple class="pin-btn font-weight-light">0</base-button>
+      <span class="pin-btn"><i class="fas fa-backspace pt-3"></i></span>
+      </div>
+    </div>
+
     <!-- global modals -->
     <div v-if="modal.label.show">
     <ModalSetLabel :showModal="modal.label.show" :address="modal.label.address" @onModalClose="modal.label.show = false" />
@@ -378,6 +408,40 @@ export default {
 };
 </script>
 <style lang="scss">
+  .pin-layer {
+    position: fixed;
+    z-index:10000;
+    top:0;
+    left:0;
+    background: #fff;
+    height: 100vh;
+    width:100%;
+  }
+
+  .fill-pin {
+    text-align: center;
+  }
+
+  .fill-pin-item {
+    width:12px;
+    height: 12px;
+    float:left;
+    margin:6px;
+    border: solid 1px #ccc;
+    border-radius: 50%;
+  }
+
+
+
+  .pin-btn {
+    width:60px;
+    height:60px;
+    float:left;
+    text-align: center;
+    margin:10px;
+    font-size:2.3em;
+    padding: 0px !important;
+  }
   $scaleSize: 0.95;
   @keyframes zoomIn95 {
     from {
