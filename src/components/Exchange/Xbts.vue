@@ -68,11 +68,6 @@
           </button>
         </div>
 
-        <div class="col-md-12 pt-4">
-          <h4 class="text-center color-orange">
-            Provided <img width="100px" class="m-auto" src="/images/xbts_logo-horizontal.png"/>
-          </h4>
-        </div>
       </div>
 
 
