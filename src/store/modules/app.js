@@ -23,7 +23,6 @@
 
 import i18n from '@/i18n'
 import CryptoJS from 'crypto-js'
-import releaseService from '@/services/release'
 import Blockchain from '@/services/blockchain'
 
 export default {
@@ -33,7 +32,9 @@ export default {
     language: 'en',
     pinEncrypted: null, // encrypted hash
     settings: {
-      sound: true,
+      sound: false,
+      darkMode: false,
+      lockAfter: 300,
     },
     accounts: [], // здесь будем хранить много адресов ключ = address > SHA384 > AES,
     contacts: {}, // contact list
@@ -42,7 +43,6 @@ export default {
   getters: {
     language: state => state.language,
     pinEncrypted: state => state.pinEncrypted,
-    latestReleaseVersion: state => state.latestReleaseVersion,
     settings: state => state.settings,
     accounts: state => state.accounts,
     contacts: state => state.contacts,
@@ -51,9 +51,6 @@ export default {
   mutations: {
     SET_SETTINGS (state, payload) {
       state.settings = payload
-    },
-    SET_LATEST_RELEASE_VERSION (state, version) {
-      state.latestReleaseVersion = version
     },
     SET_RESET (state) {
       state.language = 'en'
@@ -91,11 +88,6 @@ export default {
   actions: {
     async setSettings ({ commit }, value) {
       commit('SET_SETTINGS', value)
-    },
-    async checkNewVersion ({ commit }) {
-      const latestRelease = await releaseService.fetchLatestRelease()
-      // eslint-disable-next-line camelcase
-      commit('SET_LATEST_RELEASE_VERSION', latestRelease.tag_name)
     },
     appReset ({ commit }) {
       commit('SET_RESET')
