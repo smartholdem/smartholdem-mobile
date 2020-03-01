@@ -36,11 +36,11 @@
           </div>
           <div v-if="step === 2" class="description text-center">
             <p class="text-white"> - {{$t('APP.OR')}} - </p>
-            <base-button @click="importAccount" type="primary" round class="w-100 text-uppercase"><i class="tim-icons icon-cloud-upload-94"></i> {{$t('APP.IMPORT_ACCOUNT')}}</base-button>
+            <base-button @click="importAccount" type="danger" round class="w-100 text-uppercase"><i class="tim-icons icon-cloud-upload-94"></i> {{$t('APP.IMPORT_ACCOUNT')}}</base-button>
           </div>
           <div v-if="step === 21" class="description text-center">
             <p> - {{$t('APP.OR')}} - </p>
-            <base-button @click="getNewAccount" type="primary" round class="w-100 text-uppercase"><i class="tim-icons icon-single-02"></i> {{$t('APP.GET_NEW_ACC')}}</base-button>
+            <base-button @click="getNewAccount" type="danger" round class="w-100 text-uppercase"><i class="tim-icons icon-single-02"></i> {{$t('APP.GET_NEW_ACC')}}</base-button>
           </div>
         </div>
       </div>
@@ -48,7 +48,7 @@
       <div v-if="isMobile" class="col-md-12 ml-auto">
         <div class="info-area">
           <div v-if="step === 2" class="description text-center">
-            <base-button @click="importAccount" type="dark" class="w-100 text-uppercase"><i class="tim-icons icon-cloud-upload-94"></i> {{$t('APP.IMPORT_ACCOUNT')}}</base-button>
+            <base-button @click="importAccount" type="danger" class="w-100 text-uppercase"><i class="tim-icons icon-cloud-upload-94"></i> {{$t('APP.IMPORT_ACCOUNT')}}</base-button>
           </div>
           <div v-if="step === 21" class="description text-center">
             <base-button @click="getNewAccount" type="dark" class="w-100 text-uppercase"><i class="tim-icons icon-single-02"></i> {{$t('APP.GET_NEW_ACC')}}</base-button>

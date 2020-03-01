@@ -234,7 +234,9 @@
                      @onModalClose="modal.label.show = false"/>
     </div>
 
+    <!--
     <ModalUnlock :modalPin="modal.unlock.show" @onUnlockClose="modal.unlock.show = false"/>
+    -->
 
     <div v-if="modal.contacts.show">
       <ModalAddContact :showModal="modal.contacts.show" @onModalClose="modal.contacts.show = false"/>
