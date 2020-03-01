@@ -13,7 +13,6 @@
       <span v-show="loading" class="small float-right" style="margin-top: -20px;">Loading data..</span>
     </div>
     <div class="card-body">
-
       <div class="row">
         <div class="col-md-8 font-weight-bold">
           <span v-if="currency[selects.currency] && selects.currency" class="small ml-1 w-100 pr-2"
