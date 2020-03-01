@@ -1,2 +1,6 @@
-# smartholdem-mobile
-SmartHoldem mobile client for Android &amp; IOS
+# SmartHoldem mobile client for Android &amp; IOS
+
+# Build
+
+
+
