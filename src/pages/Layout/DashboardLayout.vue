@@ -188,52 +188,54 @@
     </div>
 
 
-    <div class="pin-layer p-5">
+    <div class="pin-layer p-2">
+      <span class="float-right"><i class="tim-icons icon-simple-remove" style="font-size: 1.2em;"></i></span>
       <h4 class="text-center">Enter PIN-Code</h4>
+      <div class="p-4 pl-5 mt-3">
+        <div class="fill-pin w-100 p-2 ml-4 float-left mb-4">
+          <span :class="'fill-pin-item ml-2 ' + (pin.length > 0 ? 'pin-filled' : '')"></span>
+          <span :class="'fill-pin-item ml-2 ' + (pin.length > 1 ? 'pin-filled' : '')"></span>
+          <span :class="'fill-pin-item ml-2 ' + (pin.length > 2 ? 'pin-filled' : '')"></span>
+          <span :class="'fill-pin-item ml-2 ' + (pin.length > 3 ? 'pin-filled' : '')"></span>
+          <span :class="'fill-pin-item ml-2 ' + (pin.length > 4 ? 'pin-filled' : '')"></span>
+          <span :class="'fill-pin-item ml-2 ' + (pin.length > 5 ? 'pin-filled' : '')"></span>
+        </div>
 
-      <div class="fill-pin w-100 p-2 float-left">
-        <span class="fill-pin-item ml-4"></span>
-        <span class="fill-pin-item"></span>
-        <span class="fill-pin-item"></span>
-        <span class="fill-pin-item"></span>
-        <span class="fill-pin-item"></span>
-        <span class="fill-pin-item"></span>
-        <span class="fill-pin-item"></span>
-        <span class="fill-pin-item"></span>
-      </div>
+        <base-button @click="pinPress('1')" type="default" round simple class="pin-btn font-weight-light">1</base-button>
+        <base-button @click="pinPress('2')" type="default" round simple class="pin-btn font-weight-light">2</base-button>
+        <base-button @click="pinPress('3')" type="default" round simple class="pin-btn font-weight-light">3</base-button>
+        <base-button @click="pinPress('4')" type="default" round simple class="pin-btn font-weight-light">4</base-button>
+        <base-button @click="pinPress('5')" type="default" round simple class="pin-btn font-weight-light">5</base-button>
+        <base-button @click="pinPress('6')" type="default" round simple class="pin-btn font-weight-light">6</base-button>
+        <base-button @click="pinPress('7')" type="default" round simple class="pin-btn font-weight-light">7</base-button>
+        <base-button @click="pinPress('8')" type="default" round simple class="pin-btn font-weight-light">8</base-button>
+        <base-button @click="pinPress('9')" type="default" round simple class="pin-btn font-weight-light">9</base-button>
+        <base-button @click="pinPress('0')" type="default" round simple class="pin-btn font-weight-light">0</base-button>
+        <span @click="pinPress('del')" class="pin-btn"><i class="fas fa-backspace pt-3"></i></span>
+        <!--<span class="pin-btn"><i class="tim-icons icon-check-2 pt-3"></i></span>-->
 
-      <base-button type="danger" round simple class="pin-btn font-weight-light">1</base-button>
-      <base-button type="danger" round simple class="pin-btn font-weight-light">2</base-button>
-      <base-button type="danger" round simple class="pin-btn font-weight-light">3</base-button>
-      <base-button type="danger" round simple class="pin-btn font-weight-light">4</base-button>
-      <base-button type="danger" round simple class="pin-btn font-weight-light">5</base-button>
-      <base-button type="danger" round simple class="pin-btn font-weight-light">6</base-button>
-      <base-button type="danger" round simple class="pin-btn font-weight-light">7</base-button>
-      <base-button type="danger" round simple class="pin-btn font-weight-light">8</base-button>
-      <base-button type="danger" round simple class="pin-btn font-weight-light">9</base-button>
-      <div class="text-center">
-      <base-button type="danger" round simple class="pin-btn font-weight-light">0</base-button>
-      <span class="pin-btn"><i class="fas fa-backspace pt-3"></i></span>
       </div>
     </div>
 
     <!-- global modals -->
     <div v-if="modal.label.show">
-    <ModalSetLabel :showModal="modal.label.show" :address="modal.label.address" @onModalClose="modal.label.show = false" />
+      <ModalSetLabel :showModal="modal.label.show" :address="modal.label.address"
+                     @onModalClose="modal.label.show = false"/>
     </div>
 
     <ModalUnlock :modalPin="modal.unlock.show" @onUnlockClose="modal.unlock.show = false"/>
 
     <div v-if="modal.contacts.show">
-    <ModalAddContact :showModal="modal.contacts.show" @onModalClose="modal.contacts.show = false"/>
+      <ModalAddContact :showModal="modal.contacts.show" @onModalClose="modal.contacts.show = false"/>
     </div>
 
     <div v-if="modal.vote.show">
-    <ModalTxVote :showModalVote="modal.vote.show" :voteData="modal.vote.data" @onModalClose="modal.vote.show = false"/>
+      <ModalTxVote :showModalVote="modal.vote.show" :voteData="modal.vote.data"
+                   @onModalClose="modal.vote.show = false"/>
     </div>
 
     <div v-if="modal.send.show">
-    <ModalTxSend :showModal="modal.send.show" :address="modal.send.address" @onModalClose="modal.send.show = false"/>
+      <ModalTxSend :showModal="modal.send.show" :address="modal.send.address" @onModalClose="modal.send.show = false"/>
     </div>
 
   </div>
@@ -288,6 +290,7 @@ export default {
   },
   data() {
     return {
+      pin: '',
       modal: {
         label: {
           show: false,
@@ -379,6 +382,14 @@ export default {
 
   },
   methods: {
+    async pinPress(num) {
+      if (num === 'del') {
+        this.pin = this.pin.substr(0, this.pin.length - 1)
+      } else {
+        this.pin = this.pin + num
+      }
+      console.log('this.pin', this.pin)
+    },
     toggleSidebar() {
       if (this.$sidebar.showSidebar) {
         this.$sidebar.displaySidebar(false);
@@ -410,12 +421,12 @@ export default {
 <style lang="scss">
   .pin-layer {
     position: fixed;
-    z-index:10000;
-    top:0;
-    left:0;
+    z-index: 10000;
+    top: 0;
+    left: 0;
     background: #fff;
     height: 100vh;
-    width:100%;
+    width: 100%;
   }
 
   .fill-pin {
@@ -423,25 +434,29 @@ export default {
   }
 
   .fill-pin-item {
-    width:12px;
-    height: 12px;
-    float:left;
-    margin:6px;
+    width: 15px;
+    height: 15px;
+    float: left;
+    margin: 6px;
     border: solid 1px #ccc;
     border-radius: 50%;
   }
 
-
+  .pin-filled {
+    background: red;
+    border: solid 1px red;
+  }
 
   .pin-btn {
-    width:60px;
-    height:60px;
-    float:left;
+    width: 60px;
+    height: 60px;
+    float: left;
     text-align: center;
-    margin:10px;
-    font-size:2.3em;
+    margin: 10px;
+    font-size: 2.3em;
     padding: 0px !important;
   }
+
   $scaleSize: 0.95;
   @keyframes zoomIn95 {
     from {
