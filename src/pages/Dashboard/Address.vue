@@ -1,28 +1,24 @@
 <template>
   <div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="">
-          <card class="bg-white" style="margin-bottom: 3px; position: sticky; top: 66px;z-index:1;">
+    <div class="row mt-0">
+      <div class="col-md-12 m-0 w-100 p-0">
+        <div class="m-0">
+          <card class="bg-white pb-2" style="margin-bottom: 3px; position: sticky; top: 50px;z-index:1;">
             <template slot="header" class="">
-              <div class="row border-bottom">
+              <div class="row">
                 <div class="col-md-1">
                   <VueQrcode v-if="currentAddress && !$root.isMobile" class="qr-wallet" :value="currentAddress"
                              :options="{size:98}"/>
                 </div>
-                <div class="col-md-4 pl-2">
+                <div class="col-md-4 pl-2 text-center">
 
-                  <p v-if="$root.isMobile" title="Your Public Address" class="small font-weight-bold"
+                  <p title="Your Public Address" class="small font-weight-bold"
                      v-clipboard="() => currentAddress">
                     <i class="tim-icons icon-single-copy-04 pointer"></i>
                     {{currentAddress}}
                   </p>
 
-                  <h4 v-if="!$root.isMobile" title="Your Public Address" class="card-title font-weight-bold"
-                      v-clipboard="() => currentAddress">
-                    <i class="tim-icons icon-single-copy-04 pointer"></i>
-                    {{currentAddress}}
-                  </h4>
+
                   <h4 class="card-title font-weight-normal"><span v-if="!$root.isMobile">{{$t('WALLET.BALANCE')}}</span>
                     <span class="font-weight-bold">{{ walletBalance.balance }}</span>
                     STH</h4>
@@ -45,22 +41,15 @@
 
 
                 </div>
-                <div class="col-md-7 pl-4">
+                <div class="col-md-7 pl-4 text-center">
                   <base-button v-if="$root.isMobile" @click="showModalSend(currentAddress)"
-                               :disabled="accountData.balance < 1.01" class="ml-2" type="primary" round icon simple>
+                               :disabled="accountData.balance < 1.01" class="" type="primary" round icon simple>
                     <i class="tim-icons icon-spaceship" style="font-size: 1.3rem"></i>
                   </base-button>
 
                   <base-button v-if="!$root.isMobile" @click="showModalSend(currentAddress)"
                                :disabled="accountData.balance < 1.01" type="primary" round simple>
-                    <el-tooltip
-                      content="Send STH Coins"
-                      effect="light"
-                      :open-delay="300"
-                      placement="top"
-                    >
                       <span><i class="tim-icons icon-spaceship" style="font-size: 1.3rem"></i> SEND</span>
-                    </el-tooltip>
                   </base-button>
 
                   <base-button v-if="!accountData.delegate && $root.isMobile" type="default" :disabled="accountData.balance < 55000"
@@ -81,39 +70,18 @@
                   <base-button v-if="!accountData.delegate" @click="showModalLabel($route.params.address)" type="info"
                                round icon
                                simple class="ml-2">
-                    <el-tooltip
-                      content="Wallet Name"
-                      effect="light"
-                      :open-delay="300"
-                      placement="top"
-                    >
                       <i class="tim-icons icon-tag" style="font-size: 1.3rem"></i>
-                    </el-tooltip>
                   </base-button>
 
                   <base-button @click="walletDecrypt(currentAddress)" type="info" round icon simple class="ml-2">
-                    <el-tooltip
-                      content="Show Private Key"
-                      effect="light"
-                      :open-delay="300"
-                      placement="top"
-                    >
                       <i class="tim-icons icon-key-25" style="font-size: 1.3rem"></i>
-                    </el-tooltip>
                   </base-button>
 
-                  <!--
-                  <base-button @click="removeAddress(currentAddress)" type="danger" round icon simple class="ml-2">
-                    <el-tooltip
-                      content="Delete Wallet"
-                      effect="light"
-                      :open-delay="300"
-                      placement="top"
-                    >
-                      <i class="tim-icons icon-trash-simple" style="font-size: 1.3rem"></i>
-                    </el-tooltip>
+
+                  <base-button type="default" round icon simple class="ml-2">
+                      <i class="fas fa-qrcode" style="font-size: 1.3rem"></i>
                   </base-button>
-                  -->
+
 
 
                 </div>
