@@ -133,6 +133,15 @@ export default {
         }
       }
       commit('UPD_CONTACTS', result)
+    },
+    async validatePinCode({ commit }, value) {
+        const currentHashPin = (CryptoJS.SHA384(value.toString())).toString()
+        const decryptCompare = (CryptoJS.AES.decrypt(this.getters['app/pinEncrypted'], currentHashPin)).toString(CryptoJS.enc.Utf8)
+        if (decryptCompare && decryptCompare === currentHashPin) {
+          return currentHashPin
+        } else {
+          return null
+        }
     }
   }
 }
