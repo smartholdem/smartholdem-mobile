@@ -77,12 +77,9 @@
                       <i class="tim-icons icon-key-25" style="font-size: 1.3rem"></i>
                   </base-button>
 
-
                   <base-button type="default" round icon simple class="ml-2">
                       <i class="fas fa-qrcode" style="font-size: 1.3rem"></i>
                   </base-button>
-
-
 
                 </div>
               </div>
