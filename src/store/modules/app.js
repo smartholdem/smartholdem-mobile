@@ -66,6 +66,7 @@ export default {
       state.language = 'en'
       state.pinEncrypted = null
       state.accounts = []
+      state.contacts = {}
     },
     SET_LANGUAGE (state, payload) {
       state.language = payload

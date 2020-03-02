@@ -10,7 +10,7 @@
         <p>Welcome to the Smartholdem Platform</p>
 
         <div class="text-center w-100 m-auto pt-3">
-          <base-button @click="showEncrypt = true" type="primary" round class="text-uppercase">Encrypt Wallet</base-button>
+          <base-button v-if="!$root.pinEnc" @click="showEncrypt = true" type="primary" round class="text-uppercase">Create Profile</base-button>
           <base-button v-if="$root.pinEnc" @click="showUnlock = true" type="primary" round class="text-uppercase">Open My Wallet</base-button>
         </div>
       </div>

@@ -206,6 +206,10 @@ export default {
         "mdl": "",
         "onion": ""
       }
+      state.balances = {
+        accounts: [],
+        totalBalance: 0,
+      }
     },
     SET_DEP_ADDR(state, payload) {
       state.depAddrs[payload.coin] = payload.address
@@ -330,7 +334,9 @@ export default {
     },
     async getTxsByAddress({commit}, offset = 0) {
       const currentAddress = this.getters['wallet/currentAddress']
-      if (!currentAddress) {return}
+      if (!currentAddress) {
+        return
+      }
       const data = await Blockchain.fetchTxsByAddress(currentAddress, offset)
       if (!data) return
       if (data) {
