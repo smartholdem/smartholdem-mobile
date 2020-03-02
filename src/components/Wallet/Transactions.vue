@@ -1,6 +1,5 @@
 <template>
   <card card-body-classes="table-full-width" style="margin-bottom: 0px;">
-    <!--<h4 slot="header" class="card-title">{{$t('WALLET.TRANSACTIONS')}} <span class="font-weight-bold">{{totalTx}}</span></h4>-->
 
     <!-- tx mobile devices -->
     <div v-if="!txs.transactions.length" class="text-center">No Transactions</div>
