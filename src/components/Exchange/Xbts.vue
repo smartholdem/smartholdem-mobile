@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card shadow-none">
     <div class="card-header">
       <h4 class="card-title mb-1 noselect font-weight-bold text-center mb-3">
         {{$t('WALLET.BUY')}} <span v-if="!$root.isMobile">SmartHoldem</span> for
@@ -61,10 +61,10 @@
           <span class="small ml-1" style="margin-top:-4px !important; float:left; clear:both;margin-bottom:-6px">* {{$t('WALLET.MAX_RECEIVE')}} {{sth.max}} STH {{$t('APP.ON')}} 1 {{$t('APP.OP')}}</span>
         </div>
         <div class="col-md-4 mb-2">
-          <button @click="exchangeStart" :disabled="disabled" type="info"
-                  class="mt-2 btn btn-simple w-100 text-uppercase">
+          <base-button @click="exchangeStart" :disabled="disabled" type="warning" round simple
+                  class="mt-2 w-100 text-uppercase">
             {{$t('WALLET.EXCHANGE')}}
-          </button>
+          </base-button>
         </div>
 
       </div>
@@ -486,6 +486,14 @@ export default {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .form-control[readonly] {
+    color: #fff;
+  }
+
+  .white-content .form-control[readonly] {
+    color: #000;
   }
 
 </style>
