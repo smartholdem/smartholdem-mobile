@@ -416,7 +416,6 @@ export default {
         this.pin = this.pin + num
         await this.validatePin()
       }
-      console.log('this.pin', this.pin)
     },
     toggleSidebar() {
       if (this.$sidebar.showSidebar) {

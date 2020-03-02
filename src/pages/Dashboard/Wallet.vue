@@ -96,9 +96,7 @@ export default {
     wallets() {
       let result = []
       let balances = (this.$store.getters['wallet/balances'])
-
       let keys = Object.keys(balances.accounts)
-
       if (keys.length > 0) {
         for (let i = 0; i < keys.length; i++) {
           balances.accounts[keys[i]].label = this.getLabel(keys[i])

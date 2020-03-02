@@ -3,6 +3,7 @@
     <!--<h4 slot="header" class="card-title">{{$t('WALLET.TRANSACTIONS')}} <span class="font-weight-bold">{{totalTx}}</span></h4>-->
 
     <!-- tx mobile devices -->
+    <div v-if="!txs.transactions.length" class="text-center">No Transactions</div>
     <table v-if="$root.isMobile" class="table text-darker">
       <tr v-for="(item, idx) in txs.transactions" :key="idx">
         <td style="border-top: none; border-bottom: solid 1px #333;"
