@@ -113,11 +113,9 @@ export default {
       }
 
       if (this.pin === this.pinRepeat) {
-        console.log(this.pin, this.pinRepeat)
         this.$root.pin = await this.$store.dispatch('app/setPinEnc', this.pin)
         this.pin = ''
         this.$router.push({path: '/wallet'})
-        console.log('this.$root.pin', this.$root.pin)
         return true
       } else {
         return false
