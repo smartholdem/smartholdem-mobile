@@ -331,10 +331,8 @@ export default {
   },
 
   async created() {
-    if (!this.$store.getters['app/pinEncrypted']) {
-      this.$router.push({path: '/register'})
-    } else if (!this.$root.pin) {
-      //this.$router.push({path: '/lock'})
+    if (!this.$store.getters['app/pinEncrypted'] || !this.$root.pin) {
+      this.$router.push({path: '/welcome'})
     }
     await this.getFees()
 
