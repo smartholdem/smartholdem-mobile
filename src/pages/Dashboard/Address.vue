@@ -77,7 +77,7 @@
                       <i class="tim-icons icon-key-25" style="font-size: 1.3rem"></i>
                   </base-button>
 
-                  <base-button type="default" round icon simple class="ml-2">
+                  <base-button @click="show.qr = true" type="default" round icon simple class="ml-2">
                       <i class="fas fa-qrcode" style="font-size: 1.3rem"></i>
                   </base-button>
 
@@ -194,6 +194,8 @@
       <BotBtnWlt/>
     </div>
 
+    <ReceiveSth :show="show.qr" :address="currentAddress" @onQrClose="show.qr = false"/>
+
   </div>
 </template>
 
@@ -214,6 +216,7 @@ import eventBus from '@/plugins/event-bus'
 
 import ModalTxDelegate from '@/components/Wallet/ModalTxDelegate'
 import BotBtnWlt from '@/components/Mobile/BotBtnWlt'
+import ReceiveSth from '@/components/Mobile/ReceiveSth'
 
 export default {
   name: "Address",
@@ -230,10 +233,14 @@ export default {
     BaseAlert,
     ModalTxDelegate,
     BotBtnWlt,
+    ReceiveSth,
   },
   data() {
     return {
       mobileTabs: 0,
+      show: {
+        qr: false,
+      },
       modal: {
         delegate: {
           show: false,
@@ -370,6 +377,8 @@ export default {
         },
       }
     })
+
+
 
     this.$eventBus.on('address:tab', async (idx) => {
       this.mobileTabs = idx
