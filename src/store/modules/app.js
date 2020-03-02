@@ -30,6 +30,7 @@ export default {
 
   state: {
     isWelcome: true,
+    profiles: [],
     language: 'en',
     pinEncrypted: null, // encrypted hash
     settings: {
@@ -43,6 +44,7 @@ export default {
 
   getters: {
     isWelcome: state => state.isWelcome,
+    profiles: state => state.profiles,
     language: state => state.language,
     pinEncrypted: state => state.pinEncrypted,
     settings: state => state.settings,
@@ -53,6 +55,9 @@ export default {
   mutations: {
     SET_WELCOME (state, payload) {
       state.isWelcome = payload
+    },
+    SET_PROFILE (state, payload) {
+      state.profiles.push(payload)
     },
     SET_SETTINGS (state, payload) {
       state.settings = payload
@@ -93,6 +98,9 @@ export default {
   actions: {
     async setIsWelcome ({ commit }, value) {
       commit('SET_WELCOME', value)
+    },
+    async setProfile ({ commit }, value) {
+      commit('SET_PROFILE', value)
     },
     async setSettings ({ commit }, value) {
       commit('SET_SETTINGS', value)
