@@ -4,8 +4,8 @@
       <h3 class="card-title mb-1 noselect font-weight-bold">
         {{$t('WALLET.BUY')}} <span v-if="!$root.isMobile">SmartHoldem</span>[STH]
 
-        <span v-if="selects.currency" class="text-uppercase">for <img width="24px"
-                                                                      :src="'https://ex.xbts.io/asset-symbols/'+selects.currency+'.png'"/> {{selects.currency}}</span>
+        <span v-if="selects.currency" class="text-uppercase"> <img width="18px"
+                                                                      :src="'https://ex.xbts.io/asset-symbols/'+selects.currency+'.png'"/> </span>
         <span @click="getDepHistory" class="text-right float-right pointer"><span v-show="!$root.isMobile">{{$t('WALLET.HISTORY')}} Deps</span> <i
           class="tim-icons icon-watch-time"></i></span>
         <br/>
@@ -17,8 +17,8 @@
         <div class="col-md-8 font-weight-bold">
           <span v-if="currency[selects.currency] && selects.currency" class="small ml-1 w-100 pr-2"
                 style="margin-top:-20px !important; float:left; clear:both;">
-            * {{$t('WALLET.MIN_SEND')}} {{currency[selects.currency].min}} {{selects.currency.toUpperCase()}}
-            <span class="text-right float-right">1 {{currency[selects.currency].ticker}} {{currency[selects.currency].title}} ≈ {{currency[selects.currency].price}} STH</span>
+            * min {{currency[selects.currency].min}} {{selects.currency.toUpperCase()}}
+            <span class="text-right float-right">1 {{currency[selects.currency].ticker}} ≈ {{currency[selects.currency].price}} STH</span>
           </span>
           <base-input
             class="w-100 float-left mr-2 text-uppercase"
