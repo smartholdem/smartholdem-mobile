@@ -10,7 +10,12 @@
         >
           <span v-show="item.op === '-'" class="badge badge-danger big-badge">{{item.amount}} STH</span>
           <span v-show="item.op === '+'" class="badge badge-success big-badge">{{item.amount}} STH</span>
-          <span class="float-right text-info"><i class="tim-icons icon-single-copy-04"></i></span>
+          <span class="float-right text-info">
+            <base-button type="info" icon round class="btn-sm">
+              <i class="tim-icons icon-single-copy-04"></i>
+              </base-button>
+
+          </span>
           <br/>Tx <span class="small">{{item.id.substr(0, 10)}}...{{item.id.substr(-10)}}</span>
           <br/><span class="truncate">{{$t('WALLET.CONF')}} {{item.confirmations}}</span>
           <br/><span class="truncate">{{item.time}}</span>

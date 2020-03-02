@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="show" class="pin-layer p-2">
+    <div v-if="show" class="pin-layer p-2  card">
 
       <div v-if="step === 1">
       <h4 class="text-center">Create Your PIN-Code</h4>

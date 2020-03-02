@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div v-if="show" class="pin-layer p-2">
+  <div class="">
+    <div v-if="show" class="pin-layer p-2 card">
       <span @click="closeUnlock" class="float-right"><i class="tim-icons icon-simple-remove"
                                                         style="font-size: 1.2em;"></i></span>
       <h4 class="text-center">Enter PIN-Code</h4>

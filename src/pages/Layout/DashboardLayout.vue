@@ -449,7 +449,7 @@ export default {
     z-index: 10000;
     top: 0;
     left: 0;
-    background: #fff;
+    /*background: #fff;*/
     height: 100vh;
     width: 100%;
   }
