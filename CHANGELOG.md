@@ -9,3 +9,5 @@ v1.0.2
 - XBTS form exchange optimize
 - Fix reset all data
 - Welcome add dark mode
+- Modal mobile sticky top
+- Reset All data on Welcome page

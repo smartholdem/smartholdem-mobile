@@ -53,31 +53,31 @@ export default {
   },
 
   mutations: {
-    SET_WELCOME (state, payload) {
+    SET_WELCOME(state, payload) {
       state.isWelcome = payload
     },
-    SET_PROFILE (state, payload) {
+    SET_PROFILE(state, payload) {
       state.profiles.push(payload)
     },
-    SET_SETTINGS (state, payload) {
+    SET_SETTINGS(state, payload) {
       state.settings = payload
     },
-    SET_RESET (state) {
+    SET_RESET(state) {
       state.language = 'en'
       state.pinEncrypted = null
       state.accounts = []
       state.contacts = {}
     },
-    SET_LANGUAGE (state, payload) {
+    SET_LANGUAGE(state, payload) {
       state.language = payload
     },
-    SET_PIN_ENC (state, payload) {
+    SET_PIN_ENC(state, payload) {
       // полученный хэш шифруем тем же хэшем
       //const hash = CryptoJS.SHA384(payload).toString()
       //state.pinEncrypted = (CryptoJS.AES.encrypt(hash, hash)).toString() // msg, key
       state.pinEncrypted = (CryptoJS.AES.encrypt(payload, payload)).toString() // msg, key
     },
-    SET_ACCOUNT (state, payload) {
+    SET_ACCOUNT(state, payload) {
       //const hashPin = CryptoJS.SHA384(payload.pin).toString()
       const hashPin = payload.pin
       state.accounts[payload.address] = {
@@ -98,54 +98,54 @@ export default {
   },
 
   actions: {
-    async setIsWelcome ({ commit }, value) {
+    async setIsWelcome({commit}, value) {
       commit('SET_WELCOME', value)
     },
-    async setProfile ({ commit }, value) {
+    async setProfile({commit}, value) {
       commit('SET_PROFILE', value)
     },
-    async setSettings ({ commit }, value) {
+    async setSettings({commit}, value) {
       commit('SET_SETTINGS', value)
     },
-    appReset ({ commit }) {
+    appReset({commit}) {
       commit('SET_RESET')
     },
-    setLanguage ({ commit }, value) {
+    setLanguage({commit}, value) {
       commit('SET_LANGUAGE', value)
       i18n.locale = value
     },
-    setPinEnc ({ commit }, value) {
+    setPinEnc({commit}, value) {
       const hash = CryptoJS.SHA384(value).toString()
       commit('SET_PIN_ENC', hash)
       return hash
     },
-    setAccount ({ commit }, value) {
+    setAccount({commit}, value) {
       commit('SET_ACCOUNT', value)
     },
-    async updateAccounts({ commit }, value) {
+    async updateAccounts({commit}, value) {
       commit('UPD_ACCOUNTS', value)
     },
-    async walletDecrypt({ commit }, value) {
+    async walletDecrypt({commit}, value) {
       //let currentHashPin = (CryptoJS.SHA384(value.pin)).toString()
       const accounts = await this.getters['app/accounts']
       let accountBytes = CryptoJS.AES.decrypt(accounts[value.address].secret.toString(), value.pin)
       return accountBytes.toString(CryptoJS.enc.Utf8)
     },
     async setContact({commit}, value) {
-        commit('SET_CONTACT', {
-          address: value.address,
-          label: value.label,
-          balance: await Blockchain.getAddressBalance(value.address),
-        })
+      commit('SET_CONTACT', {
+        address: value.address,
+        label: value.label,
+        balance: await Blockchain.getAddressBalance(value.address),
+      })
     },
-    async updateContacts({ commit }, value) {
+    async updateContacts({commit}, value) {
       commit('UPD_CONTACTS', value)
     },
-    async fetchContacts({ commit }) {
+    async fetchContacts({commit}) {
       const contacts = await this.getters['app/contacts']
       let result = {}
       let keys = Object.keys(contacts)
-      for (let i=0; i < keys.length; i++) {
+      for (let i = 0; i < keys.length; i++) {
         result[keys[i]] = {
           address: contacts[keys[i]].address,
           label: contacts[keys[i]].label,
@@ -154,14 +154,18 @@ export default {
       }
       commit('UPD_CONTACTS', result)
     },
-    async validatePinCode({ commit }, value) {
-        const currentHashPin = (CryptoJS.SHA384(value.toString())).toString()
+    async validatePinCode({commit}, value) {
+      const currentHashPin = (CryptoJS.SHA384(value.toString())).toString()
+      try {
         const decryptCompare = (CryptoJS.AES.decrypt(this.getters['app/pinEncrypted'], currentHashPin)).toString(CryptoJS.enc.Utf8)
         if (decryptCompare && decryptCompare === currentHashPin) {
           return currentHashPin
         } else {
           return null
         }
+      } catch (e) {
+        return false
+      }
     }
   }
 }
