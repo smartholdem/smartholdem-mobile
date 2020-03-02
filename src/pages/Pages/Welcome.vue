@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="p-0 m-0 w-100 position-fixed">
+    <div class="p-0 m-0 w-100 position-fixed card h-100" style="border-radius: 0;">
       <div class="text-center h-100 mt-5">
         <img class="" src="images/sth80.png"/>
         <h2 class="text-uppercase mt-3 font-weight-bold">
