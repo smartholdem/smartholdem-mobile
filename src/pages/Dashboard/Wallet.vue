@@ -36,6 +36,23 @@
       </div>
 
       <div class="w-100 hide-scroll" style="overflow-x:auto;">
+        <div v-if="wallets.length < 1" class="text-center">
+          <p>No Wallets</p>
+
+          <div class="col-md-12">
+          <base-button @click="openRouter('/wallet-create')" type="primary" round simple class="w-100 text-uppercase font-weight-bolder" style="">
+            <i class="tim-icons icon-credit-card pb-1 mr-2" style="font-size: 1rem;"></i> Create New Wallet
+          </base-button>
+
+          <p>- OR -</p>
+
+          <base-button @click="openRouter('/wallet-import')" type="primary" round simple class="w-100 text-uppercase font-weight-bolder" style="">
+            <i class="tim-icons icon-refresh-01 pb-1 mr-2"></i>Import Wallet
+          </base-button>
+          </div>
+        </div>
+
+
         <div :style="'width:'+(360*wallets.length) + 'px;'">
           <card v-for="item in wallets" :key="item.address" class="ml-2 mr-2 account-style bgg1">
             <router-link :to="'/address/' + item.address" class="text-white">
@@ -79,10 +96,14 @@ export default {
     wallets() {
       let result = []
       let balances = (this.$store.getters['wallet/balances'])
+
       let keys = Object.keys(balances.accounts)
-      for (let i = 0; i < keys.length; i++) {
-        balances.accounts[keys[i]].label = this.getLabel(keys[i])
-        result.push(balances.accounts[keys[i]])
+
+      if (keys.length > 0) {
+        for (let i = 0; i < keys.length; i++) {
+          balances.accounts[keys[i]].label = this.getLabel(keys[i])
+          result.push(balances.accounts[keys[i]])
+        }
       }
       return result
     },
@@ -104,6 +125,14 @@ export default {
     },
   },
   methods: {
+    openRouter(url){
+      if (!this.$root.pin) {
+        eventBus.emit('modal:unlock')
+      } else {
+        this.$router.push({path: url})
+      }
+      this.showActions = false
+    },
     async setDefaultCurrency(ticker, symbol, precision) {
       await this.$store.dispatch('wallet/setDefaultCurrency', {
         ticker: ticker,

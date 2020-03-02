@@ -72,8 +72,9 @@ export default {
     },
     SET_PIN_ENC (state, payload) {
       // полученный хэш шифруем тем же хэшем
-      const hash = CryptoJS.SHA384(payload).toString()
-      state.pinEncrypted = (CryptoJS.AES.encrypt(hash, hash)).toString() // msg, key
+      //const hash = CryptoJS.SHA384(payload).toString()
+      //state.pinEncrypted = (CryptoJS.AES.encrypt(hash, hash)).toString() // msg, key
+      state.pinEncrypted = (CryptoJS.AES.encrypt(payload, payload)).toString() // msg, key
     },
     SET_ACCOUNT (state, payload) {
       //const hashPin = CryptoJS.SHA384(payload.pin).toString()
@@ -113,7 +114,9 @@ export default {
       i18n.locale = value
     },
     setPinEnc ({ commit }, value) {
-      commit('SET_PIN_ENC', value)
+      const hash = CryptoJS.SHA384(value).toString()
+      commit('SET_PIN_ENC', hash)
+      return hash
     },
     setAccount ({ commit }, value) {
       commit('SET_ACCOUNT', value)

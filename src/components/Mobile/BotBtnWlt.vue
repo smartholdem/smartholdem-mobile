@@ -54,8 +54,12 @@ export default {
       eventBus.emit('address:tab', idx)
     },
     openRouter(url){
+      if (!this.$root.pin) {
+        eventBus.emit('modal:unlock')
+      } else {
+        this.$router.push({path: url})
+      }
       this.showActions = false
-      this.$router.push({path: url})
     }
   },
   async created() {

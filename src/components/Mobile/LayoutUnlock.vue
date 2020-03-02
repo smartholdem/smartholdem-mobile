@@ -34,7 +34,7 @@
         </base-button>
         <base-button @click="pinPress('0')" type="default" round simple class="pin-btn font-weight-light">0
         </base-button>
-        <span @click="pinPress('del')" class="pin-btn"><i class="fas fa-backspace pt-3"></i></span>
+        <span :disabled="pin.length < 1" @click="pinPress('del')" class="pin-btn"><i class="fas fa-backspace pt-3"></i></span>
         <!--<span class="pin-btn"><i class="tim-icons icon-check-2 pt-3"></i></span>-->
 
       </div>
@@ -67,9 +67,11 @@ export default {
         let decryptPin = await this.$store.dispatch('app/validatePinCode', this.pin)
         if (decryptPin) {
           this.$root.pin = decryptPin
-          this.$router.push({path: '/wallet'})
-          this.$emit('onUnlockClose')
-          this.pin = ''
+          setTimeout(() => {
+            this.$emit('onUnlockClose')
+            this.pin = ''
+            this.$router.push({path: '/wallet'})
+          }, 500)
         }
       }
     },
