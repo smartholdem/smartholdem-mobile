@@ -1,15 +1,15 @@
 <template>
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title mb-1 noselect font-weight-bold">
-        {{$t('WALLET.BUY')}} <span v-if="!$root.isMobile">SmartHoldem</span>[STH]
+      <h4 class="card-title mb-1 noselect font-weight-bold text-center mb-3">
+        {{$t('WALLET.BUY')}} <span v-if="!$root.isMobile">SmartHoldem</span> for
 
-        <span v-if="selects.currency" class="text-uppercase"> <img width="18px"
-                                                                      :src="'https://ex.xbts.io/asset-symbols/'+selects.currency+'.png'"/> </span>
+        <span v-if="selects.currency" class="text-uppercase"> <img width="20px"
+                                                                      :src="'https://ex.xbts.io/asset-symbols/'+selects.currency+'.png'"/> {{selects.currency}} </span>
         <span @click="getDepHistory" class="text-right float-right pointer"><span v-show="!$root.isMobile">{{$t('WALLET.HISTORY')}} Deps</span> <i
           class="tim-icons icon-watch-time"></i></span>
         <br/>
-      </h3>
+      </h4>
       <span v-show="loading" class="small float-right" style="margin-top: -20px;">Loading data..</span>
     </div>
     <div class="card-body">
