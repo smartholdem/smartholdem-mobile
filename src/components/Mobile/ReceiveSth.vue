@@ -3,7 +3,14 @@
     <div v-if="show" class="top-layer">
       <h4 @click="close" class="p-3 text-uppercase w-100 text-center"><i class="tim-icons icon-double-left float-left pt-1"></i> <span class="text-center">Receive STH</span></h4>
       <p class="p-3">Click on the address to copy to the clipboard</p>
-      <p class="text-center font-weight-bolder" v-clipboard="() => address"><i class="tim-icons icon-single-copy-04 pointer"></i> {{address}}</p>
+      <el-tooltip
+        :content="toolTipsContent.copy"
+        effect="light"
+        :open-delay="300"
+        placement="top"
+      >
+      <p class="text-center font-weight-bolder" v-clipboard="() => address" v-clipboard:success="clipboardSuccessHandler"><i class="tim-icons icon-single-copy-04 pointer"></i> {{address}}</p>
+      </el-tooltip>
       <div class="text-center mt-4">
         <VueQrcode v-if="address" class="qr-wallet" :value="address" :options="{size:192}"/>
       </div>
@@ -19,6 +26,13 @@ export default {
   props: {
     show: false,
     address: null,
+  },
+  data() {
+    return {
+      toolTipsContent: {
+        copy: "Copy"
+      }
+    }
   },
   components: {
     VueQrcode,

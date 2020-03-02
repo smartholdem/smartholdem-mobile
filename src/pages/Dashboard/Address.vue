@@ -6,10 +6,6 @@
           <card class="bg-white pb-2" style="margin-bottom: 3px; position: sticky; top: 50px;z-index:1;">
             <template slot="header" class="">
               <div class="row">
-                <div class="col-md-1">
-                  <VueQrcode v-if="currentAddress && !$root.isMobile" class="qr-wallet" :value="currentAddress"
-                             :options="{size:98}"/>
-                </div>
                 <div class="col-md-4 pl-2 text-center">
 
                   <p title="Your Public Address" class="small font-weight-bold"
@@ -79,6 +75,10 @@
 
                   <base-button @click="show.qr = true" type="default" round icon simple class="ml-2">
                       <i class="fas fa-qrcode" style="font-size: 1.3rem"></i>
+                  </base-button>
+
+                  <base-button @click="removeAddress($route.params.address)" type="danger" round icon simple class="ml-2">
+                    <i class="tim-icons icon-trash-simple" style="font-size: 1.3rem"></i>
                   </base-button>
 
                 </div>
@@ -207,7 +207,6 @@ import Transactions from '@/components/Wallet/Transactions'
 import Delegates from '@/components/Blockchain/Delegates'
 import Xbts from '@/components/Exchange/Xbts'
 //import NumberFormat from 'number-format.js'
-import VueQrcode from '@/util/QRCode'
 import {network} from '@/config'
 //import CryptoJS from 'crypto-js'
 //import moment from 'moment'
@@ -228,7 +227,6 @@ export default {
     CollapseItem,
     Transactions,
     Xbts,
-    VueQrcode,
     Delegates,
     BaseAlert,
     ModalTxDelegate,
@@ -319,8 +317,7 @@ export default {
       delete accounts[key]
       await this.$store.dispatch('app/updateAccounts', accounts)
       await this.$store.dispatch('wallet/setCurrentAddress', null)
-      //await this.$store.dispatch('wallet/getBalances')
-      this.$router.push({path: '/dashboard'})
+      this.$router.push({path: '/wallet'})
     },
     async showModalDelegate() {
       if (this.$root.pin) {
