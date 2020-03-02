@@ -513,4 +513,10 @@ export default {
   .main-panel .zoomOut {
     animation-name: zoomOut95;
   }
+
+
+  .modal.show .modal-dialog {
+    -webkit-transform: translate(0, 0%);
+    transform: translate(0, 0%);
+  }
 </style>
