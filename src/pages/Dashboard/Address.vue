@@ -3,7 +3,7 @@
     <div class="row mt-0">
       <div class="col-md-12 m-0 w-100 p-0">
         <div class="m-0">
-          <card class="bg-white pb-2" style="margin-bottom: 3px; position: sticky; top: 50px;z-index:1;">
+          <card class="pb-2" style="margin-bottom: 3px; position: sticky; top: 50px;z-index:1;">
             <template slot="header" class="">
               <div class="row">
                 <div class="col-md-4 pl-2 text-center">
@@ -38,24 +38,14 @@
 
                 </div>
                 <div class="col-md-7 pl-4 text-center">
-                  <base-button v-if="$root.isMobile" @click="showModalSend(currentAddress)"
-                               :disabled="accountData.balance < 1.01" class="" type="primary" round icon simple>
+                  <base-button @click="showModalSend(currentAddress)"
+                               :disabled="accountData.balance < 1.01" class="" type="primary" simple round icon>
                     <i class="tim-icons icon-spaceship" style="font-size: 1.3rem"></i>
                   </base-button>
 
-                  <base-button v-if="!$root.isMobile" @click="showModalSend(currentAddress)"
-                               :disabled="accountData.balance < 1.01" type="primary" round simple>
-                      <span><i class="tim-icons icon-spaceship" style="font-size: 1.3rem"></i> SEND</span>
-                  </base-button>
-
-                  <base-button v-if="!accountData.delegate && $root.isMobile" type="default" :disabled="accountData.balance < 55000"
+                  <base-button v-if="!accountData.delegate" type="primary" :disabled="accountData.balance < 55000"
                                @click="showModalDelegate" simple round icon class="ml-2 text-uppercase" style="">
                     <i class="tim-icons icon-bank pb-1" style="font-size: 0.96rem"></i>
-                  </base-button>
-
-                  <base-button v-if="!accountData.delegate && !$root.isMobile" type="default" :disabled="accountData.balance < 55000"
-                               @click="showModalDelegate" simple round class="ml-2 text-uppercase" style="">
-                    <i class="tim-icons icon-bank pb-1" style="font-size: 0.96rem"></i> Register Delegate
                   </base-button>
 
                   <base-button v-if="!$root.isMobile" :disabled="true" type="default" simple round
@@ -63,17 +53,17 @@
                     <i class="tim-icons icon-lock-circle pb-1" style="font-size: 0.96rem"></i> 2nd password
                   </base-button>
 
-                  <base-button v-if="!accountData.delegate" @click="showModalLabel($route.params.address)" type="info"
+                  <base-button v-if="!accountData.delegate" @click="showModalLabel($route.params.address)" type="warning"
                                round icon
                                simple class="ml-2">
                       <i class="tim-icons icon-tag" style="font-size: 1.3rem"></i>
                   </base-button>
 
-                  <base-button @click="walletDecrypt(currentAddress)" type="info" round icon simple class="ml-2">
+                  <base-button @click="walletDecrypt(currentAddress)" type="warning" round icon simple class="ml-2">
                       <i class="tim-icons icon-key-25" style="font-size: 1.3rem"></i>
                   </base-button>
 
-                  <base-button @click="show.qr = true" type="default" round icon simple class="ml-2">
+                  <base-button @click="show.qr = true" type="warning" round icon simple class="ml-2">
                       <i class="fas fa-qrcode" style="font-size: 1.3rem"></i>
                   </base-button>
 
@@ -86,7 +76,7 @@
             </template>
           </card>
 
-          <card class="bg-white" style="margin-top: 5px;">
+          <card class="" style="margin-top: 5px;">
             <div class="card-body">
               <div v-if="$root.isMobile">
                 <div v-if="mobileTabs === 0" class="row">

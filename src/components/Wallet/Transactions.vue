@@ -1,11 +1,11 @@
 <template>
-  <card card-body-classes="table-full-width" style="margin-bottom: 0px;">
+  <card card-body-classes="table-full-width shadow-none" style="margin-bottom: 0px; box-shadow: none !important;">
 
     <!-- tx mobile devices -->
     <div v-if="!txs.transactions.length" class="text-center">No Transactions</div>
-    <table v-if="$root.isMobile" class="table text-darker">
+    <table class="table">
       <tr v-for="(item, idx) in txs.transactions" :key="idx">
-        <td style="border-top: none; border-bottom: solid 1px #333;"
+        <td style="border-top: none; border-bottom: solid 1px #555;"
             v-clipboard="() => item"
         >
           <span v-show="item.op === '-'" class="badge badge-danger big-badge">{{item.amount}} STH</span>
@@ -19,104 +19,6 @@
         </td>
       </tr>
     </table>
-
-    <!-- tx for desktop -->
-    <el-table v-if="!$root.isMobile" :data="txs.transactions" :maxHeight="$root.height - 350" stripe>
-      <el-table-column
-        className=""
-        min-width="100"
-        label="Id"
-        property="id"
-      >
-        <div class="" slot-scope="{ row }">
-          <span class="text-info pointer" @click="navUrl('https://blockexplorer.smartholdem.io/#/transaction/'+row.id)">{{
-            row.id.substr(0,8) + '...'+row.id.substr(-8)}}</span>
-        </div>
-      </el-table-column>
-      <el-table-column
-        min-width="76"
-        sortable
-        :label="$t('WALLET.CONF')"
-        property="confirmations"
-      >
-        <div class="text-center" slot-scope="{ row }">
-          <span v-show="row.confirmations > 63" class="" :title="'Confirmations ' + row.confirmations">confirmed</span>
-          <span v-show="row.confirmations < 64" class="badge badge-dark big-badge">{{ row.confirmations}}</span>
-        </div>
-      </el-table-column>
-      <el-table-column
-        min-width="100"
-        :label="$t('WALLET.TIME')"
-        sortable
-        property="confirmations"
-      >
-        <div class="" slot-scope="{ row }">
-          <span class="">{{row.time.substr(0,10)}}</span>
-          <span v-if="row.time !== 'wait'" style="font-size: 0.85em;" class="font-weight-normal"> {{row.time.substr(-8)}}</span>
-        </div>
-      </el-table-column>
-      <el-table-column
-        min-width="55"
-        sortable
-        align="right"
-        header-align="right"
-        :label="$t('WALLET.AMOUNT')"
-        property="amount"
-      >
-        <div class="" slot-scope="{ row }" v-if="row.amount">
-          <span v-show="row.amount[0] === '+'" class="badge badge-success big-badge w-100">{{ row.amount}}</span>
-          <span v-show="row.amount[0] === '-'" class="badge badge-danger big-badge w-100">{{ row.amount}}</span>
-        </div>
-      </el-table-column>
-      <el-table-column
-        className="truncate"
-        min-width="100"
-        align="right"
-        header-align="right"
-        :label="$t('WALLET.SENDER')"
-      >
-        <div class="" slot-scope="{ row }">
-          <span class="text-info pointer" @click="navUrl('https://blockexplorer.smartholdem.io/#/wallets/' + row.senderId)">{{
-            row.senderId.substr(0,5) +
-            '...'+row.senderId.substr(-5)}}
-          </span>
-        </div>
-      </el-table-column>
-      <el-table-column
-        min-width="100"
-        align="left"
-        header-align="left"
-        :label="$t('WALLET.RECIPIENT')"
-      >
-        <div class="text-left" slot-scope="{ row }">
-          <span v-if="row.type === 0" class="text-info pointer"
-             @click="navUrl('https://blockexplorer.smartholdem.io/#/wallets/'+row.recipientId)"
-             >{{
-            row.recipientId.substr(0,5) +
-            '...'+row.recipientId.substr(-5)}}
-          </span>
-
-          <div v-if="row.type === 3">
-            <span v-if="row.asset.votes[0][0] === '-'" class="badge badge-danger"><span>UN</span>VOTE</span>
-            <span v-if="row.asset.votes[0][0] === '+'" class="badge badge-success"><span>ADD</span> VOTE</span>
-          </div>
-
-
-        </div>
-      </el-table-column>
-
-      <el-table-column
-        min-width="100"
-        align="left"
-        header-align="left"
-        label="Comment"
-      >
-        <div class="text-left" slot-scope="{ row }">
-          <span v-if="row.vendorField" :title="row.vendorField">{{row.vendorField.substr(0,11)}}<span
-            v-if="row.vendorField.length  > 12">..</span></span>
-        </div>
-      </el-table-column>
-    </el-table>
 
   </card>
 </template>
