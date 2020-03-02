@@ -44,7 +44,6 @@ export default {
     this.$root.pin = null
     this.$root.pinEnc = this.$store.getters['app/pinEncrypted']
     this.$store.dispatch('session/setAuth', false)
-
     this.$eventBus.on('pin:close', async () => {
       this.showUnlock = false
       this.showEncrypt = false

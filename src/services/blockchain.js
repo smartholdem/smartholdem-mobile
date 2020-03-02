@@ -85,7 +85,10 @@ class Blockchain {
     for (let i = 0; i < keys.length; i++) {
       let balance = await this.getAddressBalance(keys[i])
       let vote = await this.getVote(keys[i])
-      let delegate = await this.getDelegate(addresses[keys[i]].pubKey) || null
+      let delegate = null
+      if (addresses[keys[i]].pubKey) {
+        delegate = await this.getDelegate(addresses[keys[i]].pubKey) || null
+      }
 
       result.accounts[keys[i]] = {
         address: addresses[keys[i]].address,
