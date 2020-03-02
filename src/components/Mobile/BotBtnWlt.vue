@@ -5,12 +5,16 @@
       <i class="tim-icons icon-sound-wave" style="font-size:1.6rem;padding:0;"></i>
     </base-button>
 
-    <base-button v-if="$route.name === 'Address'" @click="showTabAddress(0); showActions = false" :disabled="activeTab === 0" type="default" :simple="showActions" class="position-fixed" icon
+    <base-button v-if="$route.name === 'Address'" @click="showTabAddress(0); showActions = false" :disabled="activeTab === 0" type="default"
+                 :simple="showActions" class="position-fixed" icon
+                 round
                  style="left:10px;bottom: 10px;height:3rem; width:3rem;z-index:10000;">
       <i class="tim-icons icon-bullet-list-67" style="font-size: 1.3rem; padding:0;"></i>
     </base-button>
 
-    <base-button v-if="$route.name === 'Address'" @click="showTabAddress(2); showActions = false" :disabled="activeTab === 2" type="default" :simple="showActions" class="position-fixed" icon
+    <base-button v-if="$route.name === 'Address'" @click="showTabAddress(2); showActions = false" :disabled="activeTab === 2" type="default" :simple="showActions" class="position-fixed"
+                 icon
+                 round
                  style="left:70px;bottom: 10px;height:3rem; width:3rem;z-index:10000;">
       <i class="tim-icons icon-coins" style="font-size: 1.3rem; padding:0;"></i>
     </base-button>
