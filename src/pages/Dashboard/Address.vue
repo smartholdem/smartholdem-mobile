@@ -48,11 +48,6 @@
                     <i class="tim-icons icon-bank pb-1" style="font-size: 0.96rem"></i>
                   </base-button>
 
-                  <base-button v-if="!$root.isMobile" :disabled="true" type="default" simple round
-                               class="ml-2 text-uppercase">
-                    <i class="tim-icons icon-lock-circle pb-1" style="font-size: 0.96rem"></i> 2nd password
-                  </base-button>
-
                   <base-button v-if="!accountData.delegate" @click="showModalLabel($route.params.address)" type="warning"
                                round icon
                                simple class="ml-2">
@@ -69,6 +64,11 @@
 
                   <base-button @click="removeAddress($route.params.address)" type="danger" round icon simple class="ml-2">
                     <i class="tim-icons icon-trash-simple" style="font-size: 1.3rem"></i>
+                  </base-button>
+
+                  <base-button v-if="!$root.isMobile" :disabled="true" type="default" simple round
+                               class="ml-2 text-uppercase">
+                    <i class="tim-icons icon-lock-circle pb-1" style="font-size: 0.96rem"></i> 2nd password
                   </base-button>
 
                 </div>
