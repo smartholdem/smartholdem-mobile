@@ -23,6 +23,7 @@
           title-classes="btn btn-icon btn-fab btn-default btn-round tim-icons icon-book-bookmark btn-simple ml-3"
         >
 
+          <span v-if="!contactList.length">No saved contacts</span>
             <span v-for="(item, idx) in contactList" :key="idx" :id="'ct-' + idx" class="dropdown-item"
                   @click="send.address = item.address; validateAddress()">
               <span class="font-weight-bolder">{{item.label}}</span> {{item.address.substr(0,8)}}... {{item.address.substr(-9)}}
@@ -288,10 +289,9 @@ export default {
   async created() {
     this.$eventBus.on('qr:forsend', async (data) => {
       this.qrforsend = false
-      const myURL = new URL(data);
-      this.send.address = myURL.pathname || ''
-      this.send.amount = myURL.searchParams.get('amount') || null
-      this.send.memo = myURL.searchParams.get('vendorField') || null
+      this.send.address = data.address
+      this.send.amount = data.amount
+      this.send.memo = data.memo
       this.validateAddress()
     })
   }

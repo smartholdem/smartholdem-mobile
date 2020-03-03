@@ -10,7 +10,11 @@
 
         <qrcode-stream @decode="onDecode" @init="onInit" />
 
-        <p class="text-center font-weight-bolder mt-2" v-if="result">{{result}} </p>
+        <p class="text-center font-weight-bolder mt-2" v-if="send.address">
+          <span>{{send.address}}</span>
+          <br><span>{{send.amount}} STH</span>
+          <br><span>{{send.memo}}</span>
+        </p>
       </div>
     </card>
   </div>
@@ -30,20 +34,42 @@ export default {
   data () {
     return {
       result: null,
-      error: ''
+      error: '',
+      send: {
+        address: null,
+        memo: null,
+        amount: null,
+      }
     }
   },
 
   methods: {
-    async close(data = {address: null}) {
+    async close(data = {address: null, amount: null, memo: null}) {
+      this.result = null
+      this.send = {
+        address: null,
+          memo: null,
+          amount: null,
+      }
       eventBus.emit('qr:forsend', data)
     },
     onDecode (result) {
       this.result = result
 
-      if (this.result) {
+      if (result.length) {
+        try {
+          JSON.parse(result)
+          this.send.address = (JSON.parse(result)).a
+        } catch(e) {
+          const myURL = new URL(result);
+          this.send = {
+            address: myURL.pathname,
+            amount: myURL.searchParams.get('amount') || null,
+            memo: myURL.searchParams.get('vendorField') || null
+          }
+        }
 
-        this.close({result})
+        this.close(this.send)
       } else {
         this.result = null
       }
