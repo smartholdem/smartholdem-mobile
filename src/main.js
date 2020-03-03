@@ -12,7 +12,7 @@ import store from './store'
 
 import eventBus from '@/plugins/event-bus'
 import synchronizer from './plugins/synchronizer'
-
+import VueQrcodeReader from "vue-qrcode-reader";
 Vue.config.productionTip = false;
 Vue.prototype.$eventBus = eventBus
 
@@ -22,6 +22,7 @@ Vue.use(VueRouter)
 Vue.use(RouterPrefetch)
 Vue.use(Clipboard)
 Vue.use(synchronizer)
+Vue.use(VueQrcodeReader)
 
 /* eslint-disable no-new */
 new Vue({
