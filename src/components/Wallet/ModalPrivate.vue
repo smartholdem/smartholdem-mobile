@@ -7,11 +7,9 @@
     headerClasses="justify-content-center"
   >
 
-    <div slot="header" class="modal-profile">
-      <i class="tim-icons icon-key-25"></i>
+    <div slot="header" class="">
+      <h3 class="text-center">Private Data</h3>
     </div>
-
-    <h4 class="text-center">Private Data</h4>
 
     <p class="text-center text-white">For address <i class="tim-icons icon-wallet-43"></i> {{account.address}}</p>
     <p class="text-warning small text-center">!Never share your secret key with third parties. Store your passphrase
@@ -23,12 +21,12 @@
     </p>
 
     <template slot="footer">
-      <div class="text-center row">
-        <div class="float-left ml-5">
+      <div class="text-center row w-100 pb-3">
+        <div class="float-left w-50">
           <p>Private Key</p>
           <VueQrcode v-if="account.secret" class="qr-wallet" :value="account.secret" :options="{size:128}"/>
         </div>
-        <div class="ml-5 float-left">
+        <div class="float-right w-50">
           <p>Public Address</p>
           <VueQrcode v-if="account.address" class="qr-wallet" :value="account.address" :options="{size:128}"/>
         </div>

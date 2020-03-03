@@ -288,8 +288,8 @@ export default {
     this.$eventBus.on('qr:forsend', async (data) => {
       this.qrforsend = false
       this.send.address = data.address
-      this.send.amount = data.amount
-      this.send.memo = data.memo
+      this.send.amount = data.amount || null
+      this.send.memo = data.memo || null
       this.validateAddress()
     })
   }

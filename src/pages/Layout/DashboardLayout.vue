@@ -126,10 +126,6 @@
                      @onModalClose="modal.label.show = false"/>
     </div>
 
-    <!--
-    <ModalUnlock :modalPin="modal.unlock.show" @onUnlockClose="modal.unlock.show = false"/>
-    -->
-
     <div v-if="modal.contacts.show">
       <ModalAddContact :showModal="modal.contacts.show" @onModalClose="modal.contacts.show = false"/>
     </div>
@@ -141,6 +137,10 @@
 
     <div v-if="modal.send.show">
       <ModalTxSend :showModal="modal.send.show" :address="modal.send.address" @onModalClose="modal.send.show = false"/>
+    </div>
+
+    <div v-if="modal.private.show">
+      <ModalPrivate :showModal="modal.private.show" :address="modal.private.address" @onModalClose="modal.private.show = false"/>
     </div>
 
   </div>
@@ -173,10 +173,10 @@ import SidebarFixedToggleButton from './SidebarFixedToggleButton.vue';
 import {SlideYDownTransition, ZoomCenterTransition} from 'vue2-transitions';
 //import SystemMenu from 'src/components/SystemMenu.vue'
 import ModalSetLabel from '@/components/Wallet/ModalSetLabel'
-//import ModalUnlock from '@/components/Wallet/Unlock'
 import ModalAddContact from '@/components/Wallet/ModalAddContact'
 import ModalTxSend from '@/components/Wallet/ModalTxSend'
 import ModalTxVote from '@/components/Wallet/ModalTxVote'
+import ModalPrivate from '@/components/Wallet/ModalPrivate'
 
 export default {
   components: {
@@ -189,9 +189,9 @@ export default {
 //    SystemMenu,
     ModalSetLabel,
     ModalTxVote,
-    //ModalUnlock,
     ModalAddContact,
     ModalTxSend,
+    ModalPrivate,
   },
   data() {
     return {
@@ -214,6 +214,10 @@ export default {
           show: false,
         },
         send: {
+          show: false,
+          address: ''
+        },
+        private: {
           show: false,
           address: ''
         },
@@ -245,6 +249,10 @@ export default {
           show: false,
         },
         send: {
+          show: false,
+          address: ''
+        },
+        private: {
           show: false,
           address: ''
         },
@@ -280,6 +288,11 @@ export default {
       this.modal.send.show = true
     })
 
+    this.$eventBus.on('modal:private', async (options) => {
+      this.modal.private.show = false
+      this.modal.private.address = options.address
+      this.modal.private.show = true
+    })
 
     await this.$store.dispatch('network/getSeed')
 

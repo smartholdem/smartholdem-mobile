@@ -1,21 +1,18 @@
 <template>
   <div>
     <card v-if="show" class="top-layer">
-      <h4 @click="close(send)" class="p-3 text-uppercase w-100 text-center"><i
-        class="tim-icons icon-double-left float-left pt-1"></i> <span class="text-center">Read QR for Send STH</span></h4>
-      <p class="p-3">Scan the QR-code with the SmartHoldem address</p>
+      <h4 @click="close({address: result})" class="p-3 text-uppercase w-100 text-center"><i
+        class="tim-icons icon-double-left float-left pt-1"></i> <span class="text-center">QR for Import STH Address</span></h4>
+      <p class="p-3">Scan the QR-code with SmartHoldem Private Key</p>
 
       <div class="text-center mt-2">
         <p class="text-danger">{{ error }}</p>
         <p class="text-danger" v-if="error">To scan the QR-code, you must enable the permission to use the camera in the application settings</p>
 
+
         <qrcode-stream @decode="onDecode" @init="onInit" />
 
-        <p class="text-center font-weight-bolder mt-2" v-if="send.address">
-          <span>{{send.address}}</span>
-          <br><span>{{send.amount}} STH</span>
-          <br><span>{{send.memo}}</span>
-        </p>
+
       </div>
     </card>
   </div>
@@ -36,45 +33,37 @@ export default {
     return {
       result: null,
       error: '',
-      send: {
+      account: {
         address: null,
-        memo: null,
-        amount: null,
-      }
+        secret: null
+      },
     }
   },
 
   methods: {
-    async close(data = {address: null, amount: null, memo: null}) {
+    async close(data = {address: null, secret: null}) {
       this.result = null
-      this.send = {
+      this.account = {
         address: null,
-          memo: null,
-          amount: null,
+        secret: null
       }
-      eventBus.emit('qr:forsend', data)
+      eventBus.emit('qr:importpkey', data)
     },
     onDecode (result) {
       this.result = result
 
-      if (result.length) {
+      if (result) {
         try {
           let dataJson = JSON.parse(result)
-          this.send = {
-            address: dataJson.a || null,
-            amount: dataJson.amount || null,
-            memo: dataJson.vendorField || null
+          this.account = {
+            address: dataJson.address || null,
+            secret: dataJson.secret || null
           }
         } catch(e) {
-          const myURL = new URL(result);
-          this.send = {
-            address: myURL.pathname,
-            amount: myURL.searchParams.get('amount') || null,
-            memo: myURL.searchParams.get('vendorField') || null
-          }
+
         }
 
-        this.close(this.send)
+        this.close(this.account)
       } else {
         this.result = null
       }

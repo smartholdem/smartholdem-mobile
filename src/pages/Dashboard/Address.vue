@@ -22,7 +22,7 @@
                     <span class="font-weight-bold"><i class="tim-icons icon-bank pb-1"></i> {{ accountData.delegate.username }}</span>
                     <span class="ml-2 badge badge-dark">rank {{ accountData.delegate.rate }}</span>
                     &nbsp;<span v-if="accountData.vote"
-                                @click="showModalVote({address: accountData.address, delegate: accountData.vote, voteType: '-'})"
+                                @click="showModal('modal:vote',{address: accountData.address, delegate: accountData.vote, voteType: '-'})"
                                 class="pointer badge badge-white ">voted for {{accountData.vote.username}} <i
                     title="remove vote" class="tim-icons icon-simple-remove"></i></span>
                   </h4>
@@ -30,7 +30,7 @@
                   <h4 v-if="addressName" class="card-title">
                     <span class="font-weight-bold"><i class="tim-icons icon-tag pb-1"></i> {{ addressName }}</span>
                     &nbsp;<span v-if="accountData.vote"
-                                @click="showModalVote({address: accountData.address, delegate: accountData.vote, voteType: '-'})"
+                                @click="showModal('modal:vote',{address: accountData.address, delegate: accountData.vote, voteType: '-'})"
                                 class="pointer badge badge-white ">voted for {{accountData.vote.username}} <i
                     title="remove vote" class="tim-icons icon-simple-remove"></i></span>
                   </h4>
@@ -38,7 +38,7 @@
 
                 </div>
                 <div class="col-md-7 pl-4 text-center">
-                  <base-button @click="showModalSend(currentAddress)"
+                  <base-button @click="showModal('modal:send',$route.params.address)"
                                :disabled="accountData.balance < 1.01" class="" type="primary" simple round icon>
                     <i class="tim-icons icon-spaceship" style="font-size: 1.3rem"></i>
                   </base-button>
@@ -48,13 +48,13 @@
                     <i class="tim-icons icon-bank pb-1" style="font-size: 0.96rem"></i>
                   </base-button>
 
-                  <base-button v-if="!accountData.delegate" @click="showModalLabel($route.params.address)" type="warning"
+                  <base-button v-if="!accountData.delegate" @click="showModal('modal:label',$route.params.address)" type="warning"
                                round icon
                                simple class="ml-2">
                       <i class="tim-icons icon-tag" style="font-size: 1.3rem"></i>
                   </base-button>
 
-                  <base-button @click="walletDecrypt(currentAddress)" type="warning" round icon simple class="ml-2">
+                  <base-button @click="showModal('modal:private', {address: $route.params.address})" type="warning" round icon simple class="ml-2">
                       <i class="tim-icons icon-key-25" style="font-size: 1.3rem"></i>
                   </base-button>
 
@@ -145,35 +145,6 @@
       </div>
     </div>
 
-    <!-- Show Priv key -->
-    <modal
-      :show.sync="modalPrivateShow"
-      class="modal-black"
-      :show-close="true"
-      headerClasses="justify-content-center"
-    >
-
-      <div slot="header" class="modal-profile">
-        <i class="tim-icons icon-key-25"></i>
-      </div>
-
-      <h3 class="text-center">Your Private Data</h3>
-
-      <p class="text-center text-white">For address <i class="tim-icons icon-wallet-43"></i> {{account.address}}</p>
-      <p class="text-warning small text-center">!Never share your secret key with third parties. Store your passphrase
-        in a secure place.</p>
-      <hr class="bg-primary">
-      <p class="text-white text-center">- YOUR SECRET PASSPHRASE -</p>
-      <p class="text-white font-weight-light" title="copy private key" v-clipboard="() => account.secret">
-        <i class="tim-icons icon-single-copy-04 pointer"></i> {{account.secret}}
-      </p>
-
-      <template slot="footer">
-
-      </template>
-    </modal>
-
-
     <div v-if="modal.delegate.show">
       <ModalTxDelegate :showModalDelegate="modal.delegate.show" :address="modal.delegate.address"
                        @onModalClose="modal.delegate.show = false"/>
@@ -251,7 +222,6 @@ export default {
       showNext: false,
       modalSend: false,
       modalTx: false,
-      modalPrivateShow: false,
       modalClasses: {
         address: '',
         amount: ''
@@ -307,6 +277,13 @@ export default {
     }
   },
   methods: {
+    async showModal(evt, options = {}) {
+      if (this.$root.pin) {
+        eventBus.emit(evt, options) // ex modal:qr
+      } else {
+        eventBus.emit('modal:unlock')
+      }
+    },
     async removeAddress(key) {
       let accounts = await this.$store.getters['app/accounts']
       delete accounts[key]
@@ -319,37 +296,6 @@ export default {
         this.modal.delegate.show = true
       } else {
         eventBus.emit('modal:unlock')
-      }
-    },
-    async showModalVote(data) {
-      if (this.$root.pin) {
-        eventBus.emit('modal:vote', data)
-      } else {
-        eventBus.emit('modal:unlock')
-      }
-    },
-    async showModalLabel(address) {
-      eventBus.emit('modal:label', address)
-    },
-    async showModalSend(address) {
-      if (this.$root.pin) {
-        eventBus.emit('modal:send', address)
-      } else {
-        eventBus.emit('modal:unlock')
-      }
-    },
-    async walletDecrypt(address) {
-      if (this.$root.pin) {
-        const result = await this.$store.dispatch('app/walletDecrypt', {
-          address: address,
-          pin: this.$root.pin
-        })
-        this.account.address = address
-        this.account.secret = result
-        this.modalPrivateShow = true
-      } else {
-        eventBus.emit('modal:unlock')
-        this.modalPrivateShow = false
       }
     },
     clipboardSuccessHandler({value, event}) {
@@ -370,8 +316,6 @@ export default {
       }
     })
 
-
-
     this.$eventBus.on('address:tab', async (idx) => {
       this.mobileTabs = idx
     })
@@ -383,8 +327,6 @@ export default {
     this.$eventBus.on('qr:forsend', async (data) => {
       this.show.qrRead = false
     })
-
-
 
   },
   watch: {
