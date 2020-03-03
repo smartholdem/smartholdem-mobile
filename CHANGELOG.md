@@ -1,5 +1,5 @@
 v1.0.4
-- Qr-Code Scanner for payments
+- Qr-Code Scanner for payments (Requires enable permission on camera)
 
 v1.0.3
 - Add QR generator with invoice
