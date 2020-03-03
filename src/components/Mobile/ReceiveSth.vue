@@ -2,7 +2,7 @@
   <div>
     <card v-if="show" class="top-layer">
       <h4 @click="close" class="p-3 text-uppercase w-100 text-center"><i class="tim-icons icon-double-left float-left pt-1"></i> <span class="text-center">Receive STH</span></h4>
-      <p class="p-3">Click on the address to copy to the clipboard</p>
+      <p class="pt-3 text-center">Click on the address to copy</p>
       <el-tooltip
         :content="toolTipsContent.copy"
         effect="light"
@@ -12,7 +12,27 @@
       <p class="text-center font-weight-bolder" v-clipboard="() => address" v-clipboard:success="clipboardSuccessHandler"><i class="tim-icons icon-single-copy-04 pointer"></i> {{address}}</p>
       </el-tooltip>
       <div class="text-center mt-4">
-        <VueQrcode v-if="address" class="qr-wallet" :value="address" :options="{size:192}"/>
+        <VueQrcode v-if="address" class="qr-wallet" :value="'smartholdem:'+ address + (model.amount ? '?amount=' + model.amount : '') + (model.memo ? '&memo=' + model.memo : '')" :options="{size:192}"/>
+      </div>
+
+      <div>
+      <base-input
+        type="text"
+        label="Amount"
+        placeholder="Enter Amount"
+        addon-left-icon="tim-icons icon-coins"
+        v-model="model.amount"
+      >
+      </base-input>
+
+        <base-input
+          type="text"
+          label="Memo"
+          placeholder="Enter Memo"
+          addon-left-icon="tim-icons icon-paper"
+          v-model="model.memo"
+        >
+        </base-input>
       </div>
     </card>
   </div>
@@ -29,6 +49,10 @@ export default {
   },
   data() {
     return {
+      model: {
+        amount: '',
+        memo: '',
+      },
       toolTipsContent: {
         copy: "Copy"
       }
