@@ -9,9 +9,9 @@
                 <div class="col-md-4 pl-2 text-center">
 
                   <p title="Your Public Address" class="small font-weight-bold"
-                     v-clipboard="() => currentAddress">
+                     v-clipboard="() => $route.params.address">
                     <i class="tim-icons icon-single-copy-04 pointer"></i>
-                    {{currentAddress}}
+                    {{$route.params.address}}
                   </p>
 
 
@@ -103,7 +103,7 @@
                   <tab-pane :label="'Transactions ' + totalTx">
                     <div class="row">
                       <div class="col-md-12">
-                        <Transactions :address="currentAddress"/>
+                        <Transactions :address="$route.params.address"/>
                       </div>
                     </div>
                   </tab-pane>
@@ -185,6 +185,8 @@
     </div>
 
     <ReceiveSth :show="show.qr" :address="currentAddress" @onQrClose="show.qr = false"/>
+    <QrReadAddrSend :show="show.qrRead" @onQrClose="show.qrRead = false"/>
+
 
   </div>
 </template>
@@ -206,6 +208,7 @@ import eventBus from '@/plugins/event-bus'
 import ModalTxDelegate from '@/components/Wallet/ModalTxDelegate'
 import BotBtnWlt from '@/components/Mobile/BotBtnWlt'
 import ReceiveSth from '@/components/Mobile/ReceiveSth'
+import QrReadAddrSend from '@/components/Mobile/QrReadAddrSend'
 
 export default {
   name: "Address",
@@ -222,12 +225,14 @@ export default {
     ModalTxDelegate,
     BotBtnWlt,
     ReceiveSth,
+    QrReadAddrSend,
   },
   data() {
     return {
       mobileTabs: 0,
       show: {
         qr: false,
+        qrRead: false,
       },
       modal: {
         delegate: {
@@ -370,6 +375,16 @@ export default {
     this.$eventBus.on('address:tab', async (idx) => {
       this.mobileTabs = idx
     })
+
+    this.$eventBus.on('layer:qrforsend', async () => {
+      this.show.qrRead = true
+    })
+
+    this.$eventBus.on('qr:forsend', async (data) => {
+      this.show.qrRead = false
+    })
+
+
 
   },
   watch: {
