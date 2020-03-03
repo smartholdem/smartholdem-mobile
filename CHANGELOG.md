@@ -1,3 +1,9 @@
+v1.0.4
+- Qr-Code Scanner for payments
+
+v1.0.3
+- Add QR generator with invoice
+
 v1.0.2
 
 - Fix lock redirects
@@ -12,3 +18,4 @@ v1.0.2
 - Modal mobile sticky top
 - Reset All data on Welcome page
 - Add button remove address
+
