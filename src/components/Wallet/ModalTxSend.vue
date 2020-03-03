@@ -30,7 +30,7 @@
         </base-dropdown>
       </div>
 
-      <base-button type="warning" round icon simple class="float-left ml-3 p-0 m-0">
+      <base-button type="warning" @click="openLayerQr" round icon simple class="float-left ml-3 p-0 m-0">
         <i class="fas fa-qrcode" style="font-size: 1.3rem"></i>
       </base-button>
     </div>
@@ -144,6 +144,7 @@ export default {
   },
   data() {
     return {
+      qrforsend: false,
       isValidAddress: false,
       tx: {},
       account: {
@@ -280,7 +281,20 @@ export default {
       }
       return result
     },
+    async openLayerQr() {
+      eventBus.emit('layer:qrforsend')
+    }
   },
+  async created() {
+    this.$eventBus.on('qr:forsend', async (data) => {
+      this.qrforsend = false
+      const myURL = new URL(data);
+      this.send.address = myURL.pathname || ''
+      this.send.amount = myURL.searchParams.get('amount') || null
+      this.send.memo = myURL.searchParams.get('vendorField') || null
+      this.validateAddress()
+    })
+  }
 }
 </script>
 
