@@ -21,15 +21,17 @@
     </p>
 
     <template slot="footer">
-      <div class="text-center row w-100 pb-3">
-        <div class="float-left w-50">
-          <p>Private Key</p>
-          <VueQrcode v-if="account.secret" class="qr-wallet" :value="account.secret" :options="{size:128}"/>
+      <div class="text-center w-100 pb-3">
+        <div class="">
+          <p>Private & Public Key</p>
+          <VueQrcode v-if="account.secret" class="qr-wallet" :value="qrData" :options="{size: 176}"/>
         </div>
+        <!--
         <div class="float-right w-50">
           <p>Public Address</p>
           <VueQrcode v-if="account.address" class="qr-wallet" :value="account.address" :options="{size:128}"/>
         </div>
+        -->
       </div>
     </template>
   </modal>
@@ -52,10 +54,23 @@ export default {
   data() {
     return {
       account: {
-        secret: null,
         address: null,
+        secret: null,
+        secondSecret: null,
       }
     }
+  },
+  computed: {
+    qrData() {
+      return JSON.stringify(
+        {
+          address: this.account.address,
+          secret: this.account.secret || null,
+          secondSecret: this.account.secondSecret || null,
+          asset: 'sth'
+        }
+      )
+    },
   },
   methods: {
     async walletDecrypt(address) {

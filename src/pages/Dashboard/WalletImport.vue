@@ -2,7 +2,11 @@
   <div>
     <card class="card-white stacked-form">
       <template slot="header">
-        <h2 class="card-title text-dark font-weight-bold">Import Wallet</h2>
+        <h3 class="card-title text-dark font-weight-bold">Import Wallet
+          <base-button @click="show.qrLoadPriv = true" type="primary" round icon class="ml-2">
+            <i class="fas fa-qrcode" style="font-size: 1.3rem"></i>
+          </base-button>
+        </h3>
       </template>
 
       <p class="text-black-50">{{$t('APP.ENTER_SECRET')}}</p>
@@ -44,6 +48,10 @@
 
     <BotBtnWlt/>
 
+    <div v-if="show.qrLoadPriv">
+      <QrLoadPrivKey :show="show.qrLoadPriv" @onQrClose="show.qrLoadPriv = false"/>
+    </div>
+
   </div>
 </template>
 
@@ -56,16 +64,22 @@ import * as cryptoRandomString from 'crypto-random-string'
 import {BaseAlert} from 'src/components'
 import BotBtnWlt from '@/components/Mobile/BotBtnWlt'
 
+import QrLoadPrivKey from '@/components/Mobile/QrLoadPrivKey'
+
 export default {
   name: "WalletImport",
   components: {
     BaseCheckbox,
     BaseAlert,
     Modal,
-    BotBtnWlt
+    BotBtnWlt,
+    QrLoadPrivKey,
   },
   data() {
     return {
+      show: {
+        qrLoadPriv: false,
+      },
       delay: 500,
       validateTimer: null,
       showConditions: false,
@@ -156,6 +170,11 @@ export default {
     if (this.isMobile) {
       this.mobileClass = 'ismobile'
     }
+
+    this.$eventBus.on('qr:importpkey', async (data) => {
+      this.show.qrLoadPriv = false
+      this.account.secret = data.secret
+    })
   }
 }
 </script>

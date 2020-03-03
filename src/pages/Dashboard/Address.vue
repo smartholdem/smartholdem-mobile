@@ -48,21 +48,24 @@
                     <i class="tim-icons icon-bank pb-1" style="font-size: 0.96rem"></i>
                   </base-button>
 
-                  <base-button v-if="!accountData.delegate" @click="showModal('modal:label',$route.params.address)" type="warning"
+                  <base-button v-if="!accountData.delegate" @click="showModal('modal:label',$route.params.address)"
+                               type="warning"
                                round icon
                                simple class="ml-2">
-                      <i class="tim-icons icon-tag" style="font-size: 1.3rem"></i>
+                    <i class="tim-icons icon-tag" style="font-size: 1.3rem"></i>
                   </base-button>
 
-                  <base-button @click="showModal('modal:private', {address: $route.params.address})" type="warning" round icon simple class="ml-2">
-                      <i class="tim-icons icon-key-25" style="font-size: 1.3rem"></i>
+                  <base-button @click="showModal('modal:private', {address: $route.params.address})" type="warning"
+                               round icon simple class="ml-2">
+                    <i class="tim-icons icon-key-25" style="font-size: 1.3rem"></i>
                   </base-button>
 
                   <base-button @click="show.qr = true" type="warning" round icon simple class="ml-2">
-                      <i class="fas fa-qrcode" style="font-size: 1.3rem"></i>
+                    <i class="fas fa-qrcode" style="font-size: 1.3rem"></i>
                   </base-button>
 
-                  <base-button @click="removeAddress($route.params.address)" type="danger" round icon simple class="ml-2">
+                  <base-button @click="removeAddress($route.params.address)" type="danger" round icon simple
+                               class="ml-2">
                     <i class="tim-icons icon-trash-simple" style="font-size: 1.3rem"></i>
                   </base-button>
 
@@ -155,8 +158,13 @@
       <BotBtnWlt/>
     </div>
 
-    <ReceiveSth :show="show.qr" :address="currentAddress" @onQrClose="show.qr = false"/>
-    <QrReadAddrSend :show="show.qrRead" @onQrClose="show.qrRead = false"/>
+    <div v-if="show.qr">
+      <ReceiveSth :show="show.qr" :address="currentAddress" @onQrClose="show.qr = false"/>
+    </div>
+
+    <div v-if="show.qrRead">
+      <QrReadAddrSend :show="show.qrRead" @onQrClose="show.qrRead = false"/>
+    </div>
 
 
   </div>

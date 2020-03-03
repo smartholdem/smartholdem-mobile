@@ -1,7 +1,7 @@
 <template>
   <div>
     <card v-if="show" class="top-layer">
-      <h4 @click="close({address: result})" class="p-3 text-uppercase w-100 text-center"><i
+      <h4 @click="close(account)" class="p-3 text-uppercase w-100 text-center"><i
         class="tim-icons icon-double-left float-left pt-1"></i> <span class="text-center">QR for Import STH Address</span></h4>
       <p class="p-3">Scan the QR-code with SmartHoldem Private Key</p>
 

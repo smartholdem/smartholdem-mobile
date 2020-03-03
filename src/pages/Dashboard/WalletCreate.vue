@@ -4,14 +4,7 @@
       <template slot="header">
         <h3 class="card-title text-dark font-weight-bold">Create New Wallet
           <base-button @click="getNewAccount()" type="primary" round icon class="ml-2">
-            <el-tooltip
-              content="Generate Other Address"
-              effect="light"
-              :open-delay="300"
-              placement="top"
-            >
               <i class="fas fa-dice" style="font-size: 1.1rem;padding:0;"></i>
-            </el-tooltip>
           </base-button>
         </h3>
       </template>
