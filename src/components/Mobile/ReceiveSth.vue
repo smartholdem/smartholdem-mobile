@@ -64,12 +64,17 @@ export default {
   methods: {
     async close() {
       this.$emit('onQrClose')
+      this.model =  {
+        amount: '',
+        memo: '',
+      }
     },
     clipboardSuccessHandler({value, event}) {
       this.toolTipsContent.copy = 'Copied to clipboard';
       setTimeout(() => (this.toolTipsContent.copy = 'Copy'), 1500);
     },
   },
+
 }
 </script>
 
