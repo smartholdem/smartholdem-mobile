@@ -1,17 +1,18 @@
 <template>
   <!-- Show Priv key -->
   <modal
+    style="z-index: 10000;"
     :show.sync="showModal"
     class="modal-black"
     :show-close="true"
     headerClasses="justify-content-center"
   >
 
-    <div slot="header" class="">
+    <div slot="header" class="title">
       <h3 class="text-center">Private Data</h3>
     </div>
 
-    <p class="text-center text-white">For address <i class="tim-icons icon-wallet-43"></i> {{account.address}}</p>
+    <!--<p class="text-center text-white">For address <i class="tim-icons icon-wallet-43"></i> {{account.address}}</p>-->
     <p class="text-warning small text-center">!Never share your secret key with third parties. Store your passphrase
       in a secure place.</p>
     <hr class="bg-primary">
@@ -19,20 +20,22 @@
     <p class="text-white font-weight-light text-center" title="copy private key" v-clipboard="() => account.secret">
       <i class="tim-icons icon-single-copy-04 pointer"></i> {{account.secret}}
     </p>
+    <hr class="bg-primary">
+    <div class="text-center w-100 pb-3">
+      <div class="">
+        <p>Private & Public Key</p>
+        <VueQrcode v-if="account.secret" class="qr-wallet" :value="qrData" :options="{size: 156}"/>
+      </div>
+      <!--
+      <div class="float-right w-50">
+        <p>Public Address</p>
+        <VueQrcode v-if="account.address" class="qr-wallet" :value="account.address" :options="{size:128}"/>
+      </div>
+      -->
+    </div>
 
     <template slot="footer">
-      <div class="text-center w-100 pb-3">
-        <div class="">
-          <p>Private & Public Key</p>
-          <VueQrcode v-if="account.secret" class="qr-wallet" :value="qrData" :options="{size: 176}"/>
-        </div>
-        <!--
-        <div class="float-right w-50">
-          <p>Public Address</p>
-          <VueQrcode v-if="account.address" class="qr-wallet" :value="account.address" :options="{size:128}"/>
-        </div>
-        -->
-      </div>
+
     </template>
   </modal>
 </template>
