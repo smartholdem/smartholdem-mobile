@@ -1,47 +1,58 @@
 <template>
   <div>
+    <p class="error">{{ error }}</p>
+
     <p class="decode-result">Last result: <b>{{ result }}</b></p>
 
-    <qrcode-drop-zone @decode="onDecode" @init="logErrors">
-      <qrcode-stream @decode="onDecode" @init="onInit"/>
-    </qrcode-drop-zone>
-
-    <qrcode-capture v-if="noStreamApiSupport" @decode="onDecode"/>
+    <qrcode-stream @decode="onDecode" @init="onInit" />
   </div>
 </template>
 
 <script>
-import {QrcodeStream, QrcodeDropZone, QrcodeCapture} from 'vue-qrcode-reader'
+import { QrcodeStream } from 'vue-qrcode-reader'
 
 export default {
 
-  components: {QrcodeStream, QrcodeDropZone, QrcodeCapture},
+  components: { QrcodeStream },
 
-  data() {
+  data () {
     return {
       result: '',
-      noStreamApiSupport: false
+      error: ''
     }
   },
 
   methods: {
-    onDecode(result) {
+    onDecode (result) {
       this.result = result
     },
 
-    logErrors(promise) {
-      promise.catch(console.error)
-    },
-
-    async onInit(promise) {
+    async onInit (promise) {
       try {
         await promise
       } catch (error) {
-        if (error.name === 'StreamApiNotSupportedError') {
-          this.noStreamApiSupport = true
+        if (error.name === 'NotAllowedError') {
+          this.error = "ERROR: you need to grant camera access permisson"
+        } else if (error.name === 'NotFoundError') {
+          this.error = "ERROR: no camera on this device"
+        } else if (error.name === 'NotSupportedError') {
+          this.error = "ERROR: secure context required (HTTPS, localhost)"
+        } else if (error.name === 'NotReadableError') {
+          this.error = "ERROR: is the camera already in use?"
+        } else if (error.name === 'OverconstrainedError') {
+          this.error = "ERROR: installed cameras are not suitable"
+        } else if (error.name === 'StreamApiNotSupportedError') {
+          this.error = "ERROR: Stream API is not supported in this browser"
         }
       }
     }
   }
 }
 </script>
+
+<style scoped>
+  .error {
+    font-weight: bold;
+    color: red;
+  }
+</style>
