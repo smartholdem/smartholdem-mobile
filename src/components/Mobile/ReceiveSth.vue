@@ -12,7 +12,7 @@
       <p class="text-center font-weight-bolder" v-clipboard="() => address" v-clipboard:success="clipboardSuccessHandler"><i class="tim-icons icon-single-copy-04 pointer"></i> {{address}}</p>
       </el-tooltip>
       <div class="text-center mt-4">
-        <VueQrcode v-if="address" class="qr-wallet" :value="'smartholdem:'+ address + (model.amount ? '?amount=' + model.amount : '') + (model.memo ? '&memo=' + model.memo : '')" :options="{size:192}"/>
+        <VueQrcode v-if="address" class="qr-wallet" :value="'smartholdem:'+ address + (model.amount ? '?amount=' + model.amount : '') + (model.memo ? '&vendorField=' + model.memo : '')" :options="{size:192}"/>
       </div>
 
       <div>
