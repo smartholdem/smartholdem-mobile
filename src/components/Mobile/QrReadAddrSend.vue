@@ -5,14 +5,12 @@
         class="tim-icons icon-double-left float-left pt-1"></i> <span class="text-center">Read QR for Send STH</span></h4>
       <p class="p-3">Scan the QR-code with the SmartHoldem address</p>
 
-      <p class="text-center font-weight-bolder" v-if="result">{{result}} </p>
-
       <div class="text-center mt-2">
         <p class="error">{{ error }}</p>
 
-        <p class="decode-result">Last result: <b>{{ result }}</b></p>
-
         <qrcode-stream @decode="onDecode" @init="onInit" />
+
+        <p class="text-center font-weight-bolder mt-2" v-if="result">{{result}} </p>
       </div>
     </card>
   </div>
@@ -20,6 +18,7 @@
 
 <script>
 import { QrcodeStream } from 'vue-qrcode-reader'
+import eventBus from '@/plugins/event-bus'
 
 export default {
 
@@ -37,14 +36,14 @@ export default {
 
   methods: {
     async close(data = {address: null}) {
-      this.$emit('onQrReadClose', data)
+      eventBus.emit('qr:forsend', data)
     },
     onDecode (result) {
       this.result = result
 
       if (this.result) {
 
-        this.close({address:result})
+        this.close({result})
       } else {
         this.result = null
       }
