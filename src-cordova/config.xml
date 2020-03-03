@@ -35,6 +35,7 @@
   <preference name="SplashScreenDelay" value="5000" />
   <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
   <preference name="Orientation" value="portrait" />
+  <plugin name="cordova-plugin-settings-hook" spec="~0" />
   <platform name="android">
     <preference name="android-manifest/application/activity/@android:windowSoftInputMode" value="adjustPan" />
     <allow-intent href="market:*"/>
@@ -50,5 +51,8 @@
     <splash density="xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png"/>
     <splash density="xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png"/>
   </platform>
-
+  <platform name="ios">
+    <allow-intent href="itms:*"/>
+    <allow-intent href="itms-apps:*"/>
+  </platform>
 </widget>

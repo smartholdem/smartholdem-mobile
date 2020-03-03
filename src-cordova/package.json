@@ -17,13 +17,15 @@
   "license": "Apache-2.0",
   "dependencies": {
     "cordova-android": "^8.1.0",
+    "cordova-ios": "^5.1.1",
     "cordova-plugin-camera": "^4.1.0",
-    "cordova-plugin-qrscanner": "^3.0.1",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-vibration": "^3.1.1"
   },
   "devDependencies": {
-    "cordova-plugin-whitelist": "^1.3.4"
+    "cordova-plugin-whitelist": "^1.3.4",
+    "cordova-plugin-device": "^1.1.0",
+    "cordova-plugin-settings-hook": "~0"
   },
   "cordova": {
     "plugins": {
@@ -31,13 +33,14 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-background-mode": {},
       "cordova-plugin-vibration": {},
-      "cordova-plugin-qrscanner": {},
+      "cordova-plugin-settings-hook": {},
       "cordova-plugin-camera": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       }
     },
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ]
   }
 }

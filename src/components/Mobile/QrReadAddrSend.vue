@@ -6,7 +6,9 @@
       <p class="p-3">Scan the QR-code with the SmartHoldem address</p>
 
       <div class="text-center mt-2">
-        <p class="error">{{ error }}</p>
+        <p class="text-danger">{{ error }}</p>
+        <p class="text-danger" v-if="error">To scan the QR-code, you must enable the permission to use the camera in the application settings</p>
+
 
         <qrcode-stream @decode="onDecode" @init="onInit" />
 
@@ -58,8 +60,12 @@ export default {
 
       if (result.length) {
         try {
-          JSON.parse(result)
-          this.send.address = (JSON.parse(result)).a
+          let dataJson = JSON.parse(result)
+          this.send = {
+            address: dataJson.a || null,
+            amount: dataJson.amount || null,
+            memo: dataJson.vendorField || null
+          }
         } catch(e) {
           const myURL = new URL(result);
           this.send = {

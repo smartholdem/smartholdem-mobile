@@ -16,7 +16,7 @@
 
     <div class="row">
 
-      <div v-if="contactList.length > 0" >
+      <div>
         <base-dropdown
           :menuOnRight="false"
           v-if="contactList.length > 0"
