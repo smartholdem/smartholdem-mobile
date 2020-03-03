@@ -19,13 +19,11 @@
       <div>
         <base-dropdown
           :menuOnRight="false"
-          v-if="contactList.length > 0"
           title-classes="btn btn-icon btn-fab btn-default btn-round tim-icons icon-book-bookmark btn-simple ml-3"
         >
-
-          <span v-if="!contactList.length">No saved contacts</span>
-            <span v-for="(item, idx) in contactList" :key="idx" :id="'ct-' + idx" class="dropdown-item"
-                  @click="send.address = item.address; validateAddress()">
+          <span v-if="!contactList.length" class="dropdown-item">No saved contacts</span>
+          <span v-for="(item, idx) in contactList" :key="idx" :id="'ct-' + idx" class="dropdown-item"
+                @click="send.address = item.address; validateAddress()">
               <span class="font-weight-bolder">{{item.label}}</span> {{item.address.substr(0,8)}}... {{item.address.substr(-9)}}
             </span>
         </base-dropdown>

@@ -68,6 +68,7 @@ export default {
           a: this.address,
           amount: this.model.amount || null,
           vendorField: this.model.memo || null,
+          asset: 'sth'
         }
       )
     }
