@@ -173,7 +173,8 @@ export default {
 
     this.$eventBus.on('qr:importpkey', async (data) => {
       this.show.qrLoadPriv = false
-      this.account.secret = data.secret
+      this.account.secret = data.secret || null
+      this.account.address = data.address || null
       await this.validateImportAccount()
     })
   }
