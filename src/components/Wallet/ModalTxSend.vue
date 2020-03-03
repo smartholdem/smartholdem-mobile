@@ -25,7 +25,7 @@
 
             <span v-for="(item, idx) in contactList" :key="idx" :id="'ct-' + idx" class="dropdown-item"
                   @click="send.address = item.address; validateAddress()">
-              <span>{{item.label}}</span> {{item.address.substr(0,5)}}...{{item.address.substr(-5)}}
+              <span class="font-weight-bolder">{{item.label}}</span> {{item.address.substr(0,8)}}... {{item.address.substr(-9)}}
             </span>
         </base-dropdown>
       </div>
