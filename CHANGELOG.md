@@ -11,3 +11,4 @@ v1.0.2
 - Welcome add dark mode
 - Modal mobile sticky top
 - Reset All data on Welcome page
+- Add button remove address

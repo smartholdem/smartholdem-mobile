@@ -10,10 +10,9 @@
         <p>Welcome to the Smartholdem Platform</p>
 
         <div class="text-center w-100 m-auto pt-3">
-          <base-button v-if="!$root.pinEnc" @click="showEncrypt = true" type="primary" round class="text-uppercase">Create Profile</base-button>
-          <base-button v-if="$root.pinEnc" @click="showUnlock = true" type="primary" round class="text-uppercase">Open My Wallet</base-button>
-
-          <div v-if="$root.pinEnc">
+          <base-button v-if="!PinEncrypted" @click="showEncrypt = true" type="primary" round class="text-uppercase">Create Profile</base-button>
+          <base-button v-if="PinEncrypted" @click="showUnlock = true" type="primary" round class="text-uppercase">Open My Wallet</base-button>
+          <div v-if="PinEncrypted">
           <p class="mt-4">- OR -</p>
           <base-button @click="showReset = true" type="danger"
                        link
@@ -50,12 +49,17 @@ export default {
       showReset: false,
     }
   },
+  computed: {
+    PinEncrypted() {
+      return this.$store.getters['app/pinEncrypted']
+    }
+  },
   methods: {
 
   },
   async created() {
     this.$root.pin = null
-    this.$root.pinEnc = this.$store.getters['app/pinEncrypted']
+    this.$root.pinEnc = this.PinEncrypted
     this.$store.dispatch('session/setAuth', false)
     this.$eventBus.on('pin:close', async () => {
       this.showUnlock = false
