@@ -12,18 +12,18 @@
       <h3 class="text-center">Private Data</h3>
     </div>
 
-    <!--<p class="text-center text-white">For address <i class="tim-icons icon-wallet-43"></i> {{account.address}}</p>-->
+    <!--<p class="text-center">For address <i class="tim-icons icon-wallet-43"></i> {{account.address}}</p>-->
     <p class="text-warning small text-center">!Never share your secret key with third parties. Store your passphrase
       in a secure place.</p>
     <hr class="bg-primary">
-    <p class="text-white text-center">- YOUR SECRET PASSPHRASE -</p>
-    <p class="text-white font-weight-light text-center" title="copy private key" v-clipboard="() => account.secret">
+    <p class="text-center">- YOUR SECRET PASSPHRASE -</p>
+    <p class="font-weight-light text-center" title="copy private key" v-clipboard="() => account.secret">
       <i class="tim-icons icon-single-copy-04 pointer"></i> {{account.secret}}
     </p>
     <hr class="bg-primary">
     <div class="text-center w-100 pb-3">
       <div class="">
-        <p>Private & Public Key</p>
+        <p>QR Private & Public Key</p>
         <VueQrcode v-if="account.secret" class="qr-wallet" :value="qrData" :options="{size: 156}"/>
       </div>
       <!--
