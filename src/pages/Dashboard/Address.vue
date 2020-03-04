@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin-top:-50px;">
     <div class="row mt-0">
       <div class="col-md-12 m-0 w-100 p-0">
         <div class="m-0">
@@ -79,7 +79,7 @@
             </template>
           </card>
 
-          <card class="" style="margin-top: 5px;">
+          <card class="" style="margin-top: 3px;">
             <div class="card-body">
               <div>
                 <div v-if="mobileTabs === 0" class="row">
@@ -92,7 +92,7 @@
                     <Delegates/>
                 </div>
 
-                <div v-if="mobileTabs === 2" class="row">
+                <div v-if="mobileTabs === 2" class="row m-0 p-0">
                     <Xbts/>
                 </div>
               </div>
@@ -322,5 +322,8 @@ export default {
   }
 
 
+  .main-panel > .content {
+
+  }
 </style>
 

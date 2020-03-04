@@ -20,6 +20,7 @@
         </button>
       </div>
 
+      <span class="small font-weight-bold">v{{packageJson.version}}</span>
     </div>
 
     <ul class="navbar-nav" :class="$rtl.isRTL ? 'mr-auto' : 'ml-auto'">
@@ -122,6 +123,8 @@ import SidebarToggleButton from './SidebarToggleButton';
 import ResetAll from '@/components/Wallet/ResetAll'
 import Avatar from '@/components/Avatar'
 import NumberFormat from 'number-format.js'
+import packageJson from '../../../package.json'
+
 export default {
   components: {
     SidebarToggleButton,
@@ -133,6 +136,7 @@ export default {
   },
   data() {
     return {
+      packageJson,
       darkMode: false,
       showReset: false,
       showMenu: false,

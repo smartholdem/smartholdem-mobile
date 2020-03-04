@@ -1,8 +1,8 @@
 <template>
   <div>
-    <card class="card-white stacked-form">
+    <card class="stacked-form">
       <template slot="header">
-        <h3 class="card-title text-dark font-weight-bold">Create New Wallet
+        <h3 class="card-title font-weight-bold">Create New Wallet
           <base-button @click="getNewAccount()" type="primary" round icon class="ml-2">
               <i class="fas fa-dice" style="font-size: 1.1rem;padding:0;"></i>
           </base-button>

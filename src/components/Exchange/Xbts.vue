@@ -1,5 +1,5 @@
 <template>
-  <div class="card shadow-none mt-0">
+  <div class="card shadow-none m-0 radius-0" style="margin-top:0px; position: relative; float:left; border-radius: 0px;">
     <div class="card-header">
       <h4 class="card-title mb-1 noselect font-weight-bold text-center mb-3">
         {{$t('WALLET.BUY')}} SmartHoldem [STH]
