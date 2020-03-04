@@ -2,7 +2,7 @@
   <base-nav
     v-model="showMenu"
     class="navbar-absolute top-navbar"
-    :type="!settings.darkMode ? 'white' : ''"
+    :type="!settings.darkMode ? 'white' : 'dark'"
     :transparent="false"
   >
     <div slot="brand" class="navbar-wrapper">
@@ -23,6 +23,7 @@
     </div>
 
     <ul class="navbar-nav" :class="$rtl.isRTL ? 'mr-auto' : 'ml-auto'">
+
 
       <base-dropdown
         tag="li"
@@ -106,7 +107,10 @@
         </li>
       </base-dropdown>
 
-      <span class="navbar-brand" @click="toggleMode"><i class="tim-icons icon-bulb-63 pb-1 mr-2"></i> Dark or Light</span>
+
+      <li class="nav-item mt-2" @click="toggleMode">
+         <span class="ml-1"><i class="tim-icons icon-bulb-63 pb-1 mr-2"></i> Dark or Light</span>
+      </li>
     </ul>
     <ResetAll :modalReset="showReset" @onResetCancel="showReset = false"/>
   </base-nav>
@@ -154,19 +158,21 @@ export default {
     },
   },
   methods: {
-    toggleMode() {
-      let docClasses = document.body.classList;
+    async toggleMode() {
       this.darkMode = !this.darkMode
-
       this.$store.dispatch('app/setSettings', {
         darkMode: this.darkMode
       })
 
-      if (this.settings.darkMode) {
+      let docClasses = document.body.classList;
+
+      if (this.darkMode) {
         docClasses.remove('white-content');
       } else {
         docClasses.add('white-content');
       }
+
+
     },
     numericFormat(format, amount) {
       return NumberFormat(format, amount)
