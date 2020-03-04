@@ -60,7 +60,10 @@ export default {
       state.profiles.push(payload)
     },
     SET_SETTINGS(state, payload) {
-      state.settings = payload
+      let keys = Object.keys(payload)
+      for (let i=0; i < keys.length; i++) {
+        state.settings[keys[i]] = payload[keys[i]]
+      }
     },
     SET_RESET(state) {
       state.language = 'en'
