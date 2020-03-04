@@ -35,7 +35,7 @@
         <base-button @click="pinPress('0')" type="default" round simple class="pin-btn font-weight-light">0
         </base-button>
         <span :disabled="pin.length < 1" class="pin-btn"><i @click="pinPress('del')" class="fas fa-backspace pt-3"></i></span>
-        <span v-show="pin.length > 3" class="pin-btn pointer"><i class="tim-icons icon-check-2 pt-3"></i></span>
+        <span v-show="pin.length === 6" class="pin-btn pointer"><i class="tim-icons icon-check-2 pt-3"></i></span>
       </div>
       </div>
 
@@ -80,6 +80,17 @@
 </template>
 
 <script>
+window.addEventListener('error', function(error) {
+  if (ChromeSamples && ChromeSamples.setStatus) {
+    console.error(error);
+    ChromeSamples.setStatus(error.message + ' (Your device may not support this feature.)');
+    error.preventDefault();
+  }
+});
+
+function vbr() {
+  navigator.vibrate(250);
+}
 
 export default {
   name: "LayoutEncrypt",
@@ -97,7 +108,7 @@ export default {
     async pinPress(num) {
       if (num === 'del') {
         this.pin = this.pin.substr(0, this.pin.length - 1)
-      } else {
+      } else if (this.pin.length < 6) {
         this.pin = this.pin + num
       }
 
@@ -108,17 +119,20 @@ export default {
     async validateRepeatPin(num) {
       if (num === 'del') {
         this.pinRepeat = this.pinRepeat.substr(0, this.pinRepeat.length - 1)
-      } else {
+      } else if (this.pinRepeat.length < 6) {
         this.pinRepeat = this.pinRepeat + num
       }
 
-      if (this.pin === this.pinRepeat) {
-        this.$root.pin = await this.$store.dispatch('app/setPinEnc', this.pin)
-        this.pin = ''
-        this.$router.push({path: '/wallet'})
-        return true
-      } else {
-        return false
+      if (this.pinRepeat.length === 6) {
+        if (this.pin === this.pinRepeat) {
+          this.$root.pin = await this.$store.dispatch('app/setPinEnc', this.pin)
+          this.pin = ''
+          this.$router.push({path: '/wallet'})
+          return true
+        } else {
+          vbr()
+          return false
+        }
       }
     },
   },

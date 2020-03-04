@@ -53,9 +53,8 @@ window.addEventListener('error', function(error) {
   }
 });
 
-function vbr() {
-  // Vibrate for 500ms
-  navigator.vibrate([500]);
+function vbr(ms = 250) {
+  navigator.vibrate(ms);
 }
 
 import eventBus from '@/plugins/event-bus'
@@ -77,31 +76,31 @@ export default {
       this.isValid = true
       if (num === 'del') {
         this.pin = this.pin.substr(0, this.pin.length - 1)
-      } else {
+      } else if (this.pin.length < 6) {
         this.pin = this.pin + num
         await this.validatePin()
       }
     },
     async validatePin() {
-      if (this.pin.length > 5 && this.$store.getters['app/pinEncrypted']) {
+      if (this.pin.length === 6 && this.$store.getters['app/pinEncrypted']) {
+        vbr(0)
         let decryptPin = await this.$store.dispatch('app/validatePinCode', this.pin)
         this.isValid = true
         if (decryptPin) {
           this.$root.pin = decryptPin
           this.btnType = 'success'
           setTimeout(() => {
-            this.closeUnlock()
             this.pin = ''
             this.$router.push({path: '/wallet'})
+            //this.closeUnlock()
           }, 500)
-        } else if (this.pin.length === 6) {
+        } else {
           this.isValid = false
           vbr()
         }
       }
     },
     async closeUnlock() {
-      console.log('close')
       eventBus.emit('pin:close')
       this.pin = ''
     },

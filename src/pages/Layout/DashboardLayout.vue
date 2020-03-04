@@ -82,6 +82,7 @@
     </div>
 
 
+
     <div v-if="modal.unlock.show" class="pin-layer p-2">
       <span @click="closePinLayer" class="float-right"><i class="tim-icons icon-simple-remove"
                                                           style="font-size: 1.2em;"></i></span>
@@ -117,8 +118,6 @@
         <base-button @click="pinPress('0')" type="default" round simple class="pin-btn font-weight-light">0
         </base-button>
         <span @click="pinPress('del')" class="pin-btn"><i class="fas fa-backspace pt-3"></i></span>
-        <!--<span class="pin-btn"><i class="tim-icons icon-check-2 pt-3"></i></span>-->
-
       </div>
     </div>
 
@@ -149,6 +148,7 @@
 
 </template>
 <script>
+
 /* eslint-disable no-new */
 import PerfectScrollbar from 'perfect-scrollbar';
 import 'perfect-scrollbar/css/perfect-scrollbar.css';
@@ -167,6 +167,7 @@ function initScrollbar(className) {
     }, 100);
   }
 }
+
 
 import DashboardNavbar from './DashboardNavbar.vue';
 import ContentFooter from './ContentFooter.vue';
@@ -301,7 +302,7 @@ export default {
   },
   methods: {
     async validatePin() {
-      if (this.pin.length > 5 && this.$store.getters['app/pinEncrypted']) {
+      if (this.pin.length === 6 && this.$store.getters['app/pinEncrypted']) {
         let decryptPin = await this.$store.dispatch('app/validatePinCode', this.pin)
         if (decryptPin) {
           this.$root.pin = decryptPin
@@ -319,7 +320,7 @@ export default {
     async pinPress(num) {
       if (num === 'del') {
         this.pin = this.pin.substr(0, this.pin.length - 1)
-      } else {
+      } else if (this.pin.length < 6) {
         this.pin = this.pin + num
         await this.validatePin()
       }
