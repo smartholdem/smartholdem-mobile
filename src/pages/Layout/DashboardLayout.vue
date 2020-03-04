@@ -301,12 +301,14 @@ export default {
   },
   methods: {
     async validatePin() {
-      if (this.pin.length > 3 && this.$store.getters['app/pinEncrypted']) {
+      if (this.pin.length > 5 && this.$store.getters['app/pinEncrypted']) {
         let decryptPin = await this.$store.dispatch('app/validatePinCode', this.pin)
         if (decryptPin) {
           this.$root.pin = decryptPin
           this.modal.unlock.show = false
           this.pin = ''
+        } else {
+
         }
       }
     },
