@@ -1,5 +1,6 @@
 v1.0.5
 
+- Smart Holder
 - Import Address from QR private key
 - Save Mode Dark/Light
 - Fix modals on dark mode
