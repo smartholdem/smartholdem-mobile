@@ -1,11 +1,12 @@
 <template>
-  <div class="card shadow-none">
+  <div class="card shadow-none mt-0">
     <div class="card-header">
       <h4 class="card-title mb-1 noselect font-weight-bold text-center mb-3">
-        {{$t('WALLET.BUY')}} <span v-if="!$root.isMobile">SmartHoldem</span> for
-
-        <span v-if="selects.currency" class="text-uppercase"> <img width="20px"
-                                                                      :src="'https://ex.xbts.io/asset-symbols/'+selects.currency+'.png'"/> {{selects.currency}} </span>
+        {{$t('WALLET.BUY')}} SmartHoldem [STH]
+      </h4>
+      <h4 class="text-center">
+        <span v-if="selects.currency" class="text-uppercase"> for <img width="20px"
+                                                                       :src="'https://ex.xbts.io/asset-symbols/'+selects.currency+'.png'"/> {{selects.currency}} </span>
         <span @click="getDepHistory" class="text-right float-right pointer"><span v-show="!$root.isMobile">{{$t('WALLET.HISTORY')}} Deps</span> <i
           class="tim-icons icon-watch-time"></i></span>
         <br/>

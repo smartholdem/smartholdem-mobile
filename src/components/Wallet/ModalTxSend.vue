@@ -19,7 +19,7 @@
       <div>
         <base-dropdown
           :menuOnRight="false"
-          title-classes="btn btn-icon btn-fab btn-default btn-round tim-icons icon-book-bookmark btn-simple btn-warning ml-3"
+          title-classes="btn btn-icon btn-fab btn-default btn-round tim-icons icon-book-bookmark btn-warning ml-3"
         >
           <span v-if="!contactList.length" class="dropdown-item">No saved contacts</span>
           <span v-for="(item, idx) in contactList" :key="idx" :id="'ct-' + idx" class="dropdown-item"
@@ -29,7 +29,7 @@
         </base-dropdown>
       </div>
 
-      <base-button type="warning" @click="openLayerQr" round icon simple class="float-left ml-3 p-0 m-0">
+      <base-button type="warning" @click="openLayerQr" round icon class="float-left ml-3 p-0 m-0">
         <i class="fas fa-qrcode" style="font-size: 1.3rem"></i>
       </base-button>
     </div>

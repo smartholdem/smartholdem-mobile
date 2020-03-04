@@ -1,7 +1,7 @@
 <template>
   <modal
     :show.sync="showModal"
-    class="modal-white"
+    :class="modalColor"
     :show-close="true"
     headerClasses="justify-content-center"
     type="default"
@@ -58,6 +58,15 @@ export default {
   props: {
     showModal: Boolean,
     default: false,
+  },
+  computed: {
+    modalColor() {
+      let result = 'modal-white'
+      if ((this.$store.getters['app/settings']).darkMode) {
+        result = 'modal-dark'
+      }
+      return result
+    },
   },
   methods: {
     async setAction() {

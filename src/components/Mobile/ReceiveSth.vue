@@ -9,7 +9,7 @@
         :open-delay="300"
         placement="top"
       >
-      <p class="text-center font-weight-bolder" v-clipboard="() => address" v-clipboard:success="clipboardSuccessHandler"><i class="tim-icons icon-single-copy-04 pointer"></i> {{address}}</p>
+      <p class="text-center" v-clipboard="() => address" v-clipboard:success="clipboardSuccessHandler">{{address}}</p>
       </el-tooltip>
       <div class="text-center mt-4">
         <VueQrcode v-if="address" class="qr-wallet" :value="qrData" :options="{size:192}"/>

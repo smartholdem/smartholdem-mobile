@@ -3,7 +3,7 @@
     <div class="row mt-0">
       <div class="col-md-12 m-0 w-100 p-0">
         <div class="m-0">
-          <card class="pb-2" style="margin-bottom: 3px; position: sticky; top: 50px;z-index:1;">
+          <card v-if="mobileTabs !== 2"  class="pb-2" style="margin-bottom: 3px; position: sticky; top: 50px;z-index:1;">
             <template slot="header" class="">
               <div class="row">
                 <div class="col-md-4 pl-2 text-center">
@@ -81,7 +81,7 @@
 
           <card class="" style="margin-top: 5px;">
             <div class="card-body">
-              <div v-if="$root.isMobile">
+              <div>
                 <div v-if="mobileTabs === 0" class="row">
                   <div class="col-md-12">
                     <Transactions :address="currentAddress"/>
@@ -89,58 +89,14 @@
                 </div>
 
                 <div v-if="mobileTabs === 1" class="row">
-                  <div class="col-md-12">
                     <Delegates/>
-                  </div>
                 </div>
 
                 <div v-if="mobileTabs === 2" class="row">
-                  <div class="col-md-12">
                     <Xbts/>
-                  </div>
                 </div>
               </div>
 
-              <div v-if="!$root.isMobile" class="wallet-tabs">
-                <tabs type="danger">
-                  <tab-pane :label="'Transactions ' + totalTx">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <Transactions :address="$route.params.address"/>
-                      </div>
-                    </div>
-                  </tab-pane>
-
-                  <tab-pane label="Delegates">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <Delegates/>
-                      </div>
-                    </div>
-                  </tab-pane>
-
-                  <tab-pane label="Purchase STH">
-                    <div class="row">
-                      <div class="col-md-7">
-                        <Xbts/>
-                      </div>
-                      <div class="col-md-5">
-                        <card class="bg-gradient-white">
-                          <ul>
-                            <li>Select asset for exchange (ex. BTC, LTC etc.)</li>
-                            <li>Enter asset amount for send & get STH for receive</li>
-                            <li>Press button Exchange</li>
-                            <li>Get Deposit Address for selected asset</li>
-                            <li>Send your asset (ex. BTC, LTC etc.) on deposit address</li>
-                            <li>Click History Deps for check your deposit</li>
-                            <li>After confirming the transaction, your STH balance will be update!</li>
-                          </ul>
-                        </card>
-                      </div>
-                    </div>
-                  </tab-pane>
-                </tabs>
-              </div>
             </div>
           </card>
 
