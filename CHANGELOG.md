@@ -1,3 +1,10 @@
+v1.0.5
+
+- Import Address from QR private key
+- Save Mode Dark/Light
+- Fix modals on dark mode
+- Contacts Section
+
 v1.0.4
 - Qr-Code Scanner for payments (Requires enable permission on camera)
 
