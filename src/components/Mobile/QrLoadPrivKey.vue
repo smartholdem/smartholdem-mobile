@@ -19,6 +19,22 @@
 </template>
 
 <script>
+
+document.addEventListener('deviceready', function() {
+
+  var permissions = cordova.plugins.permissions;
+  permissions.requestPermission(permissions.CAMERA, success, error);
+
+  function error() {
+    console.warn('Camera permission is not turned on');
+  }
+
+  function success( status ) {
+    if( !status.hasPermission ) error();
+  }
+  console.log('cordova.plugins.permissions is now available');
+});
+
 import { QrcodeStream } from 'vue-qrcode-reader'
 import eventBus from '@/plugins/event-bus'
 
