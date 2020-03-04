@@ -29,7 +29,6 @@
           >
           </sidebar-item>
 
-          <span>
           <sidebar-item
             :link="{
             name: 'Contacts',
@@ -39,6 +38,7 @@
           >
           </sidebar-item>
 
+          <span v-if="!$root.isMobile">
           <sidebar-item
             :link="{
             name: 'SmartHolder',
