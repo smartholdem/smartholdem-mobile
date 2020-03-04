@@ -20,7 +20,7 @@
             <span class="font-weight-bolder">{{ row.label}}</span>
             <span v-if="$root.isMobile" class="small">
               <br>{{ row.address}}
-              <br>{{ row.balance}} STH
+              <br>{{ row.balance.toFixed(0)}} STH
             </span>
 
             <base-button type="danger" icon simple class="float-right btn-sm" @click="removeContact(row.address)">
