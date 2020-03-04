@@ -382,7 +382,7 @@ export default {
     height: 60px;
     float: left;
     text-align: center;
-    margin: 10px;
+    margin: 3%;
     font-size: 2.3em;
     padding: 0px !important;
   }
