@@ -20,40 +20,6 @@
         </button>
       </div>
 
-      <!--
-      <router-link v-if="$root.isMobile" to="/wallet" class="text-decoration-none font-weight-normal text-dark" style="font-size: 20px;"> <img src="/images/sth48.png" width="24x"> {{accountBalanceSTH}}</router-link>
-      <base-dropdown
-        v-if="!$root.isMobile"
-        tag="li"
-        :menu-on-right="!$rtl.isRTL"
-        title-tag="a"
-        title-classes="nav-link"
-        class="navbar-brand currency-balance"
-      >
-        <template
-          slot="title"
-          style="color: rgb(9, 223, 251) !important;"
-        >
-
-          <el-tooltip
-            :visible-arrow="false"
-            :content="'1 ' + defaultCurrency.ticker + ' = ' + (1 / prices[defaultCurrency.ticker]).toFixed(2) + ' STH'"
-            :open-delay="300"
-            placement="bottom"
-          >
-            <span class="text-decoration-none font-weight-normal" style=""> <img src="/images/sth48.png" width="20px"> {{accountBalanceSTH}} <small
-              class="color-brown font-weight-bold">STH </small>
-              <span
-              style="font-size: 0.9em;color: lightslategray;border: solid 1px lightslategray;"
-              class="badge badge-white font-weight-normal">{{defaultCurrency.symbol}}{{accountBalance}}</span></span>
-          </el-tooltip>
-        </template>
-
-        <li class="nav-link bg-white" v-for="(item, idx) in currencies" :key="idx">
-          <span @click="setDefaultCurrency(item.ticker, item.symbol, item.precision)" class="nav-item dropdown-item">{{item.title}} {{item.symbol}}</span>
-        </li>
-      </base-dropdown>
-      -->
     </div>
 
     <ul class="navbar-nav" :class="$rtl.isRTL ? 'mr-auto' : 'ml-auto'">
@@ -174,16 +140,10 @@ export default {
   computed: {
     settings() {
       let result = this.$store.getters['app/settings']
-      console.log(result)
       return result
     },
     seed() {
       return this.$store.getters['network/seed']
-    },
-    wallets() {
-      let balances = (this.$store.getters['wallet/balances'])
-      let keys = Object.keys(balances.accounts)
-      return JSON.stringify(keys)
     },
     routeName() {
       const {name} = this.$route;
@@ -191,22 +151,6 @@ export default {
     },
     isRTL() {
       return this.$rtl.isRTL;
-    },
-    accountBalanceSTH() {
-      let balances = this.$store.getters['wallet/balances']
-      return (balances.totalBalance).toFixed(2)
-    },
-    currencies() {
-      return this.$store.getters['wallet/currencies']
-    },
-    defaultCurrency() {
-      return this.$store.getters['wallet/defaultCurrency']
-    },
-    prices() {
-      return this.$store.getters['wallet/marketPrice']
-    },
-    accountBalance() {
-      return (this.accountBalanceSTH * this.prices[this.defaultCurrency.ticker]).toFixed(this.defaultCurrency.precision)
     },
     blockchainStatus() {
       return this.$store.getters['blockchain/status']
@@ -247,17 +191,6 @@ export default {
     },
     toggleMenu() {
       this.showMenu = !this.showMenu;
-    },
-    clipboardSuccessHandler({value, event}) {
-      this.toolTipsContent.copy = 'Copied to clipboard';
-      setTimeout(() => (this.toolTipsContent.copy = 'Copy My Address'), 1500);
-    },
-    async setDefaultCurrency(ticker, symbol, precision) {
-      await this.$store.dispatch('wallet/setDefaultCurrency', {
-        ticker: ticker,
-        symbol: symbol,
-        precision: precision
-      })
     },
   }
 };
