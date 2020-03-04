@@ -131,10 +131,7 @@ export default {
     return {
       darkMode: false,
       showReset: false,
-      activeNotifications: false,
       showMenu: false,
-      searchModalVisible: false,
-      searchQuery: '',
     };
   },
   computed: {
@@ -176,12 +173,6 @@ export default {
     },
     capitalizeFirstLetter(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
-    },
-    toggleNotificationDropDown() {
-      this.activeNotifications = !this.activeNotifications;
-    },
-    closeDropDown() {
-      this.activeNotifications = false;
     },
     toggleSidebar() {
       this.$sidebar.displaySidebar(!this.$sidebar.showSidebar);
