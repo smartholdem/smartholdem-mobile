@@ -4,6 +4,8 @@ v1.0.5
 - Save Mode Dark/Light
 - Fix modals on dark mode
 - Contacts Section
+- QR Scheme as object
+- Send STH on selected contact
 
 v1.0.4
 - Qr-Code Scanner for payments (Requires enable permission on camera)

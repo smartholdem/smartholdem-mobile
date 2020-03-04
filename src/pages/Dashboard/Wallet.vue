@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="row" style="overflow-y: hidden;">
+    <div class="row">
       <div class="text-center ml-auto mr-auto">
         <base-dropdown
           tag="li"
