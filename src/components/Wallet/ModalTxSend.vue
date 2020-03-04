@@ -35,15 +35,15 @@
     </div>
 
     <div v-if="!tx.id">
-      <div style="height:30px;">
-            <span v-show="!isValidAddress && send.address" class="badge badge-danger"><i
+      <div style="height:30px; float:left; width:100%; margin-top: -25px;">
+            <span v-show="!isValidAddress && send.address" class="badge badge-danger float-right"><i
               class="tim-icons icon-bell-55"></i> Address not valid</span>
-        <span v-show="isValidAddress || !send.address" class="badge badge-success">Fee 1 STH</span>
+        <span v-show="isValidAddress || !send.address" class="badge badge-success float-right">Fee 1 STH</span>
       </div>
       <div class="row">
         <div class="col-md-11 mr-0">
           <base-input
-            :class="modalClasses.address + ' bg-dark'"
+            :class="modalClasses.address"
             type="text"
             placeholder="Enter Recipient Address"
             addon-left-icon="tim-icons icon-single-02"
@@ -116,13 +116,14 @@
     </div>
 
     <template slot="footer">
-      <base-button v-if="tx.id" @click="broadcastTx" type="neutral" link>Send {{send.amount * 1 + 1}} STH <i
+      <base-button class="pb-3" v-if="tx.id" @click="broadcastTx" type="neutral" link>Send {{send.amount * 1 + 1}} STH <i
         class="tim-icons icon-check-2"></i></base-button>
-      <base-button v-if="!tx.id" :disabled="!isValidAddress || remainingBalance < 0 || !send.amount" @click="prepareTx"
+      <base-button class="pb-3" v-if="!tx.id" :disabled="!isValidAddress || remainingBalance < 0 || !send.amount" @click="prepareTx"
                    type="neutral"
                    link>Next <i
         class="tim-icons icon-check-2"></i></base-button>
       <base-button
+        class="pb-3"
         type="neutral"
         link
         @click="$emit('onModalClose')"

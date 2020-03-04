@@ -185,7 +185,9 @@ export default {
   background: #27293d url(~/images/dotted-bg.png);
   background-size: cover;
   color: #ffffff;
-  min-height: 82vh;
+  min-height: 100vh;
+  z-index: 10000;
+  border-radius: 0;
 }
 
 .modal.modal-dark .form-group {
@@ -207,6 +209,8 @@ export default {
   color: #fafafa;
 }
 
-
+.modal-dialog {
+  margin:0;
+}
 
 </style>
