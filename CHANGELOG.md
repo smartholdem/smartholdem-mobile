@@ -1,3 +1,11 @@
+v1.0.6
+
+- Dialog QR-Camera permissions support for android 6+
+- Fix navbar & toggle
+- Fix Dropdown currency list
+- Show current version
+- Modal dark mode
+
 v1.0.5
 
 - Smart Holder
