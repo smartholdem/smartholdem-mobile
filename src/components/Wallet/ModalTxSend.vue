@@ -1,7 +1,7 @@
 <template>
   <modal
     :show.sync="showModal"
-    class="modal-white"
+    :class="modalColor"
     :show-close="true"
     headerClasses="justify-content-center"
   >
@@ -19,7 +19,7 @@
       <div>
         <base-dropdown
           :menuOnRight="false"
-          title-classes="btn btn-icon btn-fab btn-default btn-round tim-icons icon-book-bookmark btn-simple ml-3"
+          title-classes="btn btn-icon btn-fab btn-default btn-round tim-icons icon-book-bookmark btn-simple btn-warning ml-3"
         >
           <span v-if="!contactList.length" class="dropdown-item">No saved contacts</span>
           <span v-for="(item, idx) in contactList" :key="idx" :id="'ct-' + idx" class="dropdown-item"
@@ -43,7 +43,7 @@
       <div class="row">
         <div class="col-md-11 mr-0">
           <base-input
-            :class="modalClasses.address"
+            :class="modalClasses.address + ' bg-dark'"
             type="text"
             placeholder="Enter Recipient Address"
             addon-left-icon="tim-icons icon-single-02"
@@ -76,7 +76,7 @@
           </base-input>
         </div>
       </div>
-      <span>Remaining Balance
+      <span>Remaining
         <span class="pointer font-weight-bolder" @click="send.amount = remainingBalance">
           {{remainingBalance}}
         </span> STH
@@ -157,7 +157,8 @@ export default {
       },
       modalClasses: {
         address: '',
-        amount: ''
+        amount: '',
+        main: ''
       },
     }
   },
@@ -168,6 +169,13 @@ export default {
     }
   },
   computed: {
+    modalColor() {
+      let result = 'modal-white'
+      if ((this.$store.getters['app/settings']).darkMode) {
+        result = 'modal-dark'
+      }
+      return result
+    },
     contactList() {
       const data = this.$store.getters['app/contacts']
       let keys = Object.keys(data)

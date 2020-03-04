@@ -181,6 +181,18 @@ export default {
   color: #000000;
 }
 
+.modal.modal-dark .modal-content {
+  background: #27293d url(~/images/dotted-bg.png);
+  background-size: cover;
+  color: #ffffff;
+  min-height: 82vh;
+}
+
+.modal.modal-dark .form-group {
+  background-color: #212529 !important;
+  color: #fff;
+}
+
 .modal .modal-profile {
   box-shadow: none;
   border: solid 2px #ec0b5e;
@@ -190,5 +202,11 @@ export default {
   box-shadow: none;
   border: solid 2px gray;
 }
+
+.modal.modal-dark .modal-content .modal-body p {
+  color: #fafafa;
+}
+
+
 
 </style>

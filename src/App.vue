@@ -10,6 +10,7 @@ export default {
         // Just make sure rtl css is off when we are not on rtl
         this.$rtl.disableRTL();
       }
+
     },
   },
   mounted() {
@@ -28,6 +29,15 @@ export default {
       if (locale) {
         this.$i18n.locale = locale
       }
+
+      const settings = this.$store.getters['app/settings']
+      let docClasses = document.body.classList;
+      if (settings.darkMode) {
+        docClasses.remove('white-content');
+      } else {
+        docClasses.add('white-content');
+      }
+
       this.$synchronizer.defineAll()
       this.$synchronizer.ready()
     })

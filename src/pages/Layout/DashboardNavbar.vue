@@ -2,7 +2,7 @@
   <base-nav
     v-model="showMenu"
     class="navbar-absolute top-navbar"
-    :type="!darkMode ? 'white' : ''"
+    :type="!settings.darkMode ? 'white' : ''"
     :transparent="false"
   >
     <div slot="brand" class="navbar-wrapper">
@@ -57,9 +57,6 @@
     </div>
 
     <ul class="navbar-nav" :class="$rtl.isRTL ? 'mr-auto' : 'ml-auto'">
-
-      <a class="navbar-brand" @click="toggleMode"><i class="tim-icons icon-bulb-63 pb-1"></i> Dark or Light</a>
-
 
       <base-dropdown
         tag="li"
@@ -142,6 +139,8 @@
           <span class="nav-item dropdown-item color-orange"><i class="tim-icons icon-simple-remove"></i> {{$t('APP.RESET')}}</span>
         </li>
       </base-dropdown>
+
+      <span class="navbar-brand" @click="toggleMode"><i class="tim-icons icon-bulb-63 pb-1 mr-2"></i> Dark or Light</span>
     </ul>
     <ResetAll :modalReset="showReset" @onResetCancel="showReset = false"/>
   </base-nav>
@@ -173,6 +172,11 @@ export default {
     };
   },
   computed: {
+    settings() {
+      let result = this.$store.getters['app/settings']
+      console.log(result)
+      return result
+    },
     seed() {
       return this.$store.getters['network/seed']
     },
@@ -212,7 +216,12 @@ export default {
     toggleMode() {
       let docClasses = document.body.classList;
       this.darkMode = !this.darkMode
-      if (this.darkMode) {
+
+      this.$store.dispatch('app/setSettings', {
+        darkMode: this.darkMode
+      })
+
+      if (this.settings.darkMode) {
         docClasses.remove('white-content');
       } else {
         docClasses.add('white-content');
