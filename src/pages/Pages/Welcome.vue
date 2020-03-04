@@ -10,23 +10,35 @@
         <p>Welcome to the Smartholdem Platform</p>
 
         <div class="text-center w-100 m-auto pt-3">
-          <base-button v-if="!PinEncrypted" @click="showEncrypt = true" type="primary" round class="text-uppercase">Create Profile</base-button>
-          <base-button v-if="PinEncrypted" @click="showUnlock = true" type="primary" round class="text-uppercase">Open My Wallet</base-button>
+          <base-button v-if="!PinEncrypted" @click="showEncrypt = true" type="primary" round class="text-uppercase">
+            Create Profile
+          </base-button>
+          <base-button v-if="PinEncrypted" @click="showUnlock = true" type="primary" round class="text-uppercase">Open
+            My Wallet
+          </base-button>
           <div v-if="PinEncrypted">
-          <p class="mt-4">- OR -</p>
-          <base-button @click="showReset = true" type="danger"
-                       link
-                       class="text-uppercase mt-3 btn-sm"><i class="tim-icons icon-simple-remove"></i> Delete All Data</base-button>
+            <p class="mt-4">- OR -</p>
+            <base-button @click="showReset = true" type="danger"
+                         link
+                         class="text-uppercase mt-3 btn-sm"><i class="tim-icons icon-simple-remove"></i> Delete All Data
+            </base-button>
           </div>
 
         </div>
       </div>
     </div>
 
-    <LayoutUnlock :show="showUnlock"/>
-    <LayoutEncrypt :show="showEncrypt"/>
+    <div v-if="showUnlock">
+      <LayoutUnlock :show="showUnlock"/>
+    </div>
 
-    <ResetAll :modalReset="showReset" @onResetCancel="showReset = false"/>
+    <div v-if="showEncrypt">
+      <LayoutEncrypt :show="showEncrypt"/>
+    </div>
+
+    <div v-if="showReset">
+      <ResetAll :modalReset="showReset" @onResetCancel="showReset = false"/>
+    </div>
 
   </div>
 </template>
@@ -35,6 +47,7 @@
 import LayoutUnlock from '@/components/Mobile/LayoutUnlock'
 import LayoutEncrypt from '@/components/Mobile/LayoutEncrypt'
 import ResetAll from '@/components/Wallet/ResetAll'
+
 export default {
   name: "Welcome",
   components: {
@@ -42,7 +55,7 @@ export default {
     LayoutEncrypt,
     ResetAll,
   },
-  data () {
+  data() {
     return {
       showUnlock: false,
       showEncrypt: false,
@@ -54,9 +67,7 @@ export default {
       return this.$store.getters['app/pinEncrypted']
     }
   },
-  methods: {
-
-  },
+  methods: {},
   async created() {
     this.$root.pin = null
     this.$root.pinEnc = this.PinEncrypted

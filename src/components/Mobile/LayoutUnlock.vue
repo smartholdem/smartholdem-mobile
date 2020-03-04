@@ -38,12 +38,28 @@
         <!--<span class="pin-btn"><i class="tim-icons icon-check-2 pt-3"></i></span>-->
       </div>
 
-      <div v-show="!isValid" class="float-left w-100 text-center mt-2 badge badge-danger">Pin-Code Not Valid</div>
+      <div v-show="!isValid && pin.length > 5" class="float-left w-100 text-center mt-2 badge badge-danger">Pin-Code Not Valid</div>
     </div>
   </div>
 </template>
 
 <script>
+
+window.addEventListener('error', function(error) {
+  if (ChromeSamples && ChromeSamples.setStatus) {
+    console.error(error);
+    ChromeSamples.setStatus(error.message + ' (Your device may not support this feature.)');
+    error.preventDefault();
+  }
+});
+
+function vbr() {
+  // Vibrate for 500ms
+  navigator.vibrate([500]);
+}
+
+import eventBus from '@/plugins/event-bus'
+
 export default {
   name: "LayoutUnlock",
   props: {
@@ -67,24 +83,26 @@ export default {
       }
     },
     async validatePin() {
-      if (this.pin.length > 3 && this.$store.getters['app/pinEncrypted']) {
+      if (this.pin.length > 5 && this.$store.getters['app/pinEncrypted']) {
         let decryptPin = await this.$store.dispatch('app/validatePinCode', this.pin)
         this.isValid = true
         if (decryptPin) {
           this.$root.pin = decryptPin
           this.btnType = 'success'
           setTimeout(() => {
-            this.$emit('onUnlockClose')
+            this.closeUnlock()
             this.pin = ''
             this.$router.push({path: '/wallet'})
           }, 500)
         } else if (this.pin.length === 6) {
           this.isValid = false
+          vbr()
         }
       }
     },
     async closeUnlock() {
-      this.$emit('onUnlockClose')
+      console.log('close')
+      eventBus.emit('pin:close')
       this.pin = ''
     },
 

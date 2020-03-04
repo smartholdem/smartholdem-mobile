@@ -117,6 +117,7 @@
   </base-nav>
 </template>
 <script>
+
 import {CollapseTransition} from 'vue2-transitions';
 import {BaseNav, Modal} from '@/components';
 import SidebarToggleButton from './SidebarToggleButton';
