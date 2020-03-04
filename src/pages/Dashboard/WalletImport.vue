@@ -1,15 +1,15 @@
 <template>
   <div>
-    <card class="card-white stacked-form">
+    <card class="stacked-form">
       <template slot="header">
-        <h3 class="card-title text-dark font-weight-bold">Import Wallet
-          <base-button @click="show.qrLoadPriv = true" type="primary" round icon class="ml-2">
+        <h3 class="card-title font-weight-bold">Import Wallet
+          <base-button @click="show.qrLoadPriv = true" type="primary" round icon class="float-right">
             <i class="fas fa-qrcode" style="font-size: 1.3rem"></i>
           </base-button>
         </h3>
       </template>
 
-      <p class="text-black-50">{{$t('APP.ENTER_SECRET')}}</p>
+      <p class="">{{$t('APP.ENTER_SECRET')}}</p>
       <base-input
         v-model="account.secret"
         addon-left-icon="tim-icons icon-lock-circle"
@@ -17,10 +17,10 @@
         @input="validateImportAccount()"
       >
       </base-input>
-      <base-alert v-show="isBip39 === false" type="warning" class="mb-1"><i class="tim-icons icon-bell-55"></i>
+      <base-alert v-show="isBip39 === false" type="danger" class="mb-1 small p-1"><i class="tim-icons icon-bell-55"></i>
         {{$t('APP.NO_BIP39')}}
       </base-alert>
-      <p class="text-black-50">{{$t('APP.YOUR_PUB_ADDR')}}</p>
+      <p class="">{{$t('APP.YOUR_PUB_ADDR')}}</p>
       <el-tooltip
         :content="toolTipsContent.copy"
         effect="light"
