@@ -38,7 +38,6 @@
           >
           </sidebar-item>
 
-          <span v-if="!$root.isMobile">
           <sidebar-item
             :link="{
             name: 'SmartHolder',
@@ -47,6 +46,9 @@
           }"
           >
           </sidebar-item>
+
+          <span v-if="!$root.isMobile">
+
 
           <sidebar-item
             :link="{
