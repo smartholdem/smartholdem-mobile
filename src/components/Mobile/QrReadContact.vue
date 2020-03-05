@@ -84,7 +84,7 @@ export default {
           }
         }
 
-        this.close(this.send)
+        this.close(this.contact)
       } else {
         this.result = null
       }

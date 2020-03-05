@@ -33,7 +33,6 @@
               <span class="dropdown-item" v-clipboard="() => item.address"> <i class="tim-icons icon-single-copy-04 pointer"></i> Copy</span>
               <span class="dropdown-item" @click="showModal('modal:qr', {address: item.address, label: item.label, isContact: true})"> <i class="fas fa-qrcode"></i> QR-Code</span>
               <span class="dropdown-item" @click="removeContact(item.address)"> <i class="tim-icons icon-trash-simple"></i> Remove</span>
-
             </base-dropdown>
           </td>
 

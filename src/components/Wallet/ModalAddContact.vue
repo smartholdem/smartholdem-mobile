@@ -1,8 +1,10 @@
 <template>
+  <div>
+
   <modal
-    :show.sync="showModal"
-    :class="modalColor"
-    :show-close="true"
+    v-bind:show="show"
+    v-bind:class="modalColor"
+    :scrollToBottom="false"
     headerClasses="justify-content-center"
     type="default"
   >
@@ -14,50 +16,67 @@
         <i class="tim-icons icon-bell-55"></i> Address not valid
       </span>
     </p>
+
+
     <base-input
       type="text"
-      placeholder="Enter Contact Name"
+      placeholder="Contact Name"
       addon-left-icon="tim-icons icon-tag"
       v-model="label"
-    >
-    </base-input>
+    />
 
     <base-input
       type="text"
-      placeholder="Enter SmartHoldem Address"
+      placeholder="SmartHoldem Address"
       addon-left-icon="tim-icons icon-wallet-43"
       v-model="address"
-      @input="validateAddress"
-    >
-    </base-input>
+      @input="validateAddress()"
+    />
+
+
+
+    <div class="text-center">
+      <base-button @click="qrRead = true" type="dark" icon class="">
+        <i class="fas fa-qrcode" style="font-size:1.3rem;"></i>
+      </base-button>
+    </div>
 
     <template slot="footer">
-      <base-button @click="setAction" :disabled="!isValidAddress" type="neutral info" link class="">{{$t('APP.CONFIRM')}}</base-button>
+      <base-button @click="setAction" :disabled="!isValidAddress" type="neutral info" link class="">
+        {{$t('APP.CONFIRM')}}
+      </base-button>
       <base-button @click="$emit('onModalClose')" type="neutral" link class="">
         {{$t('APP.CANCEL')}}
       </base-button>
     </template>
   </modal>
+
+  <div v-if="qrRead">
+    <QrReadContact :show="qrRead" @onQrClose="qrRead = false"/>
+  </div>
+  </div>
 </template>
 
 <script>
 import {Modal} from '@/components'
+import QrReadContact from '@/components/Mobile/QrReadContact'
 
 export default {
   name: "ModalAddContact",
   components: {
     Modal,
+    QrReadContact,
   },
   data() {
     return {
-      address: '',
       label: '',
-      isValidAddress: false
+      address: '',
+      isValidAddress: false,
+      qrRead: false,
     }
   },
   props: {
-    showModal: Boolean,
-    default: false,
+    show: Boolean
   },
   computed: {
     modalColor() {
@@ -70,15 +89,17 @@ export default {
   },
   methods: {
     async setAction() {
-      if (this.label.length > 0 && this.isValidAddress) {
+      if (this.label && this.isValidAddress) {
         await this.$store.dispatch('app/setContact', {
           address: this.address,
           label: this.label,
           balance: 0,
         })
         await this.$store.dispatch('app/fetchContacts')
+        this.label = ''
+        this.address = ''
+        this.isValidAddress = false
         this.$emit('onModalClose')
-        this.showModal = false
       }
     },
     async validateAddress() {
@@ -87,9 +108,13 @@ export default {
     },
   },
   async created() {
-    this.label = ''
-    this.address = ''
-  },
+    this.$eventBus.on('qr:contact', async (options) => {
+      this.qrRead = false
+      this.label = options.label || this.label
+      this.address = options.address || ''
+      await this.validateAddress()
+    })
+  }
 }
 </script>
 

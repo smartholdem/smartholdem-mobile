@@ -137,7 +137,7 @@
     </div>
 
     <div v-if="modal.contacts.show">
-      <ModalAddContact :showModal="modal.contacts.show" @onModalClose="modal.contacts.show = false"/>
+      <ModalAddContact v-bind:show="modal.contacts.show" @onModalClose="modal.contacts.show = false"/>
     </div>
 
     <div v-if="modal.vote.show">
@@ -308,7 +308,7 @@ export default {
     })
 
     this.$eventBus.on('modal:contacts', async () => {
-      this.modal.contacts.show = false
+      //this.modal.contacts.show = false
       this.modal.contacts.show = true
     })
 
