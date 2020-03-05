@@ -4,6 +4,7 @@ v1.0.7
 - Optimize encrypt pin process
 - New splash screens
 - Top 64 Delegates List
+- Modal Transaction Vote/Unvote
 
 v1.0.6
 
