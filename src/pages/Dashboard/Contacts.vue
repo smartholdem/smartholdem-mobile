@@ -1,38 +1,48 @@
 <template>
   <div>
     <div class="table-full-width" style="margin-bottom: 0px;">
-      <base-button @click="showModalAddContact()" type="info" icon simple round class="float-right" style="margin-bottom: -110px; z-index:10;">
-        <i class="tim-icons icon-simple-add" style=""></i>
-      </base-button>
+      <div class="mb-4 w-100">
+        <h4 class="text-center">Contacts
+          <span class="text-right float-right" style="margin-top: -10px;">
+            <base-button @click="showModalAddContact()" type="info" icon simple round class="" style="">
+            <i class="tim-icons icon-simple-add" style=""></i>
+          </base-button>
+          </span>
 
-      <!-- tx desktop -->
-      <el-table :data="contactList" stripe>
+        </h4>
 
-        <el-table-column
-          className=""
-          min-width="50"
-          label="Name"
-          property="label"
-          sortable
-        >
-          <div class="" slot-scope="{ row }">
+      </div>
 
-            <span class="font-weight-bolder">{{ row.label}}</span>
-            <span v-if="$root.isMobile" class="small">
-              <br>{{ row.address}}
-              <br>{{ row.balance.toFixed(0)}} STH
+      <table class="table w-100">
+        <tbody>
+        <tr v-for="(item, idx) in contactList" :key="idx + 'contact'" class="pointer">
+          <td @click="showModal('modal:qr', {address: item.address, label: item.label, isContact: true})">
+            <span class="font-weight-bolder">{{ item.label}}</span>
+            <span class="small">
+              <br>{{ item.address}}
+              <br>{{ item.balance.toFixed(0)}} STH
             </span>
+          </td>
+          <td>
+            <base-dropdown
+              menu-on-right=""
+              tag="div"
+              title-classes="btn btn-link btn-icon"
+            >
+              <i slot="title" class="tim-icons icon-settings-gear-63"></i>
+              <span class="dropdown-item" v-clipboard="() => item.address"> <i class="tim-icons icon-single-copy-04 pointer"></i> Copy</span>
+              <span class="dropdown-item" @click="showModal('modal:qr', {address: item.address, label: item.label, isContact: true})"> <i class="fas fa-qrcode"></i> QR-Code</span>
+              <span class="dropdown-item" @click="removeContact(item.address)"> <i class="tim-icons icon-trash-simple"></i> Remove</span>
 
-            <base-button type="danger" icon simple class="float-right btn-sm" @click="removeContact(row.address)">
-              <i class="tim-icons icon-trash-simple"></i>
-            </base-button>
+            </base-dropdown>
+          </td>
+
+        </tr>
+        </tbody>
+      </table>
 
 
-          </div>
-        </el-table-column>
 
-
-      </el-table>
 
     </div>
 
@@ -62,6 +72,13 @@ export default {
     },
   },
   methods: {
+    async showModal(evt, options = {}) {
+      if (this.$root.pin) {
+        eventBus.emit(evt, options) // ex 'modal:qr', {address: ..., label: null}
+      } else {
+        eventBus.emit('modal:unlock')
+      }
+    },
     navUrl(url) {
       openUrl(url)
     },
