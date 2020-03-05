@@ -5,10 +5,10 @@
     </base-button>
     <small>
       Voting is an optional, but important mechanism that keeps the SmartHoldem network secure. The 64 delegates with
-      the most votes from the network are responsible for verifying and forging transactions into new blocks. Now registered {{Delegates.count}} delegates.
+      the most votes from the network are responsible for verifying and forging transactions into new blocks. Now
+      registered {{Delegates.count}} delegates.
     </small>
     <!-- tx desktop -->
-
 
 
     <el-table :row-class-name="tableRowClassName" :data="Delegates.list" :maxHeight="$root.height - 350">
@@ -59,7 +59,7 @@
           </div>
 
           <div v-if="!accountData.vote">
-            <base-button  @click="showModalVote({address: accountData.address, delegate: row, voteType: '+'})"
+            <base-button @click="showModalVote({address: accountData.address, delegate: row, voteType: '+'})"
                          type="success" round icon class="mr-1">
               <el-tooltip
                 :content="'Vote for ' + row.username"
@@ -88,6 +88,12 @@ export default {
   components: {
     [Table.name]: Table,
     [TableColumn.name]: TableColumn,
+  },
+  props: {
+    address: {
+      type: String,
+      required: false,
+    }
   },
   computed: {
     Delegates() {

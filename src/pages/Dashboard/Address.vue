@@ -88,10 +88,6 @@
                   </div>
                 </div>
 
-                <div v-if="mobileTabs === 1" class="row">
-                    <Delegates/>
-                </div>
-
                 <div v-if="mobileTabs === 2" class="row m-0 p-0">
                     <Xbts/>
                 </div>
@@ -131,7 +127,6 @@
 import {TabPane, Tabs, Collapse, CollapseItem} from 'src/components';
 import {Modal} from '@/components'
 import Transactions from '@/components/Wallet/Transactions'
-import Delegates from '@/components/Blockchain/Delegates'
 import Xbts from '@/components/Exchange/Xbts'
 //import NumberFormat from 'number-format.js'
 import {network} from '@/config'
@@ -155,7 +150,6 @@ export default {
     CollapseItem,
     Transactions,
     Xbts,
-    Delegates,
     BaseAlert,
     ModalTxDelegate,
     BotBtnWlt,

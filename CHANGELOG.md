@@ -1,3 +1,9 @@
+v1.0.7
+
+- Vibrate on pin validate & creation
+- Optimize encrypt pin process
+- New splash screens
+
 v1.0.6
 
 - Dialog QR-Camera permissions support for android 6+
