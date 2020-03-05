@@ -40,6 +40,15 @@
 
           <sidebar-item
             :link="{
+            name: 'Delegates',
+            icon: 'tim-icons icon-bank',
+            path: '/delegates'
+          }"
+          >
+          </sidebar-item>
+
+          <sidebar-item
+            :link="{
             name: 'SmartHolder',
             icon: 'tim-icons icon-money-coins',
             path: '/smartholder'

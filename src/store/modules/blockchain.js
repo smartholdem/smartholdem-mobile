@@ -29,7 +29,7 @@ export default {
   state: {
     delegates: {
       list: [],
-      count: 296,
+      count: 297,
     },
     status: {
       "epoch": "2017-11-21T13:00:00.000Z",
@@ -84,6 +84,7 @@ export default {
   actions: {
     async fetchDelegates({commit}, value = 0) {
       const data = await Blockchain.getDelegates(value)
+      console.log('data', data)
       if (data.count > 0) {
         commit('SET_DELEGATES', data)
       }
