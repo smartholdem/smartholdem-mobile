@@ -31,7 +31,7 @@
         :menu-on-right="!$rtl.isRTL"
         title-tag="a"
         title-classes="nav-link"
-        class="nav-item"
+        class="nav-item text-uppercase"
       >
         <template
           slot="title"
@@ -53,7 +53,7 @@
         :menu-on-right="!$rtl.isRTL"
         title-tag="a"
         title-classes="nav-link"
-        class="nav-item"
+        class="nav-item text-uppercase"
       >
         <template
           slot="title"
@@ -65,7 +65,7 @@
 
         <li class="nav-link">
           <span class="nav-item dropdown-item color-orange"
-             style="min-width:220px;float:left;border-bottom: solid 1px #eee;clear:both;"
+             style="min-width:220px;float:left;clear:both;"
           >
             <span class="float-left">Peer</span><span class="float-right">{{seed.url}}</span>
           </span>
@@ -96,21 +96,19 @@
           <p class="d-lg-none">APP</p>
         </template>
         <li class="nav-link">
-          <span class="nav-item dropdown-item color-orange"><i class="tim-icons icon-settings-gear-63"></i> Settings</span>
-        </li>
-        <div class="dropdown-divider"></div>
-        <li class="nav-link ">
-          <router-link to="/welcome" class="nav-item dropdown-item color-orange"><i class="tim-icons icon-lock-circle"></i> Lock
-          </router-link>
-        </li>
-        <li class="nav-link" @click="showReset = true">
-          <span class="nav-item dropdown-item color-orange"><i class="tim-icons icon-simple-remove"></i> {{$t('APP.RESET')}}</span>
+          <span class="nav-item dropdown-item color-orange text-uppercase"><i class="tim-icons icon-settings-gear-63"></i> Settings</span>
         </li>
       </base-dropdown>
 
-
-      <li class="nav-item mt-2" @click="toggleMode">
-         <span class="ml-1"><i class="tim-icons icon-bulb-63 pb-1 mr-2"></i> Dark or Light</span>
+      <li class="nav-item mt-3 mb-2" @click="showReset = true">
+        <span class="ml-1 text-uppercase"><i class="mr-2 tim-icons icon-simple-remove"></i> {{$t('APP.RESET')}}</span>
+      </li>
+      <li class="nav-item mt-3 mb-2">
+        <router-link to="/welcome" class="ml-1"><i class="mr-2 tim-icons icon-lock-circle"></i> LOCK
+        </router-link>
+      </li>
+      <li class="nav-item mt-3" @click="toggleMode">
+         <span class="ml-1"><i class="tim-icons icon-bulb-63 pb-1 mr-2"></i> DARK & LIGHT MODE</span>
       </li>
     </ul>
     <ResetAll :modalReset="showReset" @onResetCancel="showReset = false"/>
