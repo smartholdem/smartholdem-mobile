@@ -33,7 +33,7 @@ document.addEventListener('deviceready', function() {
   function success( status ) {
     if( !status.hasPermission ) error();
   }
-  console.log('cordova.plugins.permissions is now available');
+  //console.log('cordova.plugins.permissions is now available');
 });
 
 import { QrcodeStream } from 'vue-qrcode-reader'
