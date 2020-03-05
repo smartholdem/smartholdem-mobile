@@ -36,22 +36,6 @@
       </div>
 
       <div class="w-100 hide-scroll" style="overflow-x:auto;">
-        <div v-if="wallets.length < 1" class="text-center">
-          <p>No Wallets</p>
-
-          <div class="col-md-12">
-          <base-button @click="openRouter('/wallet-create')" type="primary" round simple class="w-100 text-uppercase font-weight-bolder" style="">
-            <i class="tim-icons icon-credit-card pb-1 mr-2" style="font-size: 1rem;"></i> Create New Wallet
-          </base-button>
-
-          <p>- OR -</p>
-
-          <base-button @click="openRouter('/wallet-import')" type="primary" round simple class="w-100 text-uppercase font-weight-bolder" style="">
-            <i class="tim-icons icon-refresh-01 pb-1 mr-2"></i>Import Wallet
-          </base-button>
-          </div>
-        </div>
-
 
         <div :style="'width:'+(360*wallets.length) + 'px;'">
           <card v-for="item in wallets" :key="item.address" class="ml-2 mr-2 account-style bgg1">
@@ -65,6 +49,27 @@
             </router-link>
           </card>
         </div>
+
+
+        <div class="text-center row">
+          <div class="container mt-4">
+
+          <p v-if="wallets.length < 1">No Wallets</p>
+
+          <div class="col-md-12">
+            <base-button @click="openRouter('/wallet-create')" type="primary" round simple class="w-100 text-uppercase font-weight-bolder" style="">
+              <i class="tim-icons icon-credit-card pb-1 mr-2" style="font-size: 1rem;"></i> Create New Wallet
+            </base-button>
+
+            <p>- OR -</p>
+
+            <base-button @click="openRouter('/wallet-import')" type="primary" round simple class="w-100 text-uppercase font-weight-bolder" style="">
+              <i class="tim-icons icon-refresh-01 pb-1 mr-2"></i>Import Wallet
+            </base-button>
+          </div>
+          </div>
+        </div>
+
       </div>
 
     </div>
