@@ -1,6 +1,6 @@
 <template>
   <div>
-    <card card-body-classes="table-full-width" style="margin-bottom: 0px;">
+    <div class="table-full-width" style="margin-bottom: 0px;">
       <base-button @click="showModalAddContact()" type="info" icon simple round class="float-right" style="margin-bottom: -110px; z-index:10;">
         <i class="tim-icons icon-simple-add" style=""></i>
       </base-button>
@@ -34,7 +34,7 @@
 
       </el-table>
 
-    </card>
+    </div>
 
   </div>
 </template>
