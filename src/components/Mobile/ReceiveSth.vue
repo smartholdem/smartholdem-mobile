@@ -1,7 +1,11 @@
 <template>
   <div>
     <card v-if="show" class="top-layer">
-      <h4 @click="close" class="p-3 text-uppercase w-100 text-center"><i class="tim-icons icon-double-left float-left pt-1"></i> <span class="text-center">Receive STH</span></h4>
+      <h4 @click="close" class="p-3 text-uppercase w-100 text-center"><i class="tim-icons icon-double-left float-left pt-1"></i>
+        <span v-show="!isContact" class="text-center">Receive STH</span>
+        <span v-show="isContact" class="text-center">Contact Address</span>
+      </h4>
+      <p v-show="label" class="text-center">{{label}}</p>
       <p class="pt-3 text-center">Click on the address to copy</p>
       <el-tooltip
         :content="toolTipsContent.copy"
@@ -15,7 +19,7 @@
         <VueQrcode v-if="address" class="qr-wallet" :value="qrData" :options="{size:192}"/>
       </div>
 
-      <div>
+      <div v-show="!isContact">
       <base-input
         type="text"
         label="Amount"
@@ -45,7 +49,9 @@ export default {
   name: "ReceiveSth",
   props: {
     show: false,
-    address: null,
+    address: '',
+    label: '',
+    isContact: false,
   },
   data() {
     return {
@@ -68,7 +74,8 @@ export default {
           a: this.address,
           amount: this.model.amount || null,
           vendorField: this.model.memo || null,
-          asset: 'sth'
+          asset: 'sth',
+          label: this.label || null
         }
       )
     }
@@ -79,6 +86,7 @@ export default {
       this.model =  {
         amount: '',
         memo: '',
+        label: '',
       }
     },
     clipboardSuccessHandler({value, event}) {

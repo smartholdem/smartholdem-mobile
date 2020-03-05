@@ -60,7 +60,7 @@
                     <i class="tim-icons icon-key-25" style="font-size: 1.3rem"></i>
                   </base-button>
 
-                  <base-button @click="show.qr = true" type="warning" round icon simple class="ml-2">
+                  <base-button @click="showModal('modal:qr', {address: $route.params.address, label: addressName || null})" type="warning" round icon simple class="ml-2">
                     <i class="fas fa-qrcode" style="font-size: 1.3rem"></i>
                   </base-button>
 
@@ -84,7 +84,7 @@
               <div>
                 <div v-if="mobileTabs === 0" class="row">
                   <div class="col-md-12">
-                    <Transactions :address="currentAddress"/>
+                    <Transactions :address="$route.params.address"/>
                   </div>
                 </div>
 
@@ -108,10 +108,6 @@
 
     <div v-if="$root.isMobile">
       <BotBtnWlt/>
-    </div>
-
-    <div v-if="show.qr">
-      <ReceiveSth :show="show.qr" :address="currentAddress" @onQrClose="show.qr = false"/>
     </div>
 
     <div v-if="show.qrRead">
@@ -160,7 +156,6 @@ export default {
     return {
       mobileTabs: 0,
       show: {
-        qr: false,
         qrRead: false,
       },
       modal: {
@@ -277,11 +272,13 @@ export default {
     })
 
   },
+  /*
   watch: {
     $route(to, from) {
 
     }
   }
+  */
 }
 </script>
 

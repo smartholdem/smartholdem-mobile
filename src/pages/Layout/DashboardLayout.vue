@@ -154,7 +154,7 @@
     </div>
 
     <div v-if="modal.qr.show">
-      <ReceiveSth :show="modal.qr.show" :address="modal.qr.address" :label="modal.qr.label" @onQrClose="modal.qr.show = false"/>
+      <ReceiveSth :show="modal.qr.show" :address="modal.qr.address" :label="modal.qr.label" :isContact="modal.qr.isContact" @onQrClose="modal.qr.show = false"/>
     </div>
 
   </div>
@@ -239,6 +239,7 @@ export default {
           show: false,
           address: '',
           label: '',
+          isContact: false,
         },
         private: {
           show: false,
@@ -279,6 +280,7 @@ export default {
           show: false,
           address: '',
           label: '',
+          isContact: false,
         },
         private: {
           show: false,
@@ -320,6 +322,7 @@ export default {
       this.modal.qr.show = false
       this.modal.qr.address = options.address
       this.modal.qr.label = options.label || null
+      this.modal.qr.isContact = options.isContact || false
       this.modal.qr.show = true
     })
 
