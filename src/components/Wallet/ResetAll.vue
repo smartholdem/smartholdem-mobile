@@ -47,10 +47,8 @@
         this.$store.dispatch('app/appReset')
         this.$store.dispatch('session/setAuth', false)
         this.$store.dispatch('resetData')
-        //this.$router.push({path: '/'})
-        this.$router.push({path: '/'})
+        this.$router.push({path: '/welcome'})
         location.reload()
-        // this.electron_reload()
       }
     },
   }

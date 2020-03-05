@@ -213,15 +213,6 @@ export default {
     totalTx() {
       return this.$store.getters['wallet/txs']['count']
     },
-    /*
-    validateSend() {
-      if (this.modalClasses.address === 'has-success' && this.remainingBalance >= 0) {
-        return false
-      } else {
-        return true
-      }
-    },
-    */
     currentAddress() {
       return this.$store.getters['wallet/currentAddress']
     },
@@ -230,7 +221,6 @@ export default {
     },
     accountData() {
       const result = this.$store.getters['blockchain/selectedAccount']
-      //console.log(result)
       return result
     }
   },
