@@ -153,6 +153,10 @@
       <ModalPrivate :showModal="modal.private.show" :address="modal.private.address" @onModalClose="modal.private.show = false"/>
     </div>
 
+    <div v-if="modal.qr.show">
+      <ReceiveSth :show="modal.qr.show" :address="modal.qr.address" :label="modal.qr.label" @onQrClose="modal.qr.show = false"/>
+    </div>
+
   </div>
 
 </template>
@@ -189,6 +193,7 @@ import ModalAddContact from '@/components/Wallet/ModalAddContact'
 import ModalTxSend from '@/components/Wallet/ModalTxSend'
 import ModalTxVote from '@/components/Wallet/ModalTxVote'
 import ModalPrivate from '@/components/Wallet/ModalPrivate'
+import ReceiveSth from '@/components/Mobile/ReceiveSth'
 
 export default {
   components: {
@@ -204,6 +209,7 @@ export default {
     ModalAddContact,
     ModalTxSend,
     ModalPrivate,
+    ReceiveSth,
   },
   data() {
     return {
@@ -228,6 +234,11 @@ export default {
         send: {
           show: false,
           address: ''
+        },
+        qr: {
+          show: false,
+          address: '',
+          label: '',
         },
         private: {
           show: false,
@@ -264,6 +275,11 @@ export default {
           show: false,
           address: ''
         },
+        qr: {
+          show: false,
+          address: '',
+          label: '',
+        },
         private: {
           show: false,
           address: ''
@@ -298,6 +314,13 @@ export default {
       this.modal.send.show = false
       this.modal.send.address = address
       this.modal.send.show = true
+    })
+
+    this.$eventBus.on('modal:qr', async (options) => {
+      this.modal.qr.show = false
+      this.modal.qr.address = options.address
+      this.modal.qr.label = options.label || null
+      this.modal.qr.show = true
     })
 
     this.$eventBus.on('modal:private', async (options) => {
