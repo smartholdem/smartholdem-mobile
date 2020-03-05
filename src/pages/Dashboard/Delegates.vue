@@ -24,9 +24,6 @@
 
 export default {
   name: "Delegates",
-  components: {
-  //  Delegates,
-  },
   computed: {
     Delegates() {
       let result = {
@@ -39,6 +36,9 @@ export default {
       return result
     },
   },
+  async created() {
+    await this.$store.dispatch('blockchain/fetchDelegates')
+  }
 }
 </script>
 

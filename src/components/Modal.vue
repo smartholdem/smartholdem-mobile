@@ -190,6 +190,13 @@ export default {
   border-radius: 0;
 }
 
+.modal.modal-primary .modal-content {
+  min-height: 100vh;
+  z-index: 10000;
+  border-radius: 0;
+  padding-bottom: 1em;
+}
+
 .modal.modal-dark .form-group {
   background-color: #212529 !important;
   color: #fff;

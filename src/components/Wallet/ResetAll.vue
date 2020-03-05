@@ -2,7 +2,7 @@
   <div>
     <modal
       :show.sync="modalReset"
-      class="modal-warning"
+      class="modal-primary"
       :show-close="true"
       headerClasses="justify-content-center"
     >
@@ -42,7 +42,7 @@
       onResetCancel (value) {
         this.$emit('onResetCancel', value)
       },
-      onResetData() {
+      async onResetData() {
         this.$store.dispatch('wallet/walletReset')
         this.$store.dispatch('app/appReset')
         this.$store.dispatch('session/setAuth', false)

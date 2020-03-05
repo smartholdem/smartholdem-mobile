@@ -84,7 +84,6 @@ export default {
   actions: {
     async fetchDelegates({commit}, value = 0) {
       const data = await Blockchain.getDelegates(value)
-      console.log('data', data)
       if (data.count > 0) {
         commit('SET_DELEGATES', data)
       }
