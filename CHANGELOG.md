@@ -3,6 +3,7 @@ v1.0.7
 - Vibrate on pin validate & creation
 - Optimize encrypt pin process
 - New splash screens
+- Top 64 Delegates List
 
 v1.0.6
 

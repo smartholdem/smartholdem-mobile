@@ -1,8 +1,9 @@
 <template>
   <div>
     <h4>Delegates</h4>
-    <table class="delegate-table w-100">
-      <tr v-for="(item, idx) in Delegates.list" :key="idx" class="">
+    <table class="table w-100">
+      <tbody>
+      <tr v-for="(item, idx) in Delegates.list" :key="idx" class="pointer">
         <td>
           {{item.rate}}
         </td>
@@ -13,6 +14,7 @@
           {{item.approval}}%
         </td>
       </tr>
+      </tbody>
     </table>
 
   </div>
@@ -32,7 +34,6 @@ export default {
         list: [],
       }
       const data = this.$store.getters['blockchain/delegates']
-      console.log(data)
       result.count = data.count
       result.list = data.list
       return result

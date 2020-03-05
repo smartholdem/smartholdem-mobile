@@ -51,13 +51,9 @@ export default {
   name: "BotBtnWlt",
   data() {
     return {
-      showBotBtn: false,
       activeTab: 0,
       showActions: false,
     }
-  },
-  updated(){
-    this.showBotBtn = true
   },
   methods: {
     async showTabAddress(idx) {
@@ -73,9 +69,6 @@ export default {
       this.showActions = false
     }
   },
-  async created() {
-    //console.log(this.$route.name)
-  }
 }
 </script>
 

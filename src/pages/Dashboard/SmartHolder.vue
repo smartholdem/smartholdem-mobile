@@ -25,8 +25,8 @@
           </p>
         </div>
 
-        <div class="card-body">
-          <table class="table mb-0 table-stripe table-responsive">
+        <div>
+          <table class="table mb-0 small w-100">
             <thead class="">
             <tr>
               <th scope="col" class="border-bottom-0">Asset</th>
