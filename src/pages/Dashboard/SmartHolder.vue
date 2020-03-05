@@ -2,7 +2,7 @@
   <div>
     <div class="row">
 
-      <card class="radius-0 mt-0">
+      <div class="pl-3 pr-3">
         <div class="mb-3">
           <span class="badge badge-success big-badge mr-1">SmartHolders <span class="font-weight-bolder p-2">{{holders.total.holders}}</span></span>
           <span class="badge badge-success big-badge">Total Hold <span class="font-weight-bolder p-2">{{(holders.total.realAmount * 1).toFixed(0)}}</span> STH</span>
@@ -12,12 +12,12 @@
           >
             Join Now
           </span>
-          <p>
+          <p class="small">
             The <strong>SmartHOLDER Staking Program</strong> gives benefits to the STH owners. Investing in SmartHoldem
             Coin, you have the right for a share of earnings 50% of the XBTS DEX trading proceeds, which are generated
             by trading fees on the XBTS exchange. Increase your crypto portfolio regardless of how the market moves.
           </p>
-          <p>
+          <p class="small">
             You can place your SmartHoldem coins STH and get profit from XBTS twice a month. The stake in the
             SmartHOLDER Staking Program will freeze and block your coins in the blockchain for the timer of 1-3-6-12
             months. The longer duration of the stake provides for the higher pay-out rate. During the staking period you
@@ -62,7 +62,7 @@
           </table>
         </div>
 
-      </card>
+      </div>
 
     </div>
   </div>
@@ -118,5 +118,7 @@ export default {
 </script>
 
 <style scoped>
-
+  .main-panel > .content {
+    padding: 50px 30px 30px 280px;
+  }
 </style>

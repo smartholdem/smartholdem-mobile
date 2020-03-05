@@ -49,33 +49,29 @@
             </router-link>
           </card>
         </div>
+      </div>
 
+      <div class="w-100 text-center m-3 ">
+        <p v-if="wallets.length < 1">No Wallets</p>
+        <base-button @click="openRouter('/wallet-create')" type="primary" round simple
+                     class="w-100 text-uppercase font-weight-bolder" style="">
+          <i class="tim-icons icon-credit-card pb-1 mr-2" style="font-size: 1rem;"></i> Create New Wallet
+        </base-button>
 
-        <div class="text-center row">
-          <div class="container mt-4">
+        <p>- OR -</p>
 
-          <p v-if="wallets.length < 1">No Wallets</p>
-
-          <div class="col-md-12">
-            <base-button @click="openRouter('/wallet-create')" type="primary" round simple class="w-100 text-uppercase font-weight-bolder" style="">
-              <i class="tim-icons icon-credit-card pb-1 mr-2" style="font-size: 1rem;"></i> Create New Wallet
-            </base-button>
-
-            <p>- OR -</p>
-
-            <base-button @click="openRouter('/wallet-import')" type="primary" round simple class="w-100 text-uppercase font-weight-bolder" style="">
-              <i class="tim-icons icon-refresh-01 pb-1 mr-2"></i>Import Wallet
-            </base-button>
-          </div>
-          </div>
-        </div>
-
+        <base-button @click="openRouter('/wallet-import')" type="primary" round simple
+                     class="w-100 text-uppercase font-weight-bolder" style="">
+          <i class="tim-icons icon-refresh-01 pb-1 mr-2"></i>Import Wallet
+        </base-button>
       </div>
 
     </div>
 
 
-      <BotBtnWlt/>
+    <!--
+    <BotBtnWlt/>
+    -->
 
 
   </div>
@@ -131,7 +127,7 @@ export default {
     },
   },
   methods: {
-    openRouter(url){
+    openRouter(url) {
       if (!this.$root.pin) {
         eventBus.emit('modal:unlock')
       } else {

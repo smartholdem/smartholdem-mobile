@@ -4,7 +4,7 @@
       <div class="col-md-12 m-0 w-100 p-0">
         <div class="m-0">
           <card v-if="mobileTabs !== 2"  class="pb-2" style="margin-bottom: 3px; position: sticky; top: 50px;z-index:1;">
-            <template slot="header" class="">
+            <div class="">
               <div class="row">
                 <div class="col-md-4 pl-2 text-center">
 
@@ -76,11 +76,11 @@
 
                 </div>
               </div>
-            </template>
+            </div>
           </card>
 
           <card class="" style="margin-top: 3px;">
-            <div class="card-body">
+            <div class="">
               <div>
                 <div v-if="mobileTabs === 0" class="row">
                   <div class="col-md-12">
@@ -316,8 +316,6 @@ export default {
   }
 
 
-  .main-panel > .content {
 
-  }
 </style>
 

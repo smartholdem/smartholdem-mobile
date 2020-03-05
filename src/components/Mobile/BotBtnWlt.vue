@@ -21,7 +21,8 @@
 
     <div @click="showActions = false" v-if="showActions" class="row h-100 w-100 position-fixed"
          style="top:0;background: #2125294a;">
-      <div class="w-100 position-absolute bg-dark col-md-12 pt-4" style="bottom:0px;padding-bottom:80px;">
+
+      <div class="w-100 position-absolute col-md-12 pt-4" style="bottom:0px;padding-bottom:80px;background: linear-gradient(#2a2c35, 20%, rgb(20, 21, 29)) transparent;">
 
         <base-button v-show="$route.path !== '/wallet'" @click="openRouter('/wallet')" type="primary" round simple class="ml-2 text-uppercase w-100 font-weight-bolder" style="">
           <i class="tim-icons icon-wallet-43 pb-1 mr-2"></i>List All Wallets
@@ -50,9 +51,13 @@ export default {
   name: "BotBtnWlt",
   data() {
     return {
+      showBotBtn: false,
       activeTab: 0,
       showActions: false,
     }
+  },
+  updated(){
+    this.showBotBtn = true
   },
   methods: {
     async showTabAddress(idx) {
