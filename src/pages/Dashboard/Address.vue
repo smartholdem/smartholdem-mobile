@@ -9,13 +9,15 @@
                 <div class="col-md-4 pl-2 text-center">
 
                   <p title="Your Public Address" class="small font-weight-bold"
-                     v-clipboard="() => $route.params.address">
+                     v-clipboard="() => $route.params.address"
+                     v-clipboard:success="clipboardSuccessHandler"
+                  >
                     <i class="tim-icons icon-single-copy-04 pointer"></i>
                     {{$route.params.address}}
                   </p>
 
 
-                  <h4 class="card-title font-weight-normal"><span v-if="!$root.isMobile">{{$t('WALLET.BALANCE')}}</span>
+                  <h4 class="card-title font-weight-normal">
                     <span class="font-weight-bold">{{ walletBalance.balance }}</span>
                     STH</h4>
                   <h4 v-if="accountData.delegate" class="card-title">
@@ -28,7 +30,7 @@
                   </h4>
 
                   <h4 v-if="addressName" class="card-title">
-                    <span class="font-weight-bold"><i class="tim-icons icon-tag pb-1"></i> {{ addressName }}</span>
+                    <span class="font-weight-bold"><i class="tim-icons icon-tag pb-1"></i> {{ account.label }}</span>
                     &nbsp;<span v-if="accountData.vote"
                                 @click="showModal('modal:vote',{address: accountData.address, delegate: accountData.vote, voteType: '-'})"
                                 class="pointer badge badge-white ">voted for {{accountData.vote.username}} <i
@@ -60,7 +62,7 @@
                     <i class="tim-icons icon-key-25" style="font-size: 1.3rem"></i>
                   </base-button>
 
-                  <base-button @click="showModal('modal:qr', {address: $route.params.address, label: addressName || null})" type="warning" round icon simple class="ml-2">
+                  <base-button @click="showModal('modal:qr', {address: $route.params.address, label: account.label || null})" type="warning" round icon simple class="ml-2">
                     <i class="fas fa-qrcode" style="font-size: 1.3rem"></i>
                   </base-button>
 
@@ -168,21 +170,7 @@ export default {
       activeName: 'first',
       account: {
         address: null,
-        secret: null
-      },
-      pin: '',
-      disabled: true,
-      showNext: false,
-      modalSend: false,
-      modalTx: false,
-      modalClasses: {
-        address: '',
-        amount: ''
-      },
-      send: {
-        address: null,
-        amount: null,
-        memo: null,
+        label: null,
       },
       toolTipsContent: {
         copy: "Copy"
@@ -203,7 +191,8 @@ export default {
       return result
     },
     addressName() {
-      return this.$store.getters['wallet/labels'][this.currentAddress]
+      this.account.label = this.$store.getters['wallet/labels'][this.$route.params.address]
+      return this.account.label
     },
     totalTx() {
       return this.$store.getters['wallet/txs']['count']
@@ -212,7 +201,7 @@ export default {
       return this.$store.getters['wallet/currentAddress']
     },
     walletBalance() {
-      return (this.$store.getters['wallet/balances']['accounts'][this.currentAddress])
+      return (this.$store.getters['wallet/balances']['accounts'][this.$route.params.address])
     },
     accountData() {
       const result = this.$store.getters['blockchain/selectedAccount']
@@ -241,7 +230,7 @@ export default {
         eventBus.emit('modal:unlock')
       }
     },
-    clipboardSuccessHandler({value, event}) {
+    clipboardSuccessHandler() {
       this.toolTipsContent.copy = 'Copied to clipboard';
       setTimeout(() => (this.toolTipsContent.copy = 'Copy'), 1500);
     },
@@ -270,6 +259,12 @@ export default {
     this.$eventBus.on('qr:forsend', async (data) => {
       this.show.qrRead = false
     })
+
+    this.$eventBus.on('label:up', async () => {
+      this.account.label = this.$store.getters['wallet/labels'][this.$route.params.address]
+    })
+
+
 
   },
   /*

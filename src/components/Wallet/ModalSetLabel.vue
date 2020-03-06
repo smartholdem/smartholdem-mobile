@@ -28,6 +28,7 @@
 
 <script>
 import {Modal} from '@/components'
+import eventBus from '@/plugins/event-bus'
 
 export default {
   name: "ModalSetLabel",
@@ -64,17 +65,12 @@ export default {
           address: this.address,
           label: this.label
         })
+        this.label = ''
+        eventBus.emit('label:up')
         this.$emit('onModalClose')
-        this.showModal = false
       }
     }
   },
-  async created() {
-    this.label = ''
-  },
-  mounted() {
-    this.label = ''
-  }
 }
 </script>
 

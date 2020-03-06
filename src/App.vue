@@ -17,9 +17,6 @@ export default {
     this.initializeLayout();
   },
   async created() {
-    this.$root.modal = {
-      label: false
-    }
 
     this.$root.isMobile = window.innerWidth < 800
     this.$root.height = window.innerHeight;
