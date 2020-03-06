@@ -2,8 +2,8 @@
   <div>
 
   <modal
-    v-bind:show="show"
-    v-bind:class="modalColor"
+    :show.sync="show"
+    :class="modalColor"
     :scrollToBottom="false"
     headerClasses="justify-content-center"
     type="default"
@@ -49,11 +49,13 @@
         {{$t('APP.CANCEL')}}
       </base-button>
     </template>
+
+    <div v-if="qrRead">
+      <QrReadContact :show="qrRead" @onQrClose="qrRead = false"/>
+    </div>
   </modal>
 
-  <div v-if="qrRead">
-    <QrReadContact :show="qrRead" @onQrClose="qrRead = false"/>
-  </div>
+
   </div>
 </template>
 

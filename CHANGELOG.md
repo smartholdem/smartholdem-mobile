@@ -1,7 +1,7 @@
 v1.0.8
 
 - Load Contact From QR
--
+- Import Label with privKey
 
 v1.0.7
 

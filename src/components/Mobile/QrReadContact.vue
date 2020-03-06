@@ -2,18 +2,17 @@
   <div>
     <card v-if="show" class="top-layer">
       <h4 @click="close(contact)" class="p-3 text-uppercase w-100 text-center"><i
-        class="tim-icons icon-double-left float-left pt-1"></i> <span class="text-center">Read QR for Send STH</span></h4>
+        class="tim-icons icon-double-left float-left pt-1"></i> <span class="text-center">Read QR for Send STH</span>
+      </h4>
       <p class="p-3">Scan the QR-code with the SmartHoldem address</p>
 
       <div class="text-center mt-2">
         <p class="text-danger">{{ error }}</p>
         <p class="text-danger" v-if="error">
           To scan the QR-code, you must enable the permission to use the camera in the application settings
-          <base-button type="primary" @click="cameraOn()">Enable Camera for QR-Scanner</base-button>
-
         </p>
 
-        <qrcode-stream @decode="onDecode" @init="onInit" />
+        <qrcode-stream @decode="onDecode" @init="onInit"/>
 
         <p class="text-center font-weight-bolder mt-2" v-if="contact.address">
           <span>{{contact.address}}</span>
@@ -26,17 +25,32 @@
 
 <script>
 
-import { QrcodeStream } from 'vue-qrcode-reader'
+document.addEventListener('deviceready', function () {
+
+  var permissions = cordova.plugins.permissions;
+  permissions.requestPermission(permissions.CAMERA, success, error);
+
+  function error() {
+    console.warn('Camera permission is not turned on');
+  }
+
+  function success(status) {
+    if (!status.hasPermission) error();
+  }
+
+  //console.log('cordova.plugins.permissions is now available');
+});
+
+
+import {QrcodeStream} from 'vue-qrcode-reader'
 import eventBus from '@/plugins/event-bus'
 
 export default {
-
-  components: { QrcodeStream },
+  components: {QrcodeStream},
   props: {
     show: false,
   },
-
-  data () {
+  data() {
     return {
       result: null,
       error: '',
@@ -46,24 +60,7 @@ export default {
       }
     }
   },
-
   methods: {
-    forceRerender() {
-      this.$forceUpdate();
-    },
-    cameraOn() {
-      var permissions = cordova.plugins.permissions;
-      permissions.requestPermission(permissions.CAMERA, success, error);
-
-      function error() {
-        console.warn('Camera permission is not turned on');
-      }
-
-      function success(status) {
-        if (!status.hasPermission) error();
-        this.forceRerender
-      }
-    },
     async close(data = {address: null, label: null}) {
       this.result = null
       this.contact = {
@@ -72,7 +69,7 @@ export default {
       }
       eventBus.emit('qr:contact', data)
     },
-    onDecode (result) {
+    onDecode(result) {
       this.result = result
 
       if (this.result.length > 0) {
@@ -82,7 +79,7 @@ export default {
             address: dataJson.a || null,
             label: dataJson.label || null,
           }
-        } catch(e) {
+        } catch (e) {
           const myURL = new URL(this.result);
           this.contact = {
             address: myURL.pathname,
@@ -97,7 +94,7 @@ export default {
 
     },
 
-    async onInit (promise) {
+    async onInit(promise) {
       try {
         await promise
       } catch (error) {

@@ -4,13 +4,11 @@
       <div class="mb-4 w-100">
         <h4 class="text-center">Contacts
           <span class="text-right float-right" style="margin-top: -10px;">
-            <base-button @click="showModalAddContact()" type="info" icon simple round class="" style="">
+            <base-button @click="showModalAddConact" type="info" icon simple round class="" style="">
             <i class="tim-icons icon-simple-add" style=""></i>
           </base-button>
           </span>
-
         </h4>
-
       </div>
 
       <table class="table w-100">
@@ -35,29 +33,34 @@
               <span class="dropdown-item" @click="removeContact(item.address)"> <i class="tim-icons icon-trash-simple"></i> Remove</span>
             </base-dropdown>
           </td>
-
         </tr>
         </tbody>
       </table>
-
-
-
-
+      <div v-if="modal.contacts.show">
+        <ModalAddContact :show="modal.contacts.show" @onModalClose="modal.contacts.show = false"/>
+      </div>
     </div>
-
   </div>
 </template>
 
 <script>
 import eventBus from '@/plugins/event-bus'
-import {Table, TableColumn} from 'element-ui'
 import {openUrl} from 'src/util/url'
+import ModalAddContact from '@/components/Wallet/ModalAddContact'
 
 export default {
   name: "Contacts",
   components: {
-    [Table.name]: Table,
-    [TableColumn.name]: TableColumn,
+    ModalAddContact,
+  },
+  data() {
+    return {
+      modal: {
+        contacts: {
+          show: false,
+        },
+      },
+    }
   },
   computed: {
     contactList() {
@@ -71,11 +74,15 @@ export default {
     },
   },
   methods: {
+    async showModalAddConact() {
+      this.modal.contacts.show = false
+      this.modal.contacts.show = true
+    },
     async showModal(evt, options = {}) {
       if (this.$root.pin) {
-        eventBus.emit(evt, options) // ex 'modal:qr', {address: ..., label: null}
+        this.$eventBus.emit(evt, options) // ex 'modal:qr', {address: ..., label: null}
       } else {
-        eventBus.emit('modal:unlock')
+        this.$eventBus.emit('modal:unlock')
       }
     },
     navUrl(url) {
@@ -90,13 +97,13 @@ export default {
     async getAccount(address) {
       await this.$store.dispatch('blockchain/getAccount', address)
     },
-    async showModalAddContact() {
-      eventBus.emit('modal:contacts')
-    },
   },
   async created() {
-    //await this.$store.dispatch('app/updateContacts', {})
     await this.$store.dispatch('app/fetchContacts')
+
+    this.$eventBus.on('onModalClose', async () => {
+      this.modal.contacts.show = false
+    })
   }
 
 

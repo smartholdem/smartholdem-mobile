@@ -136,10 +136,6 @@
                      @onModalClose="modal.label.show = false"/>
     </div>
 
-    <div v-if="modal.contacts.show">
-      <ModalAddContact v-bind:show="modal.contacts.show" @onModalClose="modal.contacts.show = false"/>
-    </div>
-
     <div v-if="modal.vote.show">
       <ModalTxVote :showModalVote="modal.vote.show" :voteData="modal.vote.data"
                    @onModalClose="modal.vote.show = false"/>
@@ -228,9 +224,6 @@ export default {
         unlock: {
           show: false,
         },
-        contacts: {
-          show: false,
-        },
         send: {
           show: false,
           address: ''
@@ -269,9 +262,6 @@ export default {
         unlock: {
           show: false,
         },
-        contacts: {
-          show: false,
-        },
         send: {
           show: false,
           address: ''
@@ -305,11 +295,6 @@ export default {
       this.modal.vote.show = false
       this.modal.vote.data = data
       this.modal.vote.show = true
-    })
-
-    this.$eventBus.on('modal:contacts', async () => {
-      //this.modal.contacts.show = false
-      this.modal.contacts.show = true
     })
 
     this.$eventBus.on('modal:send', async (address) => {
