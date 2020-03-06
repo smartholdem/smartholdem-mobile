@@ -61,7 +61,7 @@
           </base-input>
           <span class="small ml-1" style="margin-top:-4px !important; float:left; clear:both;margin-bottom:-6px">* {{$t('WALLET.MAX_RECEIVE')}} {{sth.max}} STH {{$t('APP.ON')}} 1 {{$t('APP.OP')}}</span>
         </div>
-        <div class="col-md-4 mb-2">
+        <div class="col-md-4 mb-2 mt-3">
           <base-button @click="exchangeStart" :disabled="disabled" type="warning" round simple
                   class="mt-2 w-100 text-uppercase">
             {{$t('WALLET.EXCHANGE')}}
@@ -100,7 +100,7 @@
           >
             <base-input
               :label="$t('WALLET.DEPOSIT_ADDRESS') + ' ' + currency[selects.currency].title + ' ' + currency[selects.currency].ticker"
-              class="w-100"
+              class="w-100 text-danger"
               type="text"
               v-model="addressDepositCurrent"
               v-clipboard="() => addressDepositCurrent"
@@ -120,12 +120,12 @@
         <div v-if="btsAssets[selects.currency]">
           <el-tooltip
             :content="toolTipsContent"
-            :open-delay="300"
+            :open-delay="200"
             placement="left"
           >
             <base-input
               :label="$t('WALLET.REQ-MEMO')"
-              class="w-100"
+              class="w-100 text-danger"
               type="text"
               :value="currentAddress"
               v-clipboard="() => currentAddress"
@@ -133,6 +133,8 @@
             >
             </base-input>
           </el-tooltip>
+
+          <div class="bg-danger text-white p-2 rounded">Mandatory field <strong>memo</strong> when sending a transaction into Bitshares blockchain</div>
         </div>
         <!-- DEPOSIT Bitshares END-->
 
