@@ -264,7 +264,7 @@ export default {
 
     eventBus.on('label:up', async (data) => {
       this.account.label = data.label
-      this.addressName()
+      this.addressName
     })
 
 

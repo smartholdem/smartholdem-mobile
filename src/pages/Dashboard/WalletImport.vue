@@ -10,6 +10,8 @@
       </div>
 
       <div>
+
+        <p v-show="account.label">{{account.label}}</p>
         <base-input
           :label="$t('APP.ENTER_SECRET')"
           v-model="account.secret"

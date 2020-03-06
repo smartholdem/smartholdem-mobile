@@ -25,6 +25,7 @@
       <div class="">
         <p>QR Private & Public Key</p>
         <VueQrcode v-if="account.secret" class="qr-wallet" :value="qrData" :options="{size: 156}"/>
+        <p>{{addressName(address)}}</p>
       </div>
       <!--
       <div class="float-right w-50">
@@ -64,6 +65,7 @@ export default {
     }
   },
   computed: {
+
     modalColor() {
       let result = 'modal-white'
       if ((this.$store.getters['app/settings']).darkMode) {
@@ -74,16 +76,19 @@ export default {
     qrData() {
       return JSON.stringify(
         {
-          address: this.account.address,
+          address: this.address,
           secret: this.account.secret || null,
           secondSecret: this.account.secondSecret || null,
           asset: 'sth',
-          label: this.$store.getters['wallet/labels'][this.account.address] || null
+          label: this.addressName(this.address) || null
         }
       )
     },
   },
   methods: {
+    addressName(address) {
+      return this.$store.getters['wallet/labels'][address]
+    },
     async walletDecrypt(address) {
       if (this.$root.pin) {
         const result = await this.$store.dispatch('app/walletDecrypt', {
