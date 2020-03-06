@@ -7,7 +7,11 @@
 
       <div class="text-center mt-2">
         <p class="text-danger">{{ error }}</p>
-        <p class="text-danger" v-if="error">To scan the QR-code, you must enable the permission to use the camera in the application settings</p>
+        <p class="text-danger" v-if="error">
+          To scan the QR-code, you must enable the permission to use the camera in the application settings
+          <base-button type="primary" @click="cameraOn()">Enable Camera for QR-Scanner</base-button>
+
+        </p>
 
         <qrcode-stream @decode="onDecode" @init="onInit" />
 
@@ -21,20 +25,6 @@
 </template>
 
 <script>
-document.addEventListener('deviceready', function() {
-
-  var permissions = cordova.plugins.permissions;
-  permissions.requestPermission(permissions.CAMERA, success, error);
-
-  function error() {
-    console.warn('Camera permission is not turned on');
-  }
-
-  function success( status ) {
-    if( !status.hasPermission ) error();
-  }
-  //console.log('cordova.plugins.permissions is now available');
-});
 
 import { QrcodeStream } from 'vue-qrcode-reader'
 import eventBus from '@/plugins/event-bus'
@@ -58,6 +48,22 @@ export default {
   },
 
   methods: {
+    forceRerender() {
+      this.$forceUpdate();
+    },
+    cameraOn() {
+      var permissions = cordova.plugins.permissions;
+      permissions.requestPermission(permissions.CAMERA, success, error);
+
+      function error() {
+        console.warn('Camera permission is not turned on');
+      }
+
+      function success(status) {
+        if (!status.hasPermission) error();
+        this.forceRerender
+      }
+    },
     async close(data = {address: null, label: null}) {
       this.result = null
       this.contact = {
