@@ -71,11 +71,11 @@
       </div>
 
 
-      <!-- MODAL -->
+      <!-- MODAL Deposit address-->
       <modal
         v-if="selects.currency"
         :show.sync="exchangeModal"
-        class="modal-info modal-exchange"
+        :class="modalColor"
         :show-close="false"
         headerClasses="justify-content-center"
       >
@@ -89,6 +89,10 @@
 
         <!-- DEPOSIT ALTS -->
         <div v-show="addressDepositCurrent">
+
+          <div v-if="addressDepositCurrent"  class="text-center">
+          </div>
+
           <el-tooltip
             :content="toolTipsContent"
             :open-delay="300"
@@ -314,6 +318,13 @@ export default {
     }
   },
   computed: {
+    modalColor() {
+      let result = 'modal-white'
+      if ((this.$store.getters['app/settings']).darkMode) {
+        result = 'modal-dark'
+      }
+      return result
+    },
     depHistory() {
       return this.$store.getters['wallet/depHistory']
     },
@@ -495,6 +506,10 @@ export default {
 
   .white-content .form-control[readonly] {
     color: #000;
+  }
+
+  label {
+    margin-bottom: 0.1rem;
   }
 
 </style>

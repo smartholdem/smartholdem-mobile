@@ -198,7 +198,7 @@ export default {
   padding-bottom: 1em;
 }
 
-.modal.modal-dark .form-group {
+.modal.modal-dark .form-group input {
   background-color: #212529 !important;
   color: #fff;
 }
