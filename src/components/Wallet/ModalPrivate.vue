@@ -77,7 +77,8 @@ export default {
           address: this.account.address,
           secret: this.account.secret || null,
           secondSecret: this.account.secondSecret || null,
-          asset: 'sth'
+          asset: 'sth',
+          label: this.$store.getters['wallet/labels'][this.account.address] || null
         }
       )
     },

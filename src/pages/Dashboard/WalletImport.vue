@@ -1,49 +1,47 @@
 <template>
   <div>
     <card class="stacked-form">
-      <template slot="header">
+      <div>
         <h3 class="card-title font-weight-bold">Import Wallet
           <base-button @click="show.qrLoadPriv = true" type="primary" round icon class="float-right">
             <i class="fas fa-qrcode" style="font-size: 1.3rem"></i>
           </base-button>
         </h3>
-      </template>
+      </div>
 
-      <p class="">{{$t('APP.ENTER_SECRET')}}</p>
-      <base-input
-        v-model="account.secret"
-        addon-left-icon="tim-icons icon-lock-circle"
-        class="pointer"
-        @input="validateImportAccount()"
-      >
-      </base-input>
-      <base-alert v-show="isBip39 === false" type="danger" class="mb-1 small p-1"><i class="tim-icons icon-bell-55"></i>
-        {{$t('APP.NO_BIP39')}}
-      </base-alert>
-      <p class="">{{$t('APP.YOUR_PUB_ADDR')}}</p>
-      <el-tooltip
-        :content="toolTipsContent.copy"
-        effect="light"
-        :open-delay="300"
-        placement="top"
-      >
+      <div>
         <base-input
+          :label="$t('APP.ENTER_SECRET')"
+          v-model="account.secret"
+          addon-left-icon="tim-icons icon-lock-circle"
+          class="pointer"
+          @input="validateImportAccount()"
+        >
+        </base-input>
+        <base-alert v-show="isBip39 === false" type="danger" class="mb-1 small p-1"><i
+          class="tim-icons icon-bell-55"></i>
+          {{$t('APP.NO_BIP39')}}
+        </base-alert>
+
+        <base-input
+          :label="$t('APP.YOUR_PUB_ADDR')"
           v-model="account.address"
           addon-left-icon="tim-icons icon-wallet-43"
           class="pointer"
           v-clipboard="() => account.address"
         >
         </base-input>
-      </el-tooltip>
 
-      <base-checkbox v-model="checks.lose" class="text-left">
-        {{$t('APP.IF_LOSE')}}
-      </base-checkbox>
+        <base-checkbox v-model="checks.lose" class="text-left">
+          {{$t('APP.IF_LOSE')}}
+        </base-checkbox>
 
-      <base-button :disabled="!checks.lose || !account.address" @click="saveAccount" slot="footer" type="primary" round
-                   block size="lg" class="text-uppercase">
-        SAVE & CONTINUE
-      </base-button>
+        <base-button :disabled="!checks.lose || !account.address" @click="saveAccount" slot="footer" type="primary"
+                     round
+                     block size="lg" class="text-uppercase">
+          SAVE & CONTINUE
+        </base-button>
+      </div>
     </card>
 
     <BotBtnWlt/>
@@ -118,7 +116,7 @@ export default {
     async validateImportAccount() {
       if (this.account.secret.length > 7) {
         clearTimeout(this.validateTimer)
-        this.validateTimer = setTimeout(async() => {
+        this.validateTimer = setTimeout(async () => {
           const PUB_KEY = sth.crypto.getKeys(this.account.secret).publicKey
           this.account.address = sth.crypto.getAddress(PUB_KEY)
           this.isBip39 = validateMnemonic(this.account.secret)

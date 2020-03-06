@@ -1,6 +1,6 @@
 <template>
   <modal
-    :show.sync="showModal"
+    :show="showModal"
     :class="modalColor"
     :show-close="true"
     headerClasses="justify-content-center"
@@ -65,8 +65,8 @@ export default {
           address: this.address,
           label: this.label
         })
+        eventBus.emit('label:up', this.label)
         this.label = ''
-        eventBus.emit('label:up')
         this.$emit('onModalClose')
       }
     }

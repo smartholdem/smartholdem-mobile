@@ -29,11 +29,11 @@
                     title="remove vote" class="tim-icons icon-simple-remove"></i></span>
                   </h4>
 
-                  <h4 v-if="addressName" class="card-title">
-                    <span class="font-weight-bold"><i class="tim-icons icon-tag pb-1"></i> {{ account.label }}</span>
+                  <h4 :v-if="!accountData.delegate" class="card-title">
+                    <span class="font-weight-bold" v-show="addressName"><i class="tim-icons icon-tag pb-1"></i> {{ addressName }}</span>
                     &nbsp;<span v-if="accountData.vote"
                                 @click="showModal('modal:vote',{address: accountData.address, delegate: accountData.vote, voteType: '-'})"
-                                class="pointer badge badge-white ">voted for {{accountData.vote.username}} <i
+                                class="pointer badge badge-white">voted for {{accountData.vote.username}} <i
                     title="remove vote" class="tim-icons icon-simple-remove"></i></span>
                   </h4>
 
@@ -62,7 +62,7 @@
                     <i class="tim-icons icon-key-25" style="font-size: 1.3rem"></i>
                   </base-button>
 
-                  <base-button @click="showModal('modal:qr', {address: $route.params.address, label: account.label || null})" type="warning" round icon simple class="ml-2">
+                  <base-button @click="showModal('modal:qr', {address: $route.params.address, label: addressName || null})" type="warning" round icon simple class="ml-2">
                     <i class="fas fa-qrcode" style="font-size: 1.3rem"></i>
                   </base-button>
 
@@ -170,7 +170,7 @@ export default {
       activeName: 'first',
       account: {
         address: null,
-        label: null,
+        label: '',
       },
       toolTipsContent: {
         copy: "Copy"
@@ -191,8 +191,7 @@ export default {
       return result
     },
     addressName() {
-      this.account.label = this.$store.getters['wallet/labels'][this.$route.params.address]
-      return this.account.label
+      return this.$store.getters['wallet/labels'][this.$route.params.address]
     },
     totalTx() {
       return this.$store.getters['wallet/txs']['count']
@@ -235,6 +234,9 @@ export default {
       setTimeout(() => (this.toolTipsContent.copy = 'Copy'), 1500);
     },
   },
+  mounted() {
+    this.account.label = this.$store.getters['wallet/labels'][this.$route.params.address]
+  },
   async created() {
     await this.$store.dispatch('wallet/setCurrentAddress', this.$route.params.address)
     await this.$store.dispatch('blockchain/getAccount', this.$route.params.address)
@@ -260,8 +262,9 @@ export default {
       this.show.qrRead = false
     })
 
-    this.$eventBus.on('label:up', async () => {
-      this.account.label = this.$store.getters['wallet/labels'][this.$route.params.address]
+    eventBus.on('label:up', async (data) => {
+      this.account.label = data.label
+      this.addressName()
     })
 
 
