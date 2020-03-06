@@ -101,11 +101,10 @@
       </base-dropdown>
 
       <li class="nav-item mt-3 mb-2" @click="showReset = true">
-        <span class="ml-1 text-uppercase"><i class="mr-2 tim-icons icon-simple-remove"></i> {{$t('APP.RESET')}}</span>
+        <span class="ml-1 text-uppercase text-primary"><i class="mr-2 tim-icons icon-simple-remove"></i> {{$t('APP.RESET')}}</span>
       </li>
       <li class="nav-item mt-3 mb-2">
-        <router-link to="/welcome" class="ml-1"><i class="mr-2 tim-icons icon-lock-circle"></i> LOCK
-        </router-link>
+        <router-link to="/welcome" class="ml-1 text-info"><i class="mr-2 tim-icons icon-lock-circle"></i> LOCK</router-link>
       </li>
       <li class="nav-item mt-3" @click="toggleMode">
          <span class="ml-1"><i class="tim-icons icon-bulb-63 pb-1 mr-2"></i> DARK & LIGHT MODE</span>

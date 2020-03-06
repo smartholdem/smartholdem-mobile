@@ -1,3 +1,8 @@
+v1.0.8
+
+- Load Contact From QR
+-
+
 v1.0.7
 
 - Vibrate on pin validate & creation
