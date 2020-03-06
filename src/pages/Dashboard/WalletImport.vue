@@ -94,6 +94,8 @@ export default {
       account: {
         address: null,
         secret: null,
+        secondSecret: null,
+        label: null,
         pubKey: null,
       },
     }
@@ -132,8 +134,16 @@ export default {
         pin: this.$root.pin,
         address: this.account.address,
         secret: this.account.secret,
+        secondSecret: this.account.secondSecret,
         pubKey: this.account.pubKey
       })
+
+      if (this.account.label) {
+        this.$store.dispatch('wallet/setLabel', {
+          address: this.account.address,
+          label: this.account.label
+        })
+      }
 
       this.$router.push('/wallet/')
 
