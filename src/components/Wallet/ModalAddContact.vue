@@ -49,11 +49,11 @@
         {{$t('APP.CANCEL')}}
       </base-button>
     </template>
+  </modal>
 
     <div v-if="qrRead">
       <QrReadContact :show="qrRead" @onQrClose="qrRead = false"/>
     </div>
-  </modal>
 
 
   </div>

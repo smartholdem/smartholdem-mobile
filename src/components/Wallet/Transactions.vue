@@ -16,11 +16,15 @@
               </base-button>
 
           </span>
-          <br/>Tx <span class="small">{{item.id.substr(0, 10)}}...{{item.id.substr(-10)}}</span>
-          <br/><span class="truncate">{{$t('WALLET.CONF')}} {{item.confirmations}}</span>
+          <br/>Tx <span class="small font-weight-normal">{{item.id.substr(0, 10)}}...{{item.id.substr(-10)}}</span>
+          <br/><span class="truncate">{{$t('WALLET.CONF')}}
+          <span v-if="item.confirmations < 64">{{item.confirmations}}</span>
+          <span v-if="item.confirmations > 64">64+</span>
+
+        </span>
           <br/><span class="truncate">{{item.time}}</span>
-          <br/><span class="small">From {{item.senderId.substr(0,10)}}..{{item.senderId.substr(-10)}}</span>
-          <br/><span class="small">To {{item.recipientId.substr(0,10)}}..{{item.recipientId.substr(-10)}}</span>
+          <br/><span class="small font-weight-normal">From {{item.senderId}}</span>
+          <br/><span class="small font-weight-normal">To {{item.recipientId}}</span>
         </td>
       </tr>
     </table>

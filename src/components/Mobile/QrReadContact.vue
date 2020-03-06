@@ -24,7 +24,7 @@
 </template>
 
 <script>
-
+/*
 document.addEventListener('deviceready', function () {
 
   var permissions = cordova.plugins.permissions;
@@ -40,7 +40,7 @@ document.addEventListener('deviceready', function () {
 
   //console.log('cordova.plugins.permissions is now available');
 });
-
+*/
 
 import {QrcodeStream} from 'vue-qrcode-reader'
 import eventBus from '@/plugins/event-bus'
