@@ -32,7 +32,7 @@ document.addEventListener('deviceready', function() {
   function success( status ) {
     if( !status.hasPermission ) error();
   }
-  console.log('cordova.plugins.permissions is now available');
+  //console.log('cordova.plugins.permissions is now available');
 });
 
 import { QrcodeStream } from 'vue-qrcode-reader'
@@ -51,7 +51,9 @@ export default {
       error: '',
       account: {
         address: null,
-        secret: null
+        secret: null,
+        secondSecret: null,
+        label: null,
       },
     }
   },
@@ -61,7 +63,8 @@ export default {
       this.result = null
       this.account = {
         address: null,
-        secret: null
+        secret: null,
+        secondSecret: null,
       }
       eventBus.emit('qr:importpkey', data)
     },
@@ -73,7 +76,9 @@ export default {
           let dataJson = JSON.parse(result)
           this.account = {
             address: dataJson.address || null,
-            secret: dataJson.secret || null
+            secret: dataJson.secret || null,
+            secondSecret: dataJson.secondSecret || null,
+            label: dataJson.label || null,
           }
         } catch(e) {
 
