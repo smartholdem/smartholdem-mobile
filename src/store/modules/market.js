@@ -62,8 +62,8 @@ export default {
 
   actions: {
     async getPriceChart({commit}) {
-        const data = await Market.getPriceChart()
-        commit('SET_CHART_DATA', data)
+        //const data = await Market.getPriceChart()
+        //commit('SET_CHART_DATA', data)
     },
   }
 }
