@@ -83,7 +83,7 @@
           <i class="tim-icons icon-money-coins"></i>
         </div>
         <p class="text-center">{{$t('WALLET.RECEIVE')}} ≈ <span
-          class="font-weight-bold text-success">{{amountReceive}}</span> STH {{$t('WALLET.PER')}}
+          class="font-weight-bold text-success">{{amountReceive}}</span> STH for
           <span class="font-weight-bold text-success">{{amountSend}}</span> {{selects.currency.toUpperCase()}}</p>
         <p class="text-center">{{$t('WALLET.PROVIDED')}} XBTS.io</p>
 
@@ -100,7 +100,7 @@
           >
             <base-input
               :label="$t('WALLET.DEPOSIT_ADDRESS') + ' ' + currency[selects.currency].title + ' ' + currency[selects.currency].ticker"
-              class="w-100 text-danger"
+              class="w-100"
               type="text"
               v-model="addressDepositCurrent"
               v-clipboard="() => addressDepositCurrent"
