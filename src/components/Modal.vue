@@ -182,7 +182,7 @@ export default {
 }
 
 .modal.modal-dark .modal-content {
-  background: #27293d url(~/images/dotted-bg.png);
+  background: #27293d url(~@/assets/img/dotted-bg.png);
   background-size: cover;
   color: #ffffff;
   min-height: 100vh;
@@ -198,7 +198,7 @@ export default {
   padding-bottom: 1em;
 }
 
-.modal.modal-dark .form-group input {
+.modal.modal-dark .form-group input, .modal.modal-dark .form-group .input-group-text {
   background-color: #212529 !important;
   color: #fff;
 }

@@ -1,6 +1,6 @@
 v1.0.9
 
-- APP Size optimize
+- APP Size optimize x2
 
 v1.0.8
 

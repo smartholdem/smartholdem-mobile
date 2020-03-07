@@ -39,14 +39,13 @@
 
         <div :style="'width:'+(360*wallets.length) + 'px;'">
           <card v-for="item in wallets" :key="item.address" class="ml-2 mr-2 account-style bgg1">
-            <router-link :to="'/address/' + item.address" class="text-white">
+            <div  class="text-white" @click="openRouter('/address/' + item.address)">
               <span v-if="!item.delegate && item.label"><i class="tim-icons icon-tag pb-1"></i> {{item.label}}</span>
               <span v-if="item.delegate"><i class="tim-icons icon-bank pb-1"></i> {{item.delegate.username}}</span>
               <br>{{item.balance}} STH
               <br>
               <span v-if="!item.delegate">{{item.address}}</span>
-
-            </router-link>
+            </div>
           </card>
         </div>
       </div>
