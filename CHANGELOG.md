@@ -1,3 +1,7 @@
+v1.0.9
+
+- APP Size optimize
+
 v1.0.8
 
 - Load Contact From QR
