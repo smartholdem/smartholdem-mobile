@@ -1,9 +1,8 @@
 <template>
   <div>
-
   <modal
     :show.sync="show"
-    :class="modalColor"
+    :class="$root.modalColor"
     :scrollToBottom="false"
     headerClasses="justify-content-center"
     type="default"
@@ -79,15 +78,6 @@ export default {
   },
   props: {
     show: Boolean
-  },
-  computed: {
-    modalColor() {
-      let result = 'modal-white'
-      if ((this.$store.getters['app/settings']).darkMode) {
-        result = 'modal-dark'
-      }
-      return result
-    },
   },
   methods: {
     async setAction() {

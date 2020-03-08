@@ -173,8 +173,6 @@ export default {
       } else {
         docClasses.add('white-content');
       }
-
-
     },
     numericFormat(format, amount) {
       return NumberFormat(format, amount)

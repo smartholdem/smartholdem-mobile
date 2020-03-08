@@ -1,7 +1,7 @@
 <template>
   <modal
     :show="showModal"
-    :class="modalColor"
+    :class="$root.modalColor"
     :show-close="true"
     headerClasses="justify-content-center"
     type="default"
@@ -47,15 +47,6 @@ export default {
     },
     address: {
       type: String,
-    },
-  },
-  computed: {
-    modalColor() {
-      let result = 'modal-white'
-      if ((this.$store.getters['app/settings']).darkMode) {
-        result = 'modal-dark'
-      }
-      return result
     },
   },
   methods: {

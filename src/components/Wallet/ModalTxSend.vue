@@ -1,7 +1,7 @@
 <template>
   <modal
     :show.sync="showModal"
-    :class="modalColor"
+    :class="$root.modalColor"
     :show-close="true"
     headerClasses="justify-content-center"
   >
@@ -170,13 +170,6 @@ export default {
     }
   },
   computed: {
-    modalColor() {
-      let result = 'modal-white'
-      if ((this.$store.getters['app/settings']).darkMode) {
-        result = 'modal-dark'
-      }
-      return result
-    },
     contactList() {
       const data = this.$store.getters['app/contacts']
       let keys = Object.keys(data)
