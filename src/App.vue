@@ -14,8 +14,12 @@ export default {
     },
     async modalColor() {
       let result = 'modal-white'
+      let docClasses = document.body.classList;
       if ((this.$store.getters['app/settings']).darkMode) {
         result = 'modal-dark'
+        docClasses.remove('white-content');
+      } else {
+        docClasses.add('white-content');
       }
       return result
     },
