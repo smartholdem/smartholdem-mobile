@@ -194,7 +194,7 @@ export default {
   }
 
   .currency-balance .dropdown-menu {
-    max-height: 70vh !important;
+    max-height: 60vh !important;
     overflow-y: auto;
   }
 

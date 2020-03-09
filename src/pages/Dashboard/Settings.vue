@@ -33,6 +33,7 @@
           <td class="text-right">
             <base-dropdown
               menu-on-right=""
+              class="currency-balance"
               tag="div"
               title-classes="btn btn-link font-weight-normal"
               title="English"
@@ -40,10 +41,9 @@
                <span slot="title">
                 [{{defaultCurrency.symbol}}] {{defaultCurrency.ticker}} <i class="tim-icons icon-minimal-down pb-1 pl-1"></i>
               </span>
-              <span class="dropdown-item"> BTC</span>
-              <span class="dropdown-item"> USD</span>
-              <span class="dropdown-item"> RUB</span>
-              <span class="dropdown-item"> CNY</span>
+              <li class="" v-for="(item, idx) in currencies" :key="idx">
+                <span @click="setDefaultCurrency(item.ticker, item.symbol, item.precision)" class="nav-item dropdown-item">{{item.title}} {{item.symbol}}</span>
+              </li>
             </base-dropdown>
           </td>
         </tr>
@@ -108,8 +108,18 @@ export default {
     defaultCurrency() {
       return this.$store.getters['wallet/defaultCurrency']
     },
+    currencies() {
+      return this.$store.getters['wallet/currencies']
+    },
   },
   methods: {
+    async setDefaultCurrency(ticker, symbol, precision) {
+      await this.$store.dispatch('wallet/setDefaultCurrency', {
+        ticker: ticker,
+        symbol: symbol,
+        precision: precision
+      })
+    },
     setLocale(locale) {
       this.$i18n.locale = locale
       this.$store.dispatch('app/setLanguage', locale);
@@ -126,4 +136,6 @@ export default {
   .table-settings tr {
     border-bottom: solid 1px #2f253575
   }
+
+
 </style>
