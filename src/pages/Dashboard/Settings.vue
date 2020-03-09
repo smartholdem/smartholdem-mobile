@@ -39,10 +39,12 @@
               title="English"
             >
                <span slot="title">
-                [{{defaultCurrency.symbol}}] {{defaultCurrency.ticker}} <i class="tim-icons icon-minimal-down pb-1 pl-1"></i>
+                [{{defaultCurrency.symbol}}] {{defaultCurrency.ticker}} <i
+                 class="tim-icons icon-minimal-down pb-1 pl-1"></i>
               </span>
               <li class="" v-for="(item, idx) in currencies" :key="idx">
-                <span @click="setDefaultCurrency(item.ticker, item.symbol, item.precision)" class="nav-item dropdown-item">{{item.title}} {{item.symbol}}</span>
+                <span @click="setDefaultCurrency(item.ticker, item.symbol, item.precision)"
+                      class="nav-item dropdown-item">{{item.title}} {{item.symbol}}</span>
               </li>
             </base-dropdown>
           </td>
@@ -77,7 +79,7 @@
           <td></td>
         </tr>
 
-        <tr @click="showReset = true">
+        <tr @click="showReset = !showReset">
           <td><i class="text-danger tim-icons tim-icons-lg icon-trash-simple"></i></td>
           <td>{{$t('APP.RESET')}}</td>
           <td class="text-right">
@@ -98,7 +100,9 @@
       </table>
     </div>
 
-    <ResetAll :modalReset="showReset" @onResetCancel="showReset = false"/>
+    <div v-if="showReset">
+      <ResetAll :modalReset="showReset" @onResetCancel="showReset = false"/>
+    </div>
 
   </div>
 </template>
