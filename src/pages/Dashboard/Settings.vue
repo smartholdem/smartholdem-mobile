@@ -2,7 +2,7 @@
   <div class="row">
     <div :class.sync="'layer-head'+ ' ' + $root.modalColor">
       <router-link to="/wallet" class="back-wallet pl-4 pr-5"><i class="tim-icons icon-minimal-left"></i></router-link>
-      <span>Settings</span>
+      <span>{{$t('PG.SET')}}</span>
     </div>
 
     <div class="layer-content w-100">
@@ -10,16 +10,16 @@
         <tbody>
         <tr>
           <td><i class="text-danger tim-icons tim-icons-lg icon-world"></i></td>
-          <td>Language</td>
+          <td>{{$t('SET.LANG')}}</td>
           <td class="text-right">
             <base-dropdown
               menu-on-right=""
               tag="div"
-              title-classes="btn btn-link"
+              title-classes="btn btn-link font-weight-normal"
               title="English"
             >
               <span slot="title">
-                English <i class="tim-icons icon-minimal-down pb-1 pl-1"></i>
+                {{$t('SET.LANG_NAME')}} <i class="tim-icons icon-minimal-down pb-1 pl-1"></i>
               </span>
               <span @click="setLocale('en')" class="dropdown-item"> English</span>
               <span @click="setLocale('ru')" class="dropdown-item"> Russian</span>
@@ -29,7 +29,7 @@
 
         <tr>
           <td><i class="text-danger tim-icons tim-icons-lg icon-money-coins"></i></td>
-          <td>Currency</td>
+          <td>{{$t('SET.CURRENCY')}}</td>
           <td class="text-right">
             <base-dropdown
               menu-on-right=""
@@ -58,7 +58,7 @@
 
         <tr>
           <td><i class="text-danger tim-icons tim-icons-lg icon-bulb-63"></i></td>
-          <td>Dark & Light Mode</td>
+          <td>{{$t('SET.MODE')}}</td>
           <td class="text-right">
             <i class="tim-icons icon-triangle-right-17 pb-1 pl-1"></i>
           </td>
@@ -67,7 +67,7 @@
 
         <tr>
           <td><i class="text-danger tim-icons tim-icons-lg icon-bell-55"></i></td>
-          <td>Notifications</td>
+          <td>{{$t('SET.NOTIF')}}</td>
           <td class="text-right">
             <i class="tim-icons icon-triangle-right-17 pb-1 pl-1"></i>
           </td>
@@ -81,7 +81,7 @@
 
         <tr @click="showReset = !showReset">
           <td><i class="text-danger tim-icons tim-icons-lg icon-trash-simple"></i></td>
-          <td>{{$t('APP.RESET')}}</td>
+          <td>{{$t('SET.CLEAR')}}</td>
           <td class="text-right">
             <i class="tim-icons icon-triangle-right-17 pb-1 pl-1"></i>
           </td>
@@ -89,7 +89,7 @@
 
         <tr>
           <td><i class="text-danger tim-icons tim-icons-lg icon-alert-circle-exc"></i></td>
-          <td>Version</td>
+          <td>{{$t('SET.VER')}}</td>
           <td class="text-right">
             {{packageJson.version}}
           </td>
@@ -140,6 +140,7 @@ export default {
       })
     },
     setLocale(locale) {
+      console.log(this.$i18n)
       this.$i18n.locale = locale
       this.$store.dispatch('app/setLanguage', locale);
     },

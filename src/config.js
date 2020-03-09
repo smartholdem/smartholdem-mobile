@@ -48,3 +48,11 @@ exports.network = {
 exports.exchange = {
   API: 'https://ex.smartholdem.io'
 }
+
+exports.I18N = {
+  defaultLocale: 'en',
+  enabledLocales: [
+    'en',
+    'ru'
+  ]
+};

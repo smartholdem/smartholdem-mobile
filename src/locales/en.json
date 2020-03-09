@@ -86,12 +86,20 @@
     "C1": "",
     "C2": ""
   },
-  "SETINGS": {
+  "SET": {
     "LANG": "Language",
+    "LANG_NAME": "English",
     "CURRENCY": "Currency",
     "MODE": "Dark & Light Mode",
     "NOTIF": "Notifications",
     "CLEAR": "Clear All Data",
     "VER": "Version"
+  },
+  "PG": {
+    "WALLETS": "Wallets",
+    "CONTACTS": "Contacts",
+    "DELEGATES": "Delegates",
+    "QUIT": "Quit",
+    "SET": "Settings"
   }
 }

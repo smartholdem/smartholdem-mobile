@@ -22,7 +22,7 @@
 
           <sidebar-item
             :link="{
-            name: 'Wallets',
+            name: $t('PG.WALLETS'),
             icon: 'tim-icons icon-wallet-43',
             path: '/wallet'
           }"
@@ -31,7 +31,7 @@
 
           <sidebar-item
             :link="{
-            name: 'Contacts',
+            name: $t('PG.CONTACTS'),
             icon: 'tim-icons icon-book-bookmark',
             path: '/contacts'
           }"
