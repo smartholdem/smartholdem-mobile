@@ -2,7 +2,7 @@
   <div>
     <div class="row">
 
-      <div class="pl-3 pr-3">
+      <div class="pl-3 pr-3 pt-3">
         <div class="mb-3">
           <span class="badge badge-success big-badge mr-1">SmartHolders <span class="font-weight-bolder p-2">{{holders.total.holders}}</span></span>
           <span class="badge badge-success big-badge">Total Hold <span class="font-weight-bolder p-2">{{(holders.total.realAmount * 1).toFixed(0)}}</span> STH</span>

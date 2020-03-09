@@ -16,7 +16,7 @@
                  icon
                  :round = "activeTab !== 2"
                  style="left:70px;bottom: 10px;height:40px; width:40px;z-index:1000;">
-      <i class="tim-icons icon-coins" style="font-size: 1.1rem; padding:0;"></i>
+      <i class="tim-icons icon-refresh-02" style="font-size: 1.1rem; padding:0;"></i>
     </base-button>
 
     <div @click="showActions = false" v-if="showActions" class="row h-100 w-100 position-fixed"

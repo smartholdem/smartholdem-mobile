@@ -1,15 +1,17 @@
 <template>
-  <div>
-    <div class="table-full-width" style="margin-bottom: 0px;">
-      <div class="mb-4 w-100">
-        <h4 class="text-center">Contacts
-          <span class="text-right float-right" style="margin-top: -10px;">
-            <base-button @click="showModalAddConact" type="info" icon simple round class="" style="">
+  <div class="row">
+    <div :class.sync="'pb-3 layer-head'+ ' ' + $root.modalColor">
+      <router-link to="/wallet" class="back-wallet pl-4 pr-5"><i class="tim-icons icon-minimal-left"></i></router-link>
+      <span>Contacts</span>
+      <span class="text-right float-right mr-2" style="margin-top: -5px;">
+            <base-button @click="showModalAddConact" type="info" icon simple round class="btn-sm" style="">
             <i class="tim-icons icon-simple-add" style=""></i>
           </base-button>
           </span>
-        </h4>
-      </div>
+
+    </div>
+
+    <div class="layer-content w-100">
 
       <table class="table w-100">
         <tbody>
