@@ -8,13 +8,16 @@
     "userProfile": "Profile"
   },
   "APP": {
+    "WELCOME": "Welcome to the SmartHoldem Platform",
+    "OPEN_WALLET": "Open My Wallet",
+    "OR": "OR",
+    "ENTER": "Enter",
     "SETTINGS": "Settings",
     "SOUND": "Sound",
     "SW_OFF": "OFF",
     "SW_ON": "ON",
     "UNLOCK": "Unlock",
     "NO_BIP39": "The secret phrase is not a BIP39 standard, but you can use",
-    "OR": "OR",
     "RESET": "Reset All Data",
     "CLOSE": "Close",
     "CANCEL": "Cancel",
@@ -46,6 +49,7 @@
     "OP": "operation"
   },
   "WALLET": {
+    "TOTAL": "Total",
     "AMOUNT": "Amount",
     "CONF": "Confirmations",
     "WALLET": "Wallet",

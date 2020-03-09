@@ -40,7 +40,7 @@
 
           <sidebar-item
             :link="{
-            name: 'Delegates',
+            name: $t('PG.DELEGATES'),
             icon: 'tim-icons icon-bank',
             path: '/delegates'
           }"
@@ -58,7 +58,7 @@
 
           <sidebar-item
             :link="{
-            name: 'QUIT',
+            name: $t('PG.QUIT'),
             icon: 'tim-icons icon-lock-circle',
             path: '/welcome'
           }"

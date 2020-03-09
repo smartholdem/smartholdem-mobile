@@ -20,7 +20,7 @@
               :open-delay="300"
               placement="bottom"
             >
-            <span class="text-decoration-none font-weight-normal" style="">Total <img src="images/sth48.png"
+            <span class="text-decoration-none font-weight-normal" style="">{{$t('WALLET.TOTAL')}} <img src="images/sth48.png"
                                                                                       width="20px"/> {{accountBalanceSTH}} <small
               class="color-brown font-weight-bold"> </small>
               <span

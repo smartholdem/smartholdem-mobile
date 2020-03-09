@@ -8,13 +8,16 @@
     "userProfile": "Profile"
   },
   "APP": {
+    "WELCOME": "Добро пожаловать в SmartHoldem",
+    "OPEN_WALLET": "Мой кошелёк",
+    "OR": "ИЛИ",
+    "ENTER": "Укажите",
     "SETTINGS": "Settings",
     "SOUND": "Sound",
     "SW_OFF": "OFF",
     "SW_ON": "ON",
     "UNLOCK": "Unlock",
     "NO_BIP39": "The secret phrase is not a BIP39 standard, but you can use",
-    "OR": "OR",
     "RESET": "Reset All Data",
     "CLOSE": "Close",
     "CANCEL": "Cancel",
@@ -46,9 +49,10 @@
     "OP": "operation"
   },
   "WALLET": {
+    "TOTAL": "Итого",
     "AMOUNT": "Amount",
     "CONF": "Confirmations",
-    "WALLET": "Wallet",
+    "WALLET": "Кошелёк",
     "BALANCE": "Balance",
     "TRANSACTIONS": "Transactions",
     "BUY": "Purchase",

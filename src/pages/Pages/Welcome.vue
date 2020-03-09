@@ -5,22 +5,22 @@
         <img class="" src="images/sth80.png"/>
         <h2 class="text-uppercase mt-3 font-weight-bold">
           SmartHoldem
-          <br/>WALLET
+          <br/>{{$t('WALLET.WALLET')}}
         </h2>
-        <p>Welcome to the Smartholdem Platform</p>
+        <p>{{$t('APP.WELCOME')}}</p>
 
         <div class="text-center w-100 m-auto pt-3">
           <base-button v-if="!PinEncrypted" @click="showEncrypt = true" type="primary" round class="text-uppercase">
             Create Profile
           </base-button>
-          <base-button v-if="PinEncrypted" @click="showUnlock = true" type="primary" round class="text-uppercase">Open
-            My Wallet
+          <base-button v-if="PinEncrypted" @click="showUnlock = true" type="primary" round class="text-uppercase">
+            {{$t('APP.OPEN_WALLET')}}
           </base-button>
           <div v-if="PinEncrypted">
-            <p class="mt-4">- OR -</p>
+            <p class="mt-4">- {{$t('APP.OR')}} -</p>
             <base-button @click="showReset = true" type="danger"
                          link
-                         class="text-uppercase mt-3 btn-sm"><i class="tim-icons icon-simple-remove"></i> Delete All Data
+                         class="text-uppercase mt-3 btn-sm"><i class="tim-icons icon-simple-remove"></i> {{$t('SET.CLEAR')}}
             </base-button>
           </div>
 

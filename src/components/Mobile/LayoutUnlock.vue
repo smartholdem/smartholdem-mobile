@@ -6,7 +6,7 @@
                                                                       style="font-size: 1.4em;"></i></span>
       <h4 class="text-center">
 
-        Enter PIN-Code
+        {{$t('APP.ENTER')}} PIN-Code
 
       </h4>
       <div class="p-4 mt-3 pin-content">
