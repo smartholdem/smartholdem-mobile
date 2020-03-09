@@ -2,12 +2,12 @@
   <div>
     <card v-if="show" class="top-layer">
       <h4 @click="close(send)" class="p-3 text-uppercase w-100 text-center"><i
-        class="tim-icons icon-double-left float-left pt-1"></i> <span class="text-center">Read QR for Send STH</span></h4>
+        class="tim-icons icon-double-left float-left pt-1"></i> <span class="text-center">{{$t('WALLET.SCAN_QR_SEND')}} STH</span></h4>
       <p class="p-3">Scan the QR-code with the SmartHoldem address</p>
 
       <div class="text-center mt-2">
         <p class="text-danger">{{ error }}</p>
-        <p class="text-danger" v-if="error">To scan the QR-code, you must enable the permission to use the camera in the application settings</p>
+        <p class="text-danger" v-if="error">>{{$t('WALLET.SCAN_QR_ERR')}}</p>
 
         <qrcode-stream @decode="onDecode" @init="onInit" />
 

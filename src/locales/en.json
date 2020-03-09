@@ -49,6 +49,8 @@
     "OP": "operation"
   },
   "WALLET": {
+    "SCAN_QR_ERR": "To scan the QR-code, you must enable the permission to use the camera in the application settings",
+    "SCAN_QR_SEND": "Scan QR for Send",
     "REMAINING": "Remaining",
     "SEND": "Send",
     "VOTED_FOR": "Voted For",
