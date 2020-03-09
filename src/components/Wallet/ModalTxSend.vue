@@ -83,21 +83,22 @@
       </span>
     </div>
 
-    <div v-if="tx.id" class="">
+    <div v-if="tx.id" class="w-100">
       <hr class="bg-success">
-      <table>
+
+      <table class="w-100">
         <tbody>
         <tr class="border-bottom">
           <th>TX ID</th>
-          <td class="text-left">{{tx.id.substr(0,10)}}...{{tx.id.substr(-10)}}</td>
+          <td class="text-right">{{tx.id.substr(0,10)}}...{{tx.id.substr(-10)}}</td>
         </tr>
         <tr class="border-bottom">
           <th>From</th>
-          <td class="text-left">{{address.substr(0,12)}}...{{address.substr(-12)}}</td>
+          <td class="text-right">{{address.substr(0,12)}}...{{address.substr(-12)}}</td>
         </tr>
         <tr class="border-bottom">
           <th>To</th>
-          <td class="text-left">{{tx.recipientId.substr(0,12)}}...{{tx.recipientId.substr(-12)}}</td>
+          <td class="text-right">{{tx.recipientId.substr(0,12)}}...{{tx.recipientId.substr(-12)}}</td>
         </tr>
         <tr class="border-bottom">
           <th>Amount</th>
@@ -116,18 +117,18 @@
     </div>
 
     <template slot="footer">
-      <base-button class="pb-3" v-if="tx.id" @click="broadcastTx" type="neutral" link>Send {{send.amount * 1 + 1}} STH <i
+      <base-button class="pb-3" v-if="tx.id" @click="broadcastTx" type="neutral" link>{{$t('WALLET.SEND')}} {{send.amount * 1 + 1}} STH <i
         class="tim-icons icon-check-2"></i></base-button>
       <base-button class="pb-3" v-if="!tx.id" :disabled="!isValidAddress || remainingBalance < 0 || !send.amount" @click="prepareTx"
                    type="neutral"
-                   link>Next <i
+                   link>{{$t('APP.CONTINUE')}} <i
         class="tim-icons icon-check-2"></i></base-button>
       <base-button
         class="pb-3"
         type="neutral"
         link
         @click="$emit('onModalClose')"
-      ><i class="tim-icons icon-simple-remove"></i> Cancel
+      ><i class="tim-icons icon-simple-remove"></i> {{$t('APP.CANCEL')}}
       </base-button>
     </template>
   </modal>
