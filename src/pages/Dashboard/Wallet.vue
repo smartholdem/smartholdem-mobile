@@ -36,7 +36,6 @@
       </div>
 
       <div class="w-100 hide-scroll" style="overflow-x:auto;">
-
         <div :style="'width:'+(360*wallets.length) + 'px;'">
           <card v-for="item in wallets" :key="item.address" class="ml-2 mr-2 account-style bgg1">
             <div  class="text-white" @click="openRouter('/address/' + item.address)">
@@ -49,6 +48,8 @@
           </card>
         </div>
       </div>
+
+      <div v-if="wallets.length" class="w-100 text-center">AVAILABLE <span class="badge badge-success big-badge">{{wallets.length}}</span> ADDRESSES </div>
 
       <div class="w-100 text-center m-3 ">
         <p v-if="wallets.length < 1">No Wallets</p>
