@@ -8,6 +8,7 @@
     "userProfile": "Profile"
   },
   "APP": {
+    "CONNECTION": "Подключение",
     "ADDR_COPY": "Нажмите на адрес для копирования",
     "PRIV_DATA": "Приватные Данные",
     "SURE": "Вы Уверены?",

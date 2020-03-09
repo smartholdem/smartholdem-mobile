@@ -1,3 +1,11 @@
+v1.0.10
+
+- Add Settings Page
+- Address counter
+- Improved mode change dark/light
+- Added design for addresses
+- Added support for multiple languages
+
 v1.0.9
 
 - APP Size optimized x2

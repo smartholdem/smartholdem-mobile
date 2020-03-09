@@ -60,8 +60,8 @@
           slot="title"
         >
           <div class="d-none d-lg-block d-xl-block"></div>
-          <i class="tim-icons icon-sound-wave"></i>
-          <p class="d-lg-none">Networks</p>
+          <i class="tim-icons icon-wifi"></i>
+          <p class="d-lg-none">{{$t('APP.CONNECTION')}}</p>
         </template>
 
         <li class="nav-link">

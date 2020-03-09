@@ -8,6 +8,7 @@
     "userProfile": "Profile"
   },
   "APP": {
+    "CONNECTION": "Connection",
     "ADDR_COPY": "Click on the address to copy",
     "PRIV_DATA": "Private Data",
     "SURE": "Are you sure?",

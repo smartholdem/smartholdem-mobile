@@ -37,7 +37,7 @@
 
       <div class="w-100 hide-scroll" style="overflow-x:auto;">
         <div :style="'width:'+(360*wallets.length) + 'px;'">
-          <card v-for="(item, idx) in wallets" :key="item.address" :class="'ml-2 mr-2 account-style bgg1 wbg' + item.bg">
+          <card v-for="item in wallets" :key="item.address" :class="'ml-2 mr-2 account-style bgg1 wbg' + item.bg">
             <div  class="text-white" @click="openRouter('/address/' + item.address)">
               <span v-if="!item.delegate && item.label"><i class="tim-icons icon-tag pb-1"></i> {{item.label}}</span>
               <span v-if="item.delegate"><i class="tim-icons icon-bank pb-1"></i> {{item.delegate.username}}</span>

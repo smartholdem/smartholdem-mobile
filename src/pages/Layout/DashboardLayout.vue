@@ -68,7 +68,7 @@
           <sidebar-item
             :link="{
             name: $t('PG.QUIT'),
-            icon: 'tim-icons icon-lock-circle',
+            icon: 'tim-icons icon-button-power',
             path: '/welcome'
           }"
           >
