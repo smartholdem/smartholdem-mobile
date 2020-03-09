@@ -4,13 +4,12 @@ import AuthLayout from 'src/pages/Pages/AuthLayout.vue';
 import NotFound from 'src/pages/GeneralViews/NotFoundPage.vue';
 //import AuthRequired from '@/util/AuthRequired'
 
-// Dashboard pages
-const Dashboard = () =>
-  import(/* webpackChunkName: "dashboard" */ 'src/pages/Dashboard/Dashboard.vue');
-
 // board pages
 const Board = () =>
   import(/* webpackChunkName: "dashboard" */ 'src/pages/Dashboard/Board.vue');
+
+const Settings = () =>
+  import(/* webpackChunkName: "dashboard" */ 'src/pages/Dashboard/Settings.vue');
 
 // wallet
 const Wallet = () =>
@@ -132,6 +131,11 @@ const routes = [
         path: 'delegates',
         name: 'Delegates',
         components: { default: Delegates }
+      },
+      {
+        path: 'settings',
+        name: 'Settings',
+        components: { default: Settings }
       },
     ]
   },
