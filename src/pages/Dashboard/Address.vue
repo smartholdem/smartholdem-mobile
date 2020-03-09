@@ -25,7 +25,7 @@
                     <span class="ml-2 badge badge-dark">rank {{ accountData.delegate.rate }}</span>
                     &nbsp;<span v-if="accountData.vote"
                                 @click="showModal('modal:vote',{address: accountData.address, delegate: accountData.vote, voteType: '-'})"
-                                class="pointer badge badge-white ">voted for {{accountData.vote.username}} <i
+                                class="pointer badge badge-white ">{{$t('WALLET.VOTED_FOR')}} {{accountData.vote.username}} <i
                     title="remove vote" class="tim-icons icon-simple-remove"></i></span>
                   </h4>
 
@@ -33,7 +33,7 @@
                     <span class="font-weight-bold" v-show="addressName"><i class="tim-icons icon-tag pb-1"></i> {{ addressName }}</span>
                     &nbsp;<span v-if="accountData.vote"
                                 @click="showModal('modal:vote',{address: accountData.address, delegate: accountData.vote, voteType: '-'})"
-                                class="pointer badge badge-white">voted for {{accountData.vote.username}} <i
+                                class="pointer badge badge-white">{{$t('WALLET.VOTED_FOR')}} {{accountData.vote.username}} <i
                     title="remove vote" class="tim-icons icon-simple-remove"></i></span>
                   </h4>
 

@@ -11,7 +11,7 @@
     </div>
 
     <p class="text-center">
-      Send SmartHoldem [STH]
+      {{$t('WALLET.SEND')}} SmartHoldem [STH]
     </p>
 
     <div class="row">
@@ -76,7 +76,7 @@
           </base-input>
         </div>
       </div>
-      <span>Remaining
+      <span>{{$t('WALLET.REMAINING')}}
         <span class="pointer font-weight-bolder" @click="send.amount = remainingBalance">
           {{remainingBalance}}
         </span> STH

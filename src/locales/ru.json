@@ -8,6 +8,8 @@
     "userProfile": "Profile"
   },
   "APP": {
+    "CONTINUE": "Продолжить",
+    "CANCEL": "Cancel",
     "WELCOME": "Добро пожаловать в SmartHoldem",
     "OPEN_WALLET": "Мой кошелёк",
     "OR": "ИЛИ",
@@ -20,7 +22,6 @@
     "NO_BIP39": "The secret phrase is not a BIP39 standard, but you can use",
     "RESET": "Reset All Data",
     "CLOSE": "Close",
-    "CANCEL": "Cancel",
     "SURE": "Are you sure?",
     "CONFIRM": "Confirm",
     "ALL_DATA_RESET": "All your data, including created accounts, networks and stats will be removed from the app and reset to default.",
@@ -31,7 +32,6 @@
     "PROTECT": "Protect your data",
     "PROTECT_DATA": "Enter the pin code to encrypt your local data",
     "IMPORT_ACCOUNT": "Import Existing Account",
-    "CONTINUE": "Continue",
     "GET_STARTED": "Get Started",
     "YOUR_PUB_ADDR": "Your Public Address",
     "YOUR_SECRET": "Secret Pass Phrase. Please keep safe!",
@@ -49,6 +49,8 @@
     "OP": "operation"
   },
   "WALLET": {
+    "REMAINING": "Остаток",
+    "SEND": "Отправить",
     "VOTED_FOR": "Голос За",
     "CREATE_WALLET": "Создать Кошелёк",
     "IMPORT_WALLET": "Импортировать",
