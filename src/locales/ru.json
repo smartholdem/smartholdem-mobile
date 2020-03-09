@@ -8,6 +8,7 @@
     "userProfile": "Profile"
   },
   "APP": {
+    "SURE": "Вы Уверены?",
     "MSG_SECURE": "!Никогда не передавайте свой секретный ключ третьим лицам. Храните ваш пароль в надёжном месте.",
     "CONFIRM": "Подтвердить",
     "CONTINUE": "Продолжить",
@@ -24,8 +25,7 @@
     "NO_BIP39": "The secret phrase is not a BIP39 standard, but you can use",
     "RESET": "Reset All Data",
     "CLOSE": "Close",
-    "SURE": "Are you sure?",
-    "ALL_DATA_RESET": "All your data, including created accounts, networks and stats will be removed from the app and reset to default.",
+    "ALL_DATA_RESET": "Все ваши данные, включая созданные учетные записи, сети и статистика, будут удалены из приложения и сброшены по умолчанию.",
     "HELP": "Help",
     "TITLE": "SmartHoldem Wallet",
     "GET_UADDR": "Get or import your unique address",

@@ -77,11 +77,13 @@
         </li>
       </base-dropdown>
 
+      <!--
       <li class="nav-item mt-3 mb-2">
         <span @click="navRoute('/settings')" class="ml-1 text-uppercase">
           <i class="mr-2 tim-icons icon-settings-gear-63"></i> {{$t('APP.SETTINGS')}}
         </span>
       </li>
+      -->
       <li class="nav-item mt-3 mb-2">
         <span @click="toggleMode" class="ml-1"><i class="tim-icons icon-bulb-63 pb-1 mr-2"></i> DARK & LIGHT MODE</span>
       </li>

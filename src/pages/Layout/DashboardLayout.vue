@@ -58,6 +58,15 @@
 
           <sidebar-item
             :link="{
+            name: $t('PG.SET'),
+            icon: 'tim-icons icon-settings-gear-63',
+            path: '/settings'
+          }"
+          >
+          </sidebar-item>
+
+          <sidebar-item
+            :link="{
             name: $t('PG.QUIT'),
             icon: 'tim-icons icon-lock-circle',
             path: '/welcome'
