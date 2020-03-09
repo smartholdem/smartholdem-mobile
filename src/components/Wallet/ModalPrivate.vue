@@ -13,8 +13,7 @@
     </div>
 
     <!--<p class="text-center">For address <i class="tim-icons icon-wallet-43"></i> {{account.address}}</p>-->
-    <p class="text-warning small text-center">!Never share your secret key with third parties. Store your passphrase
-      in a secure place.</p>
+    <p class="text-warning small text-center">{{$t('APP.MSG_SECURE')}}</p>
     <hr class="bg-primary">
     <p class="text-center">- YOUR SECRET PASSPHRASE -</p>
     <p class="font-weight-light text-center" title="copy private key" v-clipboard="() => account.secret">

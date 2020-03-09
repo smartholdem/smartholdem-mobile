@@ -8,8 +8,10 @@
     "userProfile": "Profile"
   },
   "APP": {
+    "MSG_SECURE": "!Никогда не передавайте свой секретный ключ третьим лицам. Храните ваш пароль в надёжном месте.",
+    "CONFIRM": "Подтвердить",
     "CONTINUE": "Продолжить",
-    "CANCEL": "Cancel",
+    "CANCEL": "Отмена",
     "WELCOME": "Добро пожаловать в SmartHoldem",
     "OPEN_WALLET": "Мой кошелёк",
     "OR": "ИЛИ",
@@ -23,7 +25,6 @@
     "RESET": "Reset All Data",
     "CLOSE": "Close",
     "SURE": "Are you sure?",
-    "CONFIRM": "Confirm",
     "ALL_DATA_RESET": "All your data, including created accounts, networks and stats will be removed from the app and reset to default.",
     "HELP": "Help",
     "TITLE": "SmartHoldem Wallet",
@@ -50,7 +51,7 @@
   },
   "WALLET": {
     "SCAN_QR_ERR": "Для сканирования QR-кода необходимо включить разрешение на использование камеры в настройках приложения",
-    "SCAN_QR_SEND": "Сканируйте QR для отправки",
+    "SCAN_QR_SEND": "Скан QR для отправки",
     "REMAINING": "Остаток",
     "SEND": "Отправить",
     "VOTED_FOR": "Голос За",

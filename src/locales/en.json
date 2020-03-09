@@ -8,6 +8,8 @@
     "userProfile": "Profile"
   },
   "APP": {
+    "MSG_SECURE": "!Never share your secret key with third parties. Store your passphrase in a secure place.",
+    "CONFIRM": "Confirm",
     "CONTINUE": "Continue",
     "CANCEL": "Cancel",
     "WELCOME": "Welcome to the SmartHoldem Platform",
@@ -23,7 +25,6 @@
     "RESET": "Reset All Data",
     "CLOSE": "Close",
     "SURE": "Are you sure?",
-    "CONFIRM": "Confirm",
     "ALL_DATA_RESET": "All your data, including created accounts, networks and stats will be removed from the app and reset to default.",
     "HELP": "Help",
     "TITLE": "SmartHoldem Wallet",
