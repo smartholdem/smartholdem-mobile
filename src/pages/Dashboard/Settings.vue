@@ -89,7 +89,7 @@
           <td><i class="text-danger tim-icons tim-icons-lg icon-alert-circle-exc"></i></td>
           <td>Version</td>
           <td class="text-right">
-            1.0.0
+            {{packageJson.version}}
           </td>
         </tr>
 
@@ -105,6 +105,7 @@
 
 <script>
 import ResetAll from '@/components/Wallet/ResetAll'
+import packageJson from '../../../package.json'
 
 export default {
   name: "Settings",
@@ -114,6 +115,7 @@ export default {
   data() {
     return {
       showReset: false,
+      packageJson,
     }
   },
   computed: {

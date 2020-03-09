@@ -20,7 +20,6 @@
         </button>
       </div>
 
-      <span class="small font-weight-bold">v{{packageJson.version}}</span>
     </div>
 
     <ul class="navbar-nav" :class="$rtl.isRTL ? 'mr-auto' : 'ml-auto'">
@@ -97,7 +96,6 @@ import {BaseNav, Modal} from '@/components';
 import SidebarToggleButton from './SidebarToggleButton';
 import Avatar from '@/components/Avatar'
 import NumberFormat from 'number-format.js'
-import packageJson from '../../../package.json'
 
 export default {
   components: {
@@ -109,7 +107,6 @@ export default {
   },
   data() {
     return {
-      packageJson,
       darkMode: false,
       showMenu: false,
     };
