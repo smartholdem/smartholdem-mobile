@@ -85,5 +85,13 @@
     "C_TITLE": "Please arrange your time reasonably",
     "C1": "",
     "C2": ""
+  },
+  "SETINGS": {
+    "LANG": "Language",
+    "CURRENCY": "Currency",
+    "MODE": "Dark & Light Mode",
+    "NOTIF": "Notifications",
+    "CLEAR": "Clear All Data",
+    "VER": "Version"
   }
 }
