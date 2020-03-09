@@ -56,18 +56,16 @@
           >
           </sidebar-item>
 
-          <span v-if="!$root.isMobile">
-
-
           <sidebar-item
             :link="{
-            name: 'Vote listing XBTS',
-            icon: 'tim-icons icon-trophy',
-            path: '/xbts-listing'
+            name: 'QUIT',
+            icon: 'tim-icons icon-lock-circle',
+            path: '/welcome'
           }"
           >
           </sidebar-item>
-</span>
+
+
 
 
         </template>

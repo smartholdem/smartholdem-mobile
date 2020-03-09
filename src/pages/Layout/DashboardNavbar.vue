@@ -87,18 +87,7 @@
         <span @click="toggleMode" class="ml-1"><i class="tim-icons icon-bulb-63 pb-1 mr-2"></i> DARK & LIGHT MODE</span>
       </li>
 
-      <li class="nav-item mt-3 mb-2">
-        <span @click="navRoute('/welcome')" class="ml-1"><i class="mr-2 tim-icons icon-lock-circle"></i> LOCK</span>
-      </li>
-
-      <div class="dropdown-divider border-dark"></div>
-      <li class="nav-item mt-2 mb-2" @click="showReset = true">
-        <span class="ml-1 text-uppercase text-primary"><i class="mr-2 tim-icons icon-simple-remove"></i> {{$t('APP.RESET')}}</span>
-      </li>
-
-
     </ul>
-    <ResetAll :modalReset="showReset" @onResetCancel="showReset = false"/>
   </base-nav>
 </template>
 <script>
@@ -106,7 +95,6 @@
 import {CollapseTransition} from 'vue2-transitions';
 import {BaseNav, Modal} from '@/components';
 import SidebarToggleButton from './SidebarToggleButton';
-import ResetAll from '@/components/Wallet/ResetAll'
 import Avatar from '@/components/Avatar'
 import NumberFormat from 'number-format.js'
 import packageJson from '../../../package.json'
@@ -117,14 +105,12 @@ export default {
     CollapseTransition,
     BaseNav,
     Modal,
-    ResetAll,
     Avatar,
   },
   data() {
     return {
       packageJson,
       darkMode: false,
-      showReset: false,
       showMenu: false,
     };
   },

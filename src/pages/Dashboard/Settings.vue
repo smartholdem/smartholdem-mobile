@@ -77,9 +77,9 @@
           <td></td>
         </tr>
 
-        <tr>
+        <tr @click="showReset = true">
           <td><i class="text-danger tim-icons tim-icons-lg icon-trash-simple"></i></td>
-          <td>Reset All Data</td>
+          <td>{{$t('APP.RESET')}}</td>
           <td class="text-right">
             <i class="tim-icons icon-triangle-right-17 pb-1 pl-1"></i>
           </td>
@@ -98,12 +98,24 @@
       </table>
     </div>
 
+    <ResetAll :modalReset="showReset" @onResetCancel="showReset = false"/>
+
   </div>
 </template>
 
 <script>
+import ResetAll from '@/components/Wallet/ResetAll'
+
 export default {
   name: "Settings",
+  components: {
+    ResetAll,
+  },
+  data() {
+    return {
+      showReset: false,
+    }
+  },
   computed: {
     defaultCurrency() {
       return this.$store.getters['wallet/defaultCurrency']
@@ -113,6 +125,7 @@ export default {
     },
   },
   methods: {
+
     async setDefaultCurrency(ticker, symbol, precision) {
       await this.$store.dispatch('wallet/setDefaultCurrency', {
         ticker: ticker,
