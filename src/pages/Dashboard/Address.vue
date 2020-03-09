@@ -3,7 +3,7 @@
     <div class="row mt-0">
       <div class="col-md-12 m-0 w-100 p-0">
         <div class="m-0">
-          <card v-if="mobileTabs !== 2"  class="pb-2" style="margin-bottom: 3px; position: sticky; top: 50px;z-index:1;">
+          <card v-if="mobileTabs !== 2"  class="pb-2 radius-0" style="margin-bottom: 3px; position: sticky; top: 50px;z-index:1;">
             <div class="">
               <div class="row">
                 <div class="col-md-4 pl-2 text-center">
@@ -81,7 +81,7 @@
             </div>
           </card>
 
-          <card class="" style="margin-top: 3px;">
+          <card class="radius-0" style="margin-top: 3px;">
             <div class="">
               <div>
                 <div v-if="mobileTabs === 0" class="row">

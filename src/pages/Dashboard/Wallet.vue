@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row">
-      <div class="text-center ml-auto mr-auto">
+      <div class="text-center ml-auto mr-auto mt-4">
         <base-dropdown
           tag="li"
           :menu-on-right="!$rtl.isRTL"

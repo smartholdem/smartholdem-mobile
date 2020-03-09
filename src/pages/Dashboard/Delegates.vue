@@ -57,18 +57,4 @@ export default {
   .delegate-table tr {
     border-bottom: solid 1px #2f253575
   }
-
-  .layer-content {
-    padding-top: 48px;
-  }
-
-  .layer-head {
-    position: fixed;
-    height: 48px;
-    margin: 0;
-    padding-top: 10px;
-    width: 100%;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-  }
 </style>

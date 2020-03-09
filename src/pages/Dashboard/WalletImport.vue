@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <card class="stacked-form">
+  <div class="">
+    <div class="row">
+    <card class="">
       <div>
         <h3 class="card-title font-weight-bold">Import Wallet
           <base-button @click="show.qrLoadPriv = true" type="primary" round icon class="float-right">
@@ -45,6 +46,7 @@
         </base-button>
       </div>
     </card>
+    </div>
 
     <BotBtnWlt/>
 

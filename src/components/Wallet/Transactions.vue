@@ -1,5 +1,5 @@
 <template>
-  <div class="table-full-width shadow-none" style="margin-bottom: 0px; box-shadow: none !important;">
+  <div class="table-full-width shadow-none " style="margin-bottom: 0px; box-shadow: none !important;">
 
     <!-- tx mobile devices -->
     <div v-if="!txs.transactions.length" class="text-center">No Transactions</div>

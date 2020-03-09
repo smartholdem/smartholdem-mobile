@@ -1,13 +1,14 @@
 <template>
-  <div class="row">
+  <div class="">
+    <div class="row">
     <card class="">
-      <div>
+      <template slot="header">
         <h3 class="card-title font-weight-bold">Create New Wallet
           <base-button @click="getNewAccount()" type="primary" round icon class="ml-2">
               <i class="fas fa-dice" style="font-size: 1.1rem;padding:0;"></i>
           </base-button>
         </h3>
-      </div>
+      </template>
 
       <p class="text-primary font-weight-bold"  v-clipboard="() => account.secret"><i class="tim-icons icon-lock-circle"></i>{{$t('APP.YOUR_SECRET')}}
       <textarea rows="3" class="w-100 border-dark rounded" v-model="account.secret"></textarea>
@@ -32,7 +33,7 @@
         CREATE & SAVE WALLET
       </base-button>
     </card>
-
+    </div>
     <BotBtnWlt/>
   </div>
 </template>
