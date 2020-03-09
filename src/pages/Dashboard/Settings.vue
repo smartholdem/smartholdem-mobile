@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div :class.sync="'layer-head'+ ' ' + $root.modalColor">
+    <div class="layer-head">
       <router-link to="/wallet" class="back-wallet pl-4 pr-5"><i class="tim-icons icon-minimal-left"></i></router-link>
       <span>{{$t('PG.SET')}}</span>
     </div>
@@ -56,7 +56,7 @@
           <td></td>
         </tr>
 
-        <tr>
+        <tr @click="toggleMode">
           <td><i class="text-danger tim-icons tim-icons-lg icon-bulb-63"></i></td>
           <td>{{$t('SET.MODE')}}</td>
           <td class="text-right">
@@ -120,6 +120,7 @@ export default {
     return {
       showReset: false,
       packageJson,
+      headColor: 'modal-white',
     }
   },
   computed: {
@@ -131,7 +132,23 @@ export default {
     },
   },
   methods: {
+    async toggleMode() {
+      this.darkMode = !this.darkMode
+      this.$store.dispatch('app/setSettings', {
+        darkMode: this.darkMode
+      })
 
+      let docClasses = document.body.classList;
+
+      if (this.darkMode) {
+        docClasses.remove('white-content');
+        this.$root.modalColor = 'modal-dark'
+      } else {
+        docClasses.add('white-content');
+        this.$root.modalColor = 'modal-white'
+      }
+      this.headColor = this.$root.modalColor
+    },
     async setDefaultCurrency(ticker, symbol, precision) {
       await this.$store.dispatch('wallet/setDefaultCurrency', {
         ticker: ticker,
@@ -145,6 +162,9 @@ export default {
       this.$store.dispatch('app/setLanguage', locale);
     },
   },
+  async created() {
+    this.headColor = this.$root.modalColor
+  }
 }
 </script>
 
