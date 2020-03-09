@@ -66,7 +66,7 @@ export default {
       }
     },
     SET_RESET(state) {
-      state.language = 'en'
+      state.language = ''
       state.pinEncrypted = null
       state.accounts = []
       state.contacts = {}
