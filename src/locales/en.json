@@ -49,10 +49,15 @@
     "OP": "operation"
   },
   "WALLET": {
+    "VOTED_FOR": "Voted For",
+    "CREATE_WALLET": "Create Wallet",
+    "IMPORT_WALLET": "Import Wallet",
     "TOTAL": "Total",
     "AMOUNT": "Amount",
     "CONF": "Confirmations",
     "WALLET": "Wallet",
+    "AVAILABLE": "Available",
+    "ADDRESSES": "Addresses",
     "BALANCE": "Balance",
     "TRANSACTIONS": "Transactions",
     "BUY": "Purchase",

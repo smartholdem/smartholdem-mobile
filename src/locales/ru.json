@@ -49,10 +49,15 @@
     "OP": "operation"
   },
   "WALLET": {
+    "VOTED_FOR": "Голос За",
+    "CREATE_WALLET": "Создать Кошелёк",
+    "IMPORT_WALLET": "Импортировать",
     "TOTAL": "Итого",
     "AMOUNT": "Amount",
     "CONF": "Confirmations",
     "WALLET": "Кошелёк",
+    "AVAILABLE": "Доступны",
+    "ADDRESSES": "Адресов",
     "BALANCE": "Balance",
     "TRANSACTIONS": "Transactions",
     "BUY": "Purchase",

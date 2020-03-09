@@ -49,20 +49,20 @@
         </div>
       </div>
 
-      <div v-if="wallets.length" class="w-100 text-center">AVAILABLE <span class="badge badge-success big-badge">{{wallets.length}}</span> ADDRESSES </div>
+      <div v-if="wallets.length" class="w-100 text-center">{{$t('WALLET.AVAILABLE')}} <span class="badge badge-success big-badge">{{wallets.length}}</span> {{$t('WALLET.ADDRESSES')}}</div>
 
       <div class="w-100 text-center m-3 ">
         <p v-if="wallets.length < 1">No Wallets</p>
         <base-button @click="openRouter('/wallet-create')" type="primary" round simple
                      class="w-100 text-uppercase font-weight-bolder" style="">
-          <i class="tim-icons icon-credit-card pb-1 mr-2" style="font-size: 1rem;"></i> Create New Wallet
+          <i class="tim-icons icon-credit-card pb-1 mr-2" style="font-size: 1rem;"></i> {{$t('WALLET.CREATE_WALLET')}}
         </base-button>
 
-        <p>- OR -</p>
+        <p>- {{$t('APP.OR')}} -</p>
 
         <base-button @click="openRouter('/wallet-import')" type="primary" round simple
                      class="w-100 text-uppercase font-weight-bolder" style="">
-          <i class="tim-icons icon-refresh-01 pb-1 mr-2"></i>Import Wallet
+          <i class="tim-icons icon-refresh-01 pb-1 mr-2"></i>{{$t('WALLET.IMPORT_WALLET')}}
         </base-button>
       </div>
 
