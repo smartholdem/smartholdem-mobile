@@ -1,13 +1,10 @@
 {
   "sidebar": {
     "title": "SmartHoldem",
-    "shortTitle": "STH",
-    "dashboard": "Dashboard",
-    "register": "Register",
-    "lock": "Lock Screen",
-    "userProfile": "Profile"
+    "shortTitle": "STH"
   },
   "APP": {
+    "NO_WALLETS": "Нет Адресов",
     "CREATE_PROFILE": "Создать кошелёк",
     "COME_UP": "Придумайте",
     "MY_WALLETS":"МОИ КОШЕЛЬКИ",
@@ -46,7 +43,7 @@
     "I_SAVED": "I saved the secret phrase to a safe place",
     "IF_LOSE": "Если я потеряю свою секретную фразу, я не могу восстановить доступ к своей учетной записи",
     "YOUR_PUB": "Your Public Address for receiving and sending",
-    "ENTER_SECRET": "Укажите свою секретную фразу",
+    "ENTER_SECRET": "Секретная фраза или отсканируйте QR-Ключ",
     "GET_NEW_ACC": "Get new account",
     "AGREE1": "I agree to the",
     "AGREE2": "terms and conditions",
@@ -63,8 +60,8 @@
     "REMAINING": "Остаток",
     "SEND": "Отправить",
     "VOTED_FOR": "Голос За",
-    "CREATE_WALLET": "Создать Кошелёк",
-    "IMPORT_WALLET": "Импортировать кошелёк",
+    "CREATE_WALLET": "Создать Адрес",
+    "IMPORT_WALLET": "Импортировать Адрес",
     "TOTAL": "Итого",
     "AMOUNT": "Сумма",
     "CONF": "Confirmations",

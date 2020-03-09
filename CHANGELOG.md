@@ -5,7 +5,7 @@ v1.0.10
 - Improved mode change dark/light
 - Added design for addresses
 - Added support for multiple languages
-- Try to determine user language automatically
+- Try to detect user language automatically
 
 v1.0.9
 

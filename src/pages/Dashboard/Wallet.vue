@@ -52,7 +52,7 @@
       <div v-if="wallets.length" class="w-100 text-center">{{$t('WALLET.AVAILABLE')}} <span class="badge badge-success big-badge">{{wallets.length}}</span> {{$t('WALLET.ADDRESSES')}}</div>
 
       <div class="w-100 text-center m-3 ">
-        <p v-if="wallets.length < 1">No Wallets</p>
+        <p v-if="wallets.length < 1">{{$t('APP.NO_WALLETS')}}</p>
         <base-button @click="openRouter('/wallet-create')" type="primary" round simple
                      class="w-100 text-uppercase font-weight-bolder" style="">
           <i class="tim-icons icon-credit-card pb-1 mr-2" style="font-size: 1rem;"></i> {{$t('WALLET.CREATE_WALLET')}}

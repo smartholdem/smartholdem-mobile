@@ -1,13 +1,10 @@
 {
   "sidebar": {
     "title": "SmartHoldem",
-    "shortTitle": "STH",
-    "dashboard": "Dashboard",
-    "register": "Register",
-    "lock": "Lock Screen",
-    "userProfile": "Profile"
+    "shortTitle": "STH"
   },
   "APP": {
+    "NO_WALLETS": "No Wallets",
     "CREATE_PROFILE": "Create Profile",
     "COME_UP": "Come up with",
     "MY_WALLETS":"MY WALLETS",
