@@ -16,7 +16,8 @@ module.exports = {
     // Set up all the aliases we use in our app.
     resolve: {
       alias: {
-        src: resolveSrc('src'),
+        'src': resolveSrc('src'),
+        'assets': resolveSrc('src/assets'),
         'chart.js': 'chart.js/dist/Chart.js'
       }
     },

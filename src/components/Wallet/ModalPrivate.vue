@@ -9,7 +9,7 @@
   >
 
     <div slot="header" class="title">
-      <h3 class="text-center">Private Data</h3>
+      <h4 class="text-center">{{$t('APP.PRIV_DATA')}}</h4>
     </div>
 
     <!--<p class="text-center">For address <i class="tim-icons icon-wallet-43"></i> {{account.address}}</p>-->

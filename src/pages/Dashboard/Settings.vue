@@ -16,7 +16,6 @@
               menu-on-right=""
               tag="div"
               title-classes="btn btn-link font-weight-normal"
-              title="English"
             >
               <span slot="title">
                 {{$t('SET.LANG_NAME')}} <i class="tim-icons icon-minimal-down pb-1 pl-1"></i>
@@ -36,7 +35,6 @@
               class="currency-balance"
               tag="div"
               title-classes="btn btn-link font-weight-normal"
-              title="English"
             >
                <span slot="title">
                 [{{defaultCurrency.symbol}}] {{defaultCurrency.ticker}} <i
@@ -69,7 +67,12 @@
           <td><i class="text-danger tim-icons tim-icons-lg icon-bell-55"></i></td>
           <td>{{$t('SET.NOTIF')}}</td>
           <td class="text-right">
-            <i class="tim-icons icon-triangle-right-17 pb-1 pl-1"></i>
+            <base-switch
+              v-model="settings.notification"
+              type="primary"
+              on-text="ON"
+              off-text="OFF"
+            ></base-switch>
           </td>
         </tr>
 
@@ -110,14 +113,21 @@
 <script>
 import ResetAll from '@/components/Wallet/ResetAll'
 import packageJson from '../../../package.json'
+import {
+  BaseSwitch,
+} from 'src/components/index';
 
 export default {
   name: "Settings",
   components: {
     ResetAll,
+    BaseSwitch,
   },
   data() {
     return {
+      settings: {
+        notification: false,
+      },
       showReset: false,
       packageJson,
       headColor: 'modal-white',

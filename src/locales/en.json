@@ -8,6 +8,8 @@
     "userProfile": "Profile"
   },
   "APP": {
+    "ADDR_COPY": "Click on the address to copy",
+    "PRIV_DATA": "Private Data",
     "SURE": "Are you sure?",
     "MSG_SECURE": "!Never share your secret key with third parties. Store your passphrase in a secure place.",
     "CONFIRM": "Confirm",
@@ -50,6 +52,7 @@
     "OP": "operation"
   },
   "WALLET": {
+    "MEMO": "Memo",
     "SCAN_QR_ERR": "To scan the QR-code, you must enable the permission to use the camera in the application settings",
     "SCAN_QR_SEND": "Scan QR for Send",
     "REMAINING": "Remaining",

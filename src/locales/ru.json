@@ -8,6 +8,8 @@
     "userProfile": "Profile"
   },
   "APP": {
+    "ADDR_COPY": "Нажмите на адрес для копирования",
+    "PRIV_DATA": "Приватные Данные",
     "SURE": "Вы Уверены?",
     "MSG_SECURE": "!Никогда не передавайте свой секретный ключ третьим лицам. Храните ваш пароль в надёжном месте.",
     "CONFIRM": "Подтвердить",
@@ -50,6 +52,7 @@
     "OP": "operation"
   },
   "WALLET": {
+    "MEMO": "Примечание",
     "SCAN_QR_ERR": "Для сканирования QR-кода необходимо включить разрешение на использование камеры в настройках приложения",
     "SCAN_QR_SEND": "Скан QR для отправки",
     "REMAINING": "Остаток",
@@ -58,7 +61,7 @@
     "CREATE_WALLET": "Создать Кошелёк",
     "IMPORT_WALLET": "Импортировать",
     "TOTAL": "Итого",
-    "AMOUNT": "Amount",
+    "AMOUNT": "Сумма",
     "CONF": "Confirmations",
     "WALLET": "Кошелёк",
     "AVAILABLE": "Доступны",
@@ -84,7 +87,7 @@
     "PRICE": "Price",
     "RECEIVED": "Received",
     "DEPOSIT_ADDRESS": "Deposit Address",
-    "RECEIVE": "Receive",
+    "RECEIVE": "Получить",
     "PER": "per",
     "PROVIDED": "Exchange provided by ",
     "SEND_YOUR": "Send your",

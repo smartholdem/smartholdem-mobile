@@ -25,6 +25,7 @@
     <ul class="navbar-nav" :class="$rtl.isRTL ? 'mr-auto' : 'ml-auto'">
 
 
+      <!--
       <base-dropdown
         tag="li"
         :menu-on-right="!$rtl.isRTL"
@@ -46,6 +47,7 @@
           <span class="nav-item dropdown-item color-orange">Main Network (STH)</span>
         </li>
       </base-dropdown>
+      -->
 
       <base-dropdown
         tag="li"
@@ -85,7 +87,7 @@
       </li>
       -->
       <li class="nav-item mt-3 mb-2">
-        <span @click="toggleMode" class="ml-1"><i class="tim-icons icon-bulb-63 pb-1 mr-2"></i> DARK & LIGHT MODE</span>
+        <span @click="toggleMode" class="ml-1 text-uppercase"><i class="tim-icons icon-bulb-63 pb-1 mr-2"></i> {{$t('SET.MODE')}}</span>
       </li>
 
     </ul>

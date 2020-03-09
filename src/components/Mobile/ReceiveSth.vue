@@ -2,11 +2,11 @@
   <div>
     <card v-if="show" class="top-layer">
       <h4 @click="close" class="p-3 text-uppercase w-100 text-center"><i class="tim-icons icon-double-left float-left pt-1"></i>
-        <span v-show="!isContact" class="text-center">Receive STH</span>
+        <span v-show="!isContact" class="text-center">{{$t('WALLET.RECEIVE')}} STH</span>
         <span v-show="isContact" class="text-center">Contact Address</span>
       </h4>
       <p v-show="label" class="text-center">{{label}}</p>
-      <p class="pt-3 text-center">Click on the address to copy</p>
+      <p class="pt-3 text-center">{{$t('APP.ADDR_COPY')}}</p>
       <el-tooltip
         :content="toolTipsContent.copy"
         effect="light"
@@ -22,7 +22,7 @@
       <div v-show="!isContact">
       <base-input
         type="text"
-        label="Amount"
+        :label="$t('WALLET.AMOUNT')"
         placeholder="Enter Amount"
         addon-left-icon="tim-icons icon-coins"
         v-model="model.amount"
@@ -31,7 +31,7 @@
 
         <base-input
           type="text"
-          label="Memo"
+          :label="$t('WALLET.MEMO')"
           placeholder="Enter Memo"
           addon-left-icon="tim-icons icon-paper"
           v-model="model.memo"
