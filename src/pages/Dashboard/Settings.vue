@@ -34,11 +34,11 @@
             <base-dropdown
               menu-on-right=""
               tag="div"
-              title-classes="btn btn-link"
+              title-classes="btn btn-link font-weight-normal"
               title="English"
             >
                <span slot="title">
-                BTC <i class="tim-icons icon-minimal-down pb-1 pl-1"></i>
+                [{{defaultCurrency.symbol}}] {{defaultCurrency.ticker}} <i class="tim-icons icon-minimal-down pb-1 pl-1"></i>
               </span>
               <span class="dropdown-item"> BTC</span>
               <span class="dropdown-item"> USD</span>
@@ -104,6 +104,11 @@
 <script>
 export default {
   name: "Settings",
+  computed: {
+    defaultCurrency() {
+      return this.$store.getters['wallet/defaultCurrency']
+    },
+  },
   methods: {
     setLocale(locale) {
       this.$i18n.locale = locale
