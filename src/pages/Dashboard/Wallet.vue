@@ -37,7 +37,7 @@
 
       <div class="w-100 hide-scroll" style="overflow-x:auto;">
         <div :style="'width:'+(360*wallets.length) + 'px;'">
-          <card v-for="item in wallets" :key="item.address" class="ml-2 mr-2 account-style bgg1">
+          <card v-for="(item, idx) in wallets" :key="item.address" :class="'ml-2 mr-2 account-style bgg1 wbg' + item.bg">
             <div  class="text-white" @click="openRouter('/address/' + item.address)">
               <span v-if="!item.delegate && item.label"><i class="tim-icons icon-tag pb-1"></i> {{item.label}}</span>
               <span v-if="item.delegate"><i class="tim-icons icon-bank pb-1"></i> {{item.delegate.username}}</span>
@@ -93,7 +93,7 @@ export default {
   data() {
     return {
       showActions: false,
-      tableData: []
+      tableData: [],
     };
   },
   computed: {
@@ -101,10 +101,15 @@ export default {
       let result = []
       let balances = (this.$store.getters['wallet/balances'])
       let keys = Object.keys(balances.accounts)
+      let k=0
       if (keys.length > 0) {
         for (let i = 0; i < keys.length; i++) {
           balances.accounts[keys[i]].label = this.getLabel(keys[i])
+          balances.accounts[keys[i]].bg = k; k++;
           result.push(balances.accounts[keys[i]])
+          if (k > 4) {
+            k = 0
+          }
         }
       }
       return result
@@ -190,7 +195,7 @@ export default {
 
   .bgg1 {
     background: rgb(131, 58, 180);
-    background: linear-gradient(36deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%) !important;
+    background: linear-gradient(36deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
   }
 
   .currency-balance .dropdown-menu {
@@ -213,4 +218,33 @@ export default {
   .currency-balance {
     padding-top: 8px !important;
   }
+
+  .wbg0 {
+    background: linear-gradient(36deg, rgba(131, 58, 180, 1) 0%, rgb(253, 29, 236) 50%, rgba(252, 176, 69, 1) 100%) !important;
+    background-size: cover;
+  }
+
+  .wbg1 {
+    background: linear-gradient(36deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%) !important;
+  }
+
+  .wbg2 {
+    background: linear-gradient(38deg, rgb(244, 130, 57) 0%, rgba(69, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%) !important;
+  }
+
+  .wbg3 {
+    background: linear-gradient(38deg, rgb(35, 121, 197) 0%, rgb(55, 182, 237) 35%, rgb(38, 135, 100) 100%) !important;
+  }
+
+  .wbg4 {
+    background: linear-gradient(38deg, rgb(41, 143, 124) 0%, rgb(73, 88, 195) 35%, rgb(162, 15, 110) 100%) !important;
+  }
+
+
+
+
+
+
+
+
 </style>
