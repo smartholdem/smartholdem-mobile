@@ -3,7 +3,7 @@
     <div class="row">
     <card class="">
       <template slot="header">
-        <h3 class="card-title font-weight-bold">Create New Wallet
+        <h3 class="card-title font-weight-bold">{{$t('WALLET.CREATE_WALLET')}}
           <base-button @click="getNewAccount()" type="primary" round icon class="ml-2">
               <i class="fas fa-dice" style="font-size: 1.1rem;padding:0;"></i>
           </base-button>
@@ -30,7 +30,7 @@
 
       <base-button :disabled="!checks.lose || !account.address" @click="saveAccount" slot="footer" type="primary" round
                    block size="lg" class="text-uppercase">
-        CREATE & SAVE WALLET
+        {{$t('APP.CREATE_SAVE')}}
       </base-button>
     </card>
     </div>

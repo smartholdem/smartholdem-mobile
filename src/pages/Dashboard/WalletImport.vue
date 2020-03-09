@@ -3,7 +3,7 @@
     <div class="row">
     <card class="">
       <div>
-        <h3 class="card-title font-weight-bold">Import Wallet
+        <h3 class="card-title font-weight-bold">{{$t('WALLET.IMPORT_WALLET')}}
           <base-button @click="show.qrLoadPriv = true" type="primary" round icon class="float-right">
             <i class="fas fa-qrcode" style="font-size: 1.3rem"></i>
           </base-button>

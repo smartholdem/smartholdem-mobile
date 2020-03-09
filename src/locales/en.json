@@ -8,6 +8,9 @@
     "userProfile": "Profile"
   },
   "APP": {
+    "COME_UP": "Come up with",
+    "MY_WALLETS":"MY WALLETS",
+    "CREATE_SAVE":"CREATE & SAVE WALLET",
     "CONNECTION": "Connection",
     "ADDR_COPY": "Click on the address to copy",
     "PRIV_DATA": "Private Data",

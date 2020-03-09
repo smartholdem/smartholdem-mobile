@@ -3,7 +3,7 @@
     <div v-if="show" class="pin-layer p-2  card">
 
       <div v-if="step === 1">
-      <h4 class="text-center">Create Your PIN-Code</h4>
+      <h4 class="text-center">{{$t('APP.COME_UP')}} PIN-Code</h4>
       <div class="p-4 pl-5 mt-3">
         <div class="fill-pin w-100 p-2 ml-4 float-left mb-4">
           <span :class="'fill-pin-item ml-2 ' + (pin.length > 0 ? 'pin-filled' : '')"></span>
@@ -40,7 +40,7 @@
       </div>
 
       <div v-if="step === 2">
-        <h4 class="text-center">Repeat Your PIN-Code</h4>
+        <h4 class="text-center">{{$t('APP.REPEAT')}} PIN-Code</h4>
         <div class="p-4 pl-5 mt-3">
           <div class="fill-pin w-100 p-2 ml-4 float-left mb-4">
             <span :class="'fill-pin-item ml-2 ' + (pinRepeat.length > 0 ? 'pin-filled' : '')"></span>
