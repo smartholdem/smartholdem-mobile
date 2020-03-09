@@ -9,7 +9,7 @@ v1.0.10
 
 v1.0.9
 
-- APP Size optimized x2
+- APP Size optimized x2 15 Mb > 7 Mb
 
 v1.0.8
 
