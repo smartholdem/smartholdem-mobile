@@ -8,6 +8,7 @@
     "userProfile": "Profile"
   },
   "APP": {
+    "CREATE_PROFILE": "Создать кошелёк",
     "COME_UP": "Придумайте",
     "MY_WALLETS":"МОИ КОШЕЛЬКИ",
     "CREATE_SAVE":"СОЗДАТЬ & СОХРАНИТЬ",

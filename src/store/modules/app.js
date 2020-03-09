@@ -31,7 +31,7 @@ export default {
   state: {
     isWelcome: true,
     profiles: [],
-    language: 'en',
+    language: '',
     pinEncrypted: null, // encrypted hash
     settings: {
       sound: false,

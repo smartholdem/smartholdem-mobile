@@ -167,7 +167,6 @@ export default {
       })
     },
     setLocale(locale) {
-      console.log(this.$i18n)
       this.$i18n.locale = locale
       this.$store.dispatch('app/setLanguage', locale);
     },

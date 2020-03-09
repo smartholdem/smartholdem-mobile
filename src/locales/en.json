@@ -8,6 +8,7 @@
     "userProfile": "Profile"
   },
   "APP": {
+    "CREATE_PROFILE": "Create Profile",
     "COME_UP": "Come up with",
     "MY_WALLETS":"MY WALLETS",
     "CREATE_SAVE":"CREATE & SAVE WALLET",

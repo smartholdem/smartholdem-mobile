@@ -1,6 +1,8 @@
 <template>
   <div>
     <div class="p-0 m-0 w-100 position-fixed card h-100" style="border-radius: 0;">
+
+
       <div class="text-center h-100 mt-5">
         <img class="" src="images/sth80.png"/>
         <h2 class="text-uppercase mt-3 font-weight-bold">
@@ -11,8 +13,10 @@
 
         <div class="text-center w-100 m-auto pt-3">
           <base-button v-if="!PinEncrypted" @click="showEncrypt = true" type="primary" round class="text-uppercase">
-            Create Profile
+            {{$t('APP.CREATE_PROFILE')}}
           </base-button>
+
+
           <base-button v-if="PinEncrypted" @click="showUnlock = true" type="primary" round class="text-uppercase">
             {{$t('APP.OPEN_WALLET')}}
           </base-button>
@@ -67,7 +71,6 @@ export default {
       return this.$store.getters['app/pinEncrypted']
     }
   },
-  methods: {},
   async created() {
     this.$root.pin = null
     this.$root.pinEnc = this.PinEncrypted

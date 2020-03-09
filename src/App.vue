@@ -6,6 +6,9 @@
 
 export default {
   methods: {
+    getBroLang: function () {
+      return navigator.language;
+    },
     initializeLayout() {
       if (!this.$rtl.isRTL) {
         // Just make sure rtl css is off when we are not on rtl
@@ -28,6 +31,19 @@ export default {
     this.initializeLayout();
   },
   async created() {
+
+    const browserLang = this.getBroLang()
+
+    switch (browserLang) {
+      case 'ru-RU':
+        this.$i18n.locale = 'ru'
+        break
+
+      default:
+        this.$i18n.locale = 'en'
+        break
+    }
+
     this.$root.modalColor = 'modal-white'
     this.$root.isMobile = window.innerWidth < 800
     this.$root.height = window.innerHeight;
