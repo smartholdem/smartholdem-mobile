@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-top:-50px;">
+  <div>
     <div class="row mt-0">
       <div class="col-md-12 m-0 w-100 p-0">
         <div class="m-0">

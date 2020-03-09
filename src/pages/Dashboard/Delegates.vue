@@ -1,21 +1,27 @@
 <template>
-  <div>
-    <h4>Delegates</h4>
-    <table class="table w-100">
-      <tbody>
-      <tr v-for="(item, idx) in Delegates.list" :key="idx" class="pointer">
-        <td>
-          {{item.rate}}
-        </td>
-        <td>
-          {{item.username}}
-        </td>
-        <td>
-          {{item.approval}}%
-        </td>
-      </tr>
-      </tbody>
-    </table>
+  <div class="row">
+    <div :class.sync="'layer-head'+ ' ' + $root.modalColor">
+      <router-link to="/wallet" class="back-wallet pl-4 pr-5"><i class="tim-icons icon-minimal-left"></i></router-link>
+      <span>Delegates</span>
+    </div>
+
+    <div class="layer-content w-100">
+      <table class="table w-100">
+        <tbody>
+        <tr v-for="(item, idx) in Delegates.list" :key="idx" class="pointer">
+          <td class="pl-3">
+            {{item.rate}}
+          </td>
+          <td>
+            {{item.username}}
+          </td>
+          <td>
+            {{item.approval}}%
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
 
   </div>
 </template>
@@ -52,4 +58,17 @@ export default {
     border-bottom: solid 1px #2f253575
   }
 
+  .layer-content {
+    padding-top: 48px;
+  }
+
+  .layer-head {
+    position: fixed;
+    height: 48px;
+    margin: 0;
+    padding-top: 10px;
+    width: 100%;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+  }
 </style>

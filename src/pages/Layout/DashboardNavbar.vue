@@ -78,37 +78,25 @@
         </li>
       </base-dropdown>
 
-      <base-dropdown
-        tag="li"
-        :menu-on-right="!$rtl.isRTL"
-        title-tag="a"
-        class="nav-item"
-        title-classes="nav-link"
-        menu-classes="dropdown-navbar"
-      >
-        <template
-          slot="title"
-        >
-          <div class="photo">
-            <i class="tim-icons icon-molecule-40"></i>
-          </div>
-          <b class="caret d-none d-lg-block d-xl-block"></b>
-          <p class="d-lg-none">APP</p>
-        </template>
-        <li class="nav-link">
-          <span class="nav-item dropdown-item color-orange text-uppercase"><i class="tim-icons icon-settings-gear-63"></i> Settings</span>
-        </li>
-      </base-dropdown>
-
-      <li class="nav-item mt-3 mb-2" @click="showReset = true">
-        <span class="ml-1 text-uppercase text-primary"><i class="mr-2 tim-icons icon-simple-remove"></i> {{$t('APP.RESET')}}</span>
+      <li class="nav-item mt-3 mb-2">
+        <span @click="navRoute('/settings')" class="ml-1 text-uppercase">
+          <i class="mr-2 tim-icons icon-settings-gear-63"></i> {{$t('APP.SETTINGS')}}
+        </span>
       </li>
       <li class="nav-item mt-3 mb-2">
-        <router-link to="/welcome" class="ml-1 text-info"><i class="mr-2 tim-icons icon-lock-circle"></i> LOCK</router-link>
+        <span @click="toggleMode" class="ml-1"><i class="tim-icons icon-bulb-63 pb-1 mr-2"></i> DARK & LIGHT MODE</span>
       </li>
-      <li class="nav-item mt-3" @click="toggleMode">
-         <span class="ml-1"><i class="tim-icons icon-bulb-63 pb-1 mr-2"></i> DARK & LIGHT MODE</span>
+
+      <li class="nav-item mt-3 mb-2">
+        <span @click="navRoute('/welcome')" class="ml-1"><i class="mr-2 tim-icons icon-lock-circle"></i> LOCK</span>
       </li>
+
+      <div class="dropdown-divider border-dark"></div>
+      <li class="nav-item mt-2 mb-2" @click="showReset = true">
+        <span class="ml-1 text-uppercase text-primary"><i class="mr-2 tim-icons icon-simple-remove"></i> {{$t('APP.RESET')}}</span>
+      </li>
+
+
     </ul>
     <ResetAll :modalReset="showReset" @onResetCancel="showReset = false"/>
   </base-nav>
@@ -160,7 +148,12 @@ export default {
     },
   },
   methods: {
+    navRoute(path) {
+      this.toggleMenu()
+      this.$router.push({path: path})
+    },
     async toggleMode() {
+      this.toggleMenu()
       this.darkMode = !this.darkMode
       this.$store.dispatch('app/setSettings', {
         darkMode: this.darkMode
@@ -170,8 +163,10 @@ export default {
 
       if (this.darkMode) {
         docClasses.remove('white-content');
+        this.$root.modalColor = 'modal-dark'
       } else {
         docClasses.add('white-content');
+        this.$root.modalColor = 'modal-white'
       }
     },
     numericFormat(format, amount) {
