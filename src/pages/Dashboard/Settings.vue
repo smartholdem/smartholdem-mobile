@@ -9,7 +9,7 @@
       <table class="table table-settings w-100">
         <tbody>
         <tr>
-          <td><i class="tim-icons tim-icons-lg icon-world"></i></td>
+          <td><i class="text-danger tim-icons tim-icons-lg icon-world"></i></td>
           <td>Language</td>
           <td class="text-right">
             <base-dropdown
@@ -21,14 +21,14 @@
               <span slot="title">
                 English <i class="tim-icons icon-minimal-down pb-1 pl-1"></i>
               </span>
-              <span class="dropdown-item"> English</span>
-              <span class="dropdown-item"> Russian</span>
+              <span @click="setLocale('en')" class="dropdown-item"> English</span>
+              <span @click="setLocale('ru')" class="dropdown-item"> Russian</span>
             </base-dropdown>
           </td>
         </tr>
 
         <tr>
-          <td><i class="tim-icons tim-icons-lg icon-money-coins"></i></td>
+          <td><i class="text-danger tim-icons tim-icons-lg icon-money-coins"></i></td>
           <td>Currency</td>
           <td class="text-right">
             <base-dropdown
@@ -49,7 +49,36 @@
         </tr>
 
         <tr>
-          <td><i class="tim-icons tim-icons-lg icon-trash-simple"></i></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td><i class="text-danger tim-icons tim-icons-lg icon-bulb-63"></i></td>
+          <td>Dark & Light Mode</td>
+          <td class="text-right">
+            <i class="tim-icons icon-triangle-right-17 pb-1 pl-1"></i>
+          </td>
+        </tr>
+
+
+        <tr>
+          <td><i class="text-danger tim-icons tim-icons-lg icon-bell-55"></i></td>
+          <td>Notifications</td>
+          <td class="text-right">
+            <i class="tim-icons icon-triangle-right-17 pb-1 pl-1"></i>
+          </td>
+        </tr>
+
+        <tr class="">
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td><i class="text-danger tim-icons tim-icons-lg icon-trash-simple"></i></td>
           <td>Reset All Data</td>
           <td class="text-right">
             <i class="tim-icons icon-triangle-right-17 pb-1 pl-1"></i>
@@ -57,12 +86,13 @@
         </tr>
 
         <tr>
-          <td><i class="tim-icons tim-icons-lg icon-alert-circle-exc"></i></td>
+          <td><i class="text-danger tim-icons tim-icons-lg icon-alert-circle-exc"></i></td>
           <td>Version</td>
           <td class="text-right">
             1.0.0
           </td>
         </tr>
+
 
         </tbody>
       </table>
@@ -73,7 +103,13 @@
 
 <script>
 export default {
-  name: "Settings"
+  name: "Settings",
+  methods: {
+    setLocale(locale) {
+      this.$i18n.locale = locale
+      this.$store.dispatch('app/setLanguage', locale);
+    },
+  },
 }
 </script>
 
