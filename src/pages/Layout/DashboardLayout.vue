@@ -386,6 +386,7 @@ export default {
 
   .fill-pin {
     text-align: center;
+    max-width:202px;
   }
 
   .fill-pin-item {

@@ -1,11 +1,17 @@
 <template>
   <div class="">
     <div v-if="show" class="pin-layer p-2 card">
-      <span @click="closeUnlock" class="float-right"><i class="tim-icons icon-simple-remove"
-                                                        style="font-size: 1.2em;"></i></span>
-      <h4 class="text-center">Enter PIN-Code</h4>
-      <div class="p-4 pl-5 mt-3">
-        <div class="fill-pin w-100 p-2 ml-4 float-left mb-4">
+
+      <span @click="closeUnlock" class="position-fixed"><i class="tim-icons icon-simple-remove"
+                                                                      style="font-size: 1.4em;"></i></span>
+      <h4 class="text-center">
+
+        Enter PIN-Code
+
+      </h4>
+      <div class="p-4 mt-3 pin-content">
+        <div class="float-left mb-4 w-100">
+        <div class="fill-pin p-2 ml-auto mr-auto" style="width:210px;">
           <span :class="'fill-pin-item ml-2 ' + (pin.length > 0 ? 'pin-filled' : '')"></span>
           <span :class="'fill-pin-item ml-2 ' + (pin.length > 1 ? 'pin-filled' : '')"></span>
           <span :class="'fill-pin-item ml-2 ' + (pin.length > 2 ? 'pin-filled' : '')"></span>
@@ -13,7 +19,10 @@
           <span :class="'fill-pin-item ml-2 ' + (pin.length > 4 ? 'pin-filled' : '')"></span>
           <span :class="'fill-pin-item ml-2 ' + (pin.length > 5 ? 'pin-filled' : '')"></span>
         </div>
+        </div>
 
+        <div class="float-left w-100">
+        <div class="pin-buttons">
         <base-button @click="pinPress('1')" :type="btnType" round :simple="btnType !== 'success'" class="pin-btn font-weight-light">1
         </base-button>
         <base-button @click="pinPress('2')" :type="btnType" round :simple="btnType !== 'success'" class="pin-btn font-weight-light">2
@@ -36,6 +45,8 @@
         </base-button>
         <span :disabled="pin.length < 1" @click="pinPress('del')" class="pin-btn"><i class="fas fa-backspace pt-3"></i></span>
         <!--<span class="pin-btn"><i class="tim-icons icon-check-2 pt-3"></i></span>-->
+        </div>
+        </div>
       </div>
 
       <div v-show="!isValid && pin.length > 5" class="float-left w-100 text-center mt-2 badge badge-danger">Pin-Code Not Valid</div>
@@ -109,6 +120,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+  .pin-content {
+    max-width:480px;
+    margin: 0 auto;
+  }
 
+  .pin-buttons {
+    margin: 10px auto;
+    width: 236px;
+  }
 </style>
