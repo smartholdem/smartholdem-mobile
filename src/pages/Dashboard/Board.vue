@@ -48,16 +48,12 @@
 <script>
 import StatsCard from 'src/components/Cards/StatsCard';
 import {colors} from '@/config';
-import PriceChart from '@/components/Wallet/PriceChart';
-import AddWalletBtns from '@/components/Wallet/AddWalletBtns'
 import NumberFormat from 'number-format.js'
 import {openUrl} from 'src/util/url'
 
 export default {
   components: {
     StatsCard,
-    PriceChart,
-    AddWalletBtns,
   },
   data() {
     return {
