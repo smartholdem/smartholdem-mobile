@@ -62,7 +62,7 @@
     "VOTED_FOR": "Голос За",
     "CREATE_WALLET": "Создать Адрес",
     "IMPORT_WALLET": "Импортировать Адрес",
-    "TOTAL": "Итого",
+    "TOTAL": "Общий баланс",
     "AMOUNT": "Сумма",
     "CONF": "Confirmations",
     "WALLET": "Кошелёк",

@@ -177,8 +177,18 @@ export default {
 }
 
 .modal.modal-white .modal-content {
-  background-color: #ffffff;
+  background: #ffffff;
   color: #000000;
+  background-size: cover;
+  min-height: 100vh;
+  z-index: 10000;
+  border-radius: 0;
+  padding-bottom: 1em;
+}
+
+.modal.modal-white .form-group input, .modal.modal-white .form-group .input-group-text {
+  background-color: #fff !important;
+  color: #000;
 }
 
 .modal.modal-dark .modal-content {

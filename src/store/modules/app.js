@@ -83,7 +83,7 @@ export default {
       // полученный хэш шифруем тем же хэшем
       //const hash = CryptoJS.SHA384(payload).toString()
       //state.pinEncrypted = (CryptoJS.AES.encrypt(hash, hash)).toString() // msg, key
-      state.pinEncrypted = (CryptoJS.AES.encrypt(payload, payload)).toString() // msg, key
+      state.pinEncrypted = (CryptoJS.AES.encrypt(payload, payload)).toString() // msg, key(sha384)
     },
     SET_ACCOUNT(state, payload) {
       //const hashPin = CryptoJS.SHA384(payload.pin).toString()
