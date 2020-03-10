@@ -36,14 +36,14 @@
       </div>
 
       <div class="w-100 hide-scroll" style="overflow-x:auto;">
-        <div :style="'width:'+(360*wallets.length) + 'px;'">
+        <div :style="'width:'+(340*wallets.length) + 'px;'">
           <card v-for="item in wallets" :key="item.address" :class="'ml-2 mr-2 account-style bgg1 wbg' + item.bg">
             <div  class="text-white" @click="openRouter('/address/' + item.address)">
               <span v-if="!item.delegate && item.label"><i class="tim-icons icon-tag pb-1"></i> {{item.label}}</span>
               <span v-if="item.delegate"><i class="tim-icons icon-bank pb-1"></i> {{item.delegate.username}}</span>
               <br>{{item.balance}} STH
               <br>
-              <span v-if="!item.delegate">{{item.address}}</span>
+              <span>{{item.address.substr(0,12)}} . . . {{item.address.substr(-12)}}</span>
             </div>
           </card>
         </div>
@@ -181,7 +181,7 @@ export default {
   }
 
   .account-style {
-    width: 340px;
+    width: 300px;
     float: left;
     color: #fff;
     height: 100px;
