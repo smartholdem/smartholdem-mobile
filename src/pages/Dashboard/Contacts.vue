@@ -2,7 +2,7 @@
   <div class="row">
     <div :class.sync="'pb-3 layer-head'+ ' ' + $root.modalColor">
       <router-link to="/wallet" class="back-wallet pl-4 pr-5"><i class="tim-icons icon-minimal-left"></i></router-link>
-      <span>Contacts</span>
+      <span>{{$t('PG.CONTACTS')}}</span>
       <span class="text-right float-right mr-2" style="margin-top: -5px;">
             <base-button @click="showModalAddConact" type="info" icon simple round class="btn-sm" style="">
             <i class="tim-icons icon-simple-add" style=""></i>
@@ -13,10 +13,12 @@
 
     <div class="layer-content w-100">
 
+      <img v-if="!contactList.length" class="w-100" src="~@/assets/img/add.png"/>
+
       <table class="table w-100">
         <tbody>
         <tr v-for="(item, idx) in contactList" :key="idx + 'contact'" class="pointer">
-          <td @click="showModal('modal:qr', {address: item.address, label: item.label, isContact: true})">
+          <td class="pl-3" @click="showModal('modal:qr', {address: item.address, label: item.label, isContact: true})">
             <span class="font-weight-bolder">{{ item.label}}</span>
             <span class="small">
               <br>{{ item.address}}

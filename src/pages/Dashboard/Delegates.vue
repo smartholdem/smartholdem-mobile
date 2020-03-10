@@ -2,7 +2,7 @@
   <div class="row">
     <div :class.sync="'layer-head'+ ' ' + $root.modalColor">
       <router-link to="/wallet" class="back-wallet pl-4 pr-5"><i class="tim-icons icon-minimal-left"></i></router-link>
-      <span>Delegates</span>
+      <span>{{$t('PG.DELEGATES')}}</span>
     </div>
 
     <div class="layer-content w-100">
