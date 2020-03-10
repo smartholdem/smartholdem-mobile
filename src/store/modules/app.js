@@ -34,7 +34,7 @@ export default {
     language: '',
     pinEncrypted: null, // encrypted hash
     settings: {
-      sound: false,
+      notify: false,
       darkMode: false,
       lockAfter: 300,
     },
@@ -61,7 +61,7 @@ export default {
     },
     SET_SETTINGS(state, payload) {
       let keys = Object.keys(payload)
-      for (let i=0; i < keys.length; i++) {
+      for (let i = 0; i < keys.length; i++) {
         state.settings[keys[i]] = payload[keys[i]]
       }
     },
@@ -70,6 +70,11 @@ export default {
       state.pinEncrypted = null
       state.accounts = []
       state.contacts = {}
+      state.settings = {
+        notify: false,
+        darkMode: false,
+        lockAfter: 300,
+      }
     },
     SET_LANGUAGE(state, payload) {
       state.language = payload
