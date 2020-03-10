@@ -29,7 +29,7 @@
                     title="remove vote" class="tim-icons icon-simple-remove"></i></span>
                   </h4>
 
-                  <h4 :v-if="!accountData.delegate" class="card-title">
+                  <h4 v-if="!accountData.delegate" class="card-title">
                     <span class="font-weight-bold" v-show="addressName"><i class="tim-icons icon-tag pb-1"></i> {{ addressName }}</span>
                     &nbsp;<span v-if="accountData.vote"
                                 @click="showModal('modal:vote',{address: accountData.address, delegate: accountData.vote, voteType: '-'})"
