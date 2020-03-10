@@ -35,6 +35,7 @@
 <script>
 import {Table, TableColumn} from 'element-ui'
 import {openUrl} from 'src/util/url'
+import eventBus from '@/plugins/event-bus'
 
 export default {
   name: "Transactions",
@@ -43,7 +44,8 @@ export default {
       unconfirmed: [],
       timerUpTx: null,
       timerPeriodic: null,
-      transactions: []
+      transactions: [],
+      notified: null,
     }
   },
   props: {
@@ -66,6 +68,7 @@ export default {
         for (let i = 0; i < this.txs.transactions.length; i++) {
           if (this.txs.transactions[i].confirmations < 64) {
             timeStop = false
+            this.notifyTx(this.txs.transactions[i].id, this.txs.transactions[i].confirmations)
             break
           }
         }
@@ -80,6 +83,14 @@ export default {
     },
     removeUtx(idx) {
       this.unconfirmed.splice(idx, 1)
+    },
+    notifyTx(txId, confirmations) {
+      if (this.notified !== txId) {
+        if (confirmations < 64) {
+          this.notified = txId
+          eventBus.emit('notify:txin', txId)
+        }
+      }
     }
   },
   computed: {
@@ -121,6 +132,8 @@ export default {
       this.unconfirmed.push(data)
       await this.startUpdate()
     })
+
+
 
     await this.startUpdate()
     clearInterval(this.timerPeriodic)

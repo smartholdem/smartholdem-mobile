@@ -198,6 +198,8 @@ import ModalTxVote from '@/components/Wallet/ModalTxVote'
 import ModalPrivate from '@/components/Wallet/ModalPrivate'
 import ReceiveSth from '@/components/Mobile/ReceiveSth'
 
+const soundTxIn = new Audio('sounds/txin.mp3')
+
 export default {
   components: {
     DashboardNavbar,
@@ -322,6 +324,11 @@ export default {
       this.modal.private.show = false
       this.modal.private.address = options.address
       this.modal.private.show = true
+    })
+
+    this.$eventBus.on('notify:txin', async (options) => {
+      console.log('evt:notify:txin')
+      soundTxIn.play()
     })
 
     await this.$store.dispatch('network/getSeed')

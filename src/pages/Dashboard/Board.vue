@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <!-- Stats Cards -->
+    <!-- Smartholdem Blockchain Stats -->
 
     <div class="col-md-6 col-lg-6 mt-3">
       <div class="row">
@@ -36,7 +36,7 @@
             icon="tim-icons icon-bank"
           >
             <div slot="footer" class="w-100"><i class="tim-icons icon-money-coins"></i> Block reward <span
-              class="text-right float-right">{{blockchainStatus.reward}} STH</span></div>
+              class="text-right float-right">{{blockchainStatus.reward}} STH +TX FEES</span></div>
           </stats-card>
         </div>
 
@@ -55,11 +55,6 @@ export default {
   components: {
     StatsCard,
   },
-  data() {
-    return {
-
-    };
-  },
   computed: {
     enableRTL() {
       return this.$route.query.enableRTL;
@@ -76,7 +71,6 @@ export default {
     fees() {
       return this.$store.getters['blockchain/fees']
     },
-
   },
   methods: {
     navUrl(url) {

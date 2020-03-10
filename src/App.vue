@@ -3,7 +3,6 @@
 </template>
 
 <script>
-
 export default {
   methods: {
     getBroLang: function () {
@@ -66,6 +65,8 @@ export default {
       this.$synchronizer.defineAll()
       this.$synchronizer.ready()
     })
+
+
   },
 };
 </script>

@@ -72,6 +72,7 @@
               type="primary"
               on-text="ON"
               off-text="OFF"
+              @input="notifyOnOff"
             ></base-switch>
           </td>
         </tr>
@@ -134,6 +135,9 @@ export default {
     }
   },
   computed: {
+    settingsData() {
+      return this.$store.getters['app/settings']
+    },
     defaultCurrency() {
       return this.$store.getters['wallet/defaultCurrency']
     },
@@ -142,6 +146,11 @@ export default {
     },
   },
   methods: {
+    async notifyOnOff() {
+      this.$store.dispatch('app/setSettings', {
+        notify: this.settings.notification
+      })
+    },
     async toggleMode() {
       this.darkMode = !this.darkMode
       this.$store.dispatch('app/setSettings', {
@@ -173,6 +182,7 @@ export default {
   },
   async created() {
     this.headColor = this.$root.modalColor
+    this.settings.notification = (this.settingsData).notify
   }
 }
 </script>
