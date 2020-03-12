@@ -40,6 +40,17 @@ document.addEventListener('deviceready', function() {
 import { QrcodeStream } from 'vue-qrcode-reader'
 import eventBus from '@/plugins/event-bus'
 
+function getParameterByName(name, url) {
+  if (!url) url = window.location.href;
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+    results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+
 export default {
 
   components: { QrcodeStream },
@@ -81,12 +92,44 @@ export default {
             memo: dataJson.vendorField || null
           }
         } catch(e) {
-          const myURL = new URL(result);
-          this.send = {
-            address: myURL.pathname,
-            amount: myURL.searchParams.get('amount') || null,
-            memo: myURL.searchParams.get('vendorField') || null
+
+          let parseResult = {
+            protocol: null,
+            address: null,
+            amount: null,
+            memo: null,
+            label: null,
+            asset: null
           }
+
+          let qrString = result.split(':')
+
+          if (qrString.length === 1) {
+            parseResult.address = qrString[0]
+          }
+
+          if (qrString.length === 2) {
+            parseResult.protocol = qrString[0]
+            let qData = qrString[1].replace(/\&/g, '?')
+            let parseParams = qData.split('?')
+            console.log('parseParams', parseParams)
+            if (parseParams.length > 0) {
+              parseResult.address = parseParams[0]
+              let params = {}
+              for (let i=1; i < parseParams.length; i++) {
+                let tmpParam = parseParams[i].split('=')
+                params[tmpParam[0]] = tmpParam[1]
+              }
+
+              parseResult.amount = params.amount || null
+              parseResult.label = params.label || null
+              parseResult.memo = params.memo || null
+              parseResult.asset = params.asset || null
+            }
+          }
+
+          this.send = parseResult
+
         }
 
         this.close(this.send)
