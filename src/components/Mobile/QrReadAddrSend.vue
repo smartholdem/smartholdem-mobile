@@ -2,14 +2,15 @@
   <div>
     <card v-if="show" class="top-layer">
       <h4 @click="close(send)" class="p-3 text-uppercase w-100 text-center"><i
-        class="tim-icons icon-double-left float-left pt-1"></i> <span class="text-center">{{$t('WALLET.SCAN_QR_SEND')}} STH</span></h4>
+        class="tim-icons icon-double-left float-left pt-1"></i> <span class="text-center">{{$t('WALLET.SCAN_QR_SEND')}} STH</span>
+      </h4>
       <p class="p-3">Scan the QR-code with the SmartHoldem address</p>
 
       <div class="text-center mt-2">
         <p class="text-danger">{{ error }}</p>
         <p class="text-danger" v-if="error">>{{$t('WALLET.SCAN_QR_ERR')}}</p>
 
-        <qrcode-stream @decode="onDecode" @init="onInit" />
+        <qrcode-stream @decode="onDecode" @init="onInit"/>
 
         <p class="text-center font-weight-bolder mt-2" v-if="send.address">
           <span>{{send.address}}</span>
@@ -22,7 +23,7 @@
 </template>
 
 <script>
-document.addEventListener('deviceready', function() {
+document.addEventListener('deviceready', function () {
 
   var permissions = cordova.plugins.permissions;
   permissions.requestPermission(permissions.CAMERA, success, error);
@@ -31,13 +32,14 @@ document.addEventListener('deviceready', function() {
     console.warn('Camera permission is not turned on');
   }
 
-  function success( status ) {
-    if( !status.hasPermission ) error();
+  function success(status) {
+    if (!status.hasPermission) error();
   }
+
   console.log('cordova.plugins.permissions is now available');
 });
 
-import { QrcodeStream } from 'vue-qrcode-reader'
+import {QrcodeStream} from 'vue-qrcode-reader'
 import eventBus from '@/plugins/event-bus'
 
 function getParameterByName(name, url) {
@@ -53,12 +55,12 @@ function getParameterByName(name, url) {
 
 export default {
 
-  components: { QrcodeStream },
+  components: {QrcodeStream},
   props: {
     show: false,
   },
 
-  data () {
+  data() {
     return {
       result: null,
       error: '',
@@ -75,12 +77,12 @@ export default {
       this.result = null
       this.send = {
         address: null,
-          memo: null,
-          amount: null,
+        memo: null,
+        amount: null,
       }
       eventBus.emit('qr:forsend', data)
     },
-    onDecode (result) {
+    onDecode(result) {
       this.result = result
 
       if (result.length) {
@@ -91,7 +93,7 @@ export default {
             amount: dataJson.amount || null,
             memo: dataJson.vendorField || null
           }
-        } catch(e) {
+        } catch (e) {
 
           let parseResult = {
             protocol: null,
@@ -112,15 +114,13 @@ export default {
             parseResult.protocol = qrString[0]
             let qData = qrString[1].replace(/\&/g, '?')
             let parseParams = qData.split('?')
-            console.log('parseParams', parseParams)
             if (parseParams.length > 0) {
               parseResult.address = parseParams[0]
               let params = {}
-              for (let i=1; i < parseParams.length; i++) {
+              for (let i = 1; i < parseParams.length; i++) {
                 let tmpParam = parseParams[i].split('=')
                 params[tmpParam[0]] = tmpParam[1]
               }
-
               parseResult.amount = params.amount || null
               parseResult.label = params.label || null
               parseResult.memo = params.memo || null
@@ -139,7 +139,7 @@ export default {
 
     },
 
-    async onInit (promise) {
+    async onInit(promise) {
       try {
         await promise
       } catch (error) {

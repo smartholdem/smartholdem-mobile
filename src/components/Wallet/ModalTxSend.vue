@@ -299,6 +299,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+
+  .has-success.form-group .form-control, .has-danger.form-group .form-control {
+    padding-right: 5px;
+    padding-left: 10px;
+  }
 
 </style>
