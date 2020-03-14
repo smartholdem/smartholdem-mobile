@@ -75,8 +75,6 @@
           </sidebar-item>
 
 
-
-
         </template>
       </side-bar>
 
@@ -96,7 +94,6 @@
         <!--<content-footer v-if="!$route.meta.hideFooter"></content-footer>-->
       </div>
     </div>
-
 
 
     <div v-if="modal.unlock.show" class="pin-layer p-2">
@@ -153,11 +150,13 @@
     </div>
 
     <div v-if="modal.private.show">
-      <ModalPrivate :showModal="modal.private.show" :address="modal.private.address" @onModalClose="modal.private.show = false"/>
+      <ModalPrivate :showModal="modal.private.show" :address="modal.private.address"
+                    @onModalClose="modal.private.show = false"/>
     </div>
 
     <div v-if="modal.qr.show">
-      <ReceiveSth :show="modal.qr.show" :address="modal.qr.address" :label="modal.qr.label" :isContact="modal.qr.isContact" @onQrClose="modal.qr.show = false"/>
+      <ReceiveSth :show="modal.qr.show" :address="modal.qr.address" :label="modal.qr.label"
+                  :isContact="modal.qr.isContact" @onQrClose="modal.qr.show = false"/>
     </div>
 
   </div>
@@ -197,8 +196,6 @@ import ModalTxSend from '@/components/Wallet/ModalTxSend'
 import ModalTxVote from '@/components/Wallet/ModalTxVote'
 import ModalPrivate from '@/components/Wallet/ModalPrivate'
 import ReceiveSth from '@/components/Mobile/ReceiveSth'
-
-const soundTxIn = new Audio('sounds/txin.mp3')
 
 export default {
   components: {
@@ -251,7 +248,6 @@ export default {
       sidebarBackground: 'red' //vue|blue|orange|green|red|primary
     };
   },
-
   async created() {
     if (!this.$store.getters['app/pinEncrypted'] || !this.$root.pin) {
       this.$router.push({path: '/welcome'})
@@ -327,7 +323,7 @@ export default {
     })
 
     this.$eventBus.on('notify:txin', async (options) => {
-      console.log('evt:notify:txin')
+      const soundTxIn = new Audio('sounds/txin.mp3')
       soundTxIn.play()
     })
 
@@ -400,7 +396,7 @@ export default {
 
   .fill-pin {
     text-align: center;
-    max-width:202px;
+    max-width: 202px;
   }
 
   .fill-pin-item {
@@ -455,7 +451,6 @@ export default {
   .main-panel .zoomOut {
     animation-name: zoomOut95;
   }
-
 
   .modal.show .modal-dialog {
     -webkit-transform: translate(0, 0%);
