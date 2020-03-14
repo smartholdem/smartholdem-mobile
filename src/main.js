@@ -13,6 +13,8 @@ import store from './store'
 import eventBus from '@/plugins/event-bus'
 import synchronizer from './plugins/synchronizer'
 import VueQrcodeReader from "vue-qrcode-reader";
+import mixins from './mixins'
+
 Vue.config.productionTip = false;
 Vue.prototype.$eventBus = eventBus
 
@@ -23,6 +25,8 @@ Vue.use(RouterPrefetch)
 Vue.use(Clipboard)
 Vue.use(synchronizer)
 Vue.use(VueQrcodeReader)
+
+Vue.mixin(mixins)
 
 /* eslint-disable no-new */
 new Vue({
