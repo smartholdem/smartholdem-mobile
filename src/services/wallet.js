@@ -258,6 +258,20 @@ class Wallet {
     return ({signature: ecpair.sign(hash).toDER().toString('hex')})
   }
 
+  async verifyMessage(message, publicKey, signature) {
+    // check for hexadecimal, otherwise the signature check would may fail
+    const re = /[0-9A-Fa-f]{6}/g
+    if (!re.test(publicKey) || !re.test(signature)) {
+      // return here already because the process will fail otherwise
+      return false
+    }
+    let hash = crypto.createHash('sha256')
+    hash = hash.update(Buffer.from(message, 'utf-8')).digest()
+    const ecpair = sthJs.ECPair.fromPublicKeyBuffer(Buffer.from(publicKey, 'hex'))
+    const ecsignature = sthJs.ECSignature.fromDER(Buffer.from(signature, 'hex'))
+    return (ecpair.verify(hash, ecsignature))
+  }
+
   async sellChips(options) {
     const sig = (await this.signMessage('sell-chips' + options.amountChips, options.secret)).signature
     return (await axios.post(network.API + '/wallet/chips/sell', {
