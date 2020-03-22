@@ -255,7 +255,7 @@ class Wallet {
     let hash = crypto.createHash('sha256')
     hash = hash.update(Buffer.from(message, 'utf-8')).digest()
     const ecpair = sthJs.crypto.getKeys(passphrase)
-    return ({signature: ecpair.sign(hash).toDER().toString('hex')})
+    return ({signature: ecpair.sign(hash).toDER().toString('hex')}) // return obj.signature
   }
 
   async verifyMessage(message, publicKey, signature) {
@@ -270,16 +270,6 @@ class Wallet {
     const ecpair = sthJs.ECPair.fromPublicKeyBuffer(Buffer.from(publicKey, 'hex'))
     const ecsignature = sthJs.ECSignature.fromDER(Buffer.from(signature, 'hex'))
     return (ecpair.verify(hash, ecsignature))
-  }
-
-  async sellChips(options) {
-    const sig = (await this.signMessage('sell-chips' + options.amountChips, options.secret)).signature
-    return (await axios.post(network.API + '/wallet/chips/sell', {
-      amountChips: options.amountChips,
-      userId: options.userId,
-      pubKey: options.pubKey,
-      sig: sig
-    })).data
   }
 
   /** NEW **/
