@@ -3,17 +3,26 @@
     <div class="row mt-0">
       <div class="col-md-12 m-0 w-100 p-0">
         <div class="m-0">
-          <card v-if="mobileTabs !== 2"  class="pb-2 radius-0" style="margin-bottom: 3px; position: sticky; top: 50px;z-index:1;">
+          <card v-if="mobileTabs !== 2" class="pb-2 radius-0"
+                style="margin-bottom: 3px; position: sticky; top: 50px;z-index:1;">
             <div class="">
               <div class="row">
                 <div class="col-md-4 pl-2 text-center">
 
-                  <p title="Your Public Address" class="small font-weight-bold"
-                     v-clipboard="() => $route.params.address"
-                     v-clipboard:success="clipboardSuccessHandler"
-                  >
+                  <p title="Your Public Address" class="small font-weight-bold">
+                    <el-tooltip
+                      :content="mixval.copied"
+                      v-clipboard:success="clipboardSuccess"
+                      v-clipboard:copy="$route.params.address"
+                      effect="light"
+                      :open-delay="300"
+                      placement="top"
+                    >
+                      <span>
                     <i class="tim-icons icon-single-copy-04 pointer"></i>
                     {{$route.params.address}}
+                </span>
+                    </el-tooltip>
                   </p>
 
 
@@ -62,7 +71,9 @@
                     <i class="tim-icons icon-key-25" style="font-size: 1.3rem"></i>
                   </base-button>
 
-                  <base-button @click="showModal('modal:qr', {address: $route.params.address, label: addressName || null})" type="warning" round icon simple class="ml-2">
+                  <base-button
+                    @click="showModal('modal:qr', {address: $route.params.address, label: addressName || null})"
+                    type="warning" round icon simple class="ml-2">
                     <i class="fas fa-qrcode" style="font-size: 1.3rem"></i>
                   </base-button>
 
@@ -91,7 +102,7 @@
                 </div>
 
                 <div v-if="mobileTabs === 2" class="row m-0 p-0">
-                    <Xbts/>
+                  <Xbts/>
                 </div>
               </div>
 
@@ -268,7 +279,6 @@ export default {
     })
 
 
-
   },
   /*
   watch: {
@@ -299,7 +309,6 @@ export default {
       margin: 1.75rem auto;
     }
   }
-
 
 
 </style>
