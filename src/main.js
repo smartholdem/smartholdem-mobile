@@ -2,7 +2,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import RouterPrefetch from 'vue-router-prefetch'
 import DashboardPlugin from './plugins/dashboard-plugin';
-import Clipboard from 'v-clipboard'
+//import Clipboard from 'v-clipboard'
+import VueClipboard  from 'vue-clipboard2'
 import App from './App.vue';
 // router setup
 import router from './routes/router';
@@ -15,6 +16,11 @@ import synchronizer from './plugins/synchronizer'
 import VueQrcodeReader from "vue-qrcode-reader";
 import mixins from './mixins'
 
+
+VueClipboard.config.autoSetContainer = true // add this line
+Vue.use(VueClipboard)
+//Vue.use(Clipboard)
+
 Vue.config.productionTip = false;
 Vue.prototype.$eventBus = eventBus
 
@@ -22,7 +28,6 @@ Vue.prototype.$eventBus = eventBus
 Vue.use(DashboardPlugin)
 Vue.use(VueRouter)
 Vue.use(RouterPrefetch)
-Vue.use(Clipboard)
 Vue.use(synchronizer)
 Vue.use(VueQrcodeReader)
 

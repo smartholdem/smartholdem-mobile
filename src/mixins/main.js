@@ -29,7 +29,7 @@ export default {
     clipboardSuccess(value) {
       this.mixval.copied = 'Copied to clipboard';
       setTimeout(() => (this.mixval.copied = 'Copy to clipboard'), 1500);
-      //console.log('success', value.text)
+      console.log('success', value.text)
       // Copied to clipboard
     },
   }

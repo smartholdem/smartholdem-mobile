@@ -21,7 +21,13 @@
           <td class="pl-3" @click="showModal('modal:qr', {address: item.address, label: item.label, isContact: true})">
             <span class="font-weight-bolder">{{ item.label}}</span>
             <span class="small">
-              <br>{{ item.address}}
+              <br>
+              <el-tooltip
+                :content="mixval.copied"
+                effect="light"
+              >
+                <span>{{ item.address}}</span>
+                </el-tooltip>
               <br>{{ item.balance.toFixed(0)}} STH
             </span>
           </td>
@@ -32,7 +38,12 @@
               title-classes="btn btn-link btn-icon"
             >
               <i slot="title" class="tim-icons icon-settings-gear-63"></i>
-              <span class="dropdown-item" v-clipboard="() => item.address"> <i class="tim-icons icon-single-copy-04 pointer"></i> Copy</span>
+              <span class="dropdown-item"
+                    v-clipboard:success="clipboardSuccess"
+                    v-clipboard:copy="item.address">
+                <i class="tim-icons icon-single-copy-04 pointer"></i>
+                Copy
+              </span>
               <span class="dropdown-item" @click="showModal('modal:qr', {address: item.address, label: item.label, isContact: true})"> <i class="fas fa-qrcode"></i> QR-Code</span>
               <span class="dropdown-item" @click="removeContact(item.address)"> <i class="tim-icons icon-trash-simple"></i> Remove</span>
             </base-dropdown>
