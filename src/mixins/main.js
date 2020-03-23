@@ -9,6 +9,9 @@ export default {
   data() {
     return {
       coins,
+      mixval: {
+        copied: 'Copy to clipboard'
+      },
     }
   },
   methods: {
@@ -22,6 +25,12 @@ export default {
           window.open(url, type);
         }
       }
-    }
+    },
+    clipboardSuccess(value) {
+      this.mixval.copied = 'Copied to clipboard';
+      setTimeout(() => (this.mixval.copied = 'Copy to clipboard'), 1500);
+      //console.log('success', value.text)
+      // Copied to clipboard
+    },
   }
 }
