@@ -10,12 +10,18 @@
         </h3>
       </template>
 
-      <p class="text-primary font-weight-bold"  v-clipboard="() => account.secret"><i class="tim-icons icon-lock-circle"></i>{{$t('APP.YOUR_SECRET')}}
+      <p class="text-primary font-weight-bold"
+         v-clipboard:success="clipboardSuccess"
+         v-clipboard:copy="account.secret"
+      ><i class="tim-icons icon-lock-circle"></i>{{$t('APP.YOUR_SECRET')}}
       <textarea rows="3" class="w-100 border-dark rounded" v-model="account.secret"></textarea>
       </p>
 
 
-      <p class="text-primary font-weight-bold" v-clipboard="() => account.address">{{$t('APP.YOUR_PUB_ADDR')}}
+      <p class="text-primary font-weight-bold"
+         v-clipboard:success="clipboardSuccess"
+         v-clipboard:copy="account.address">
+        {{$t('APP.YOUR_PUB_ADDR')}}
         <base-input
           v-model="account.address"
           addon-left-icon="tim-icons icon-wallet-43"
