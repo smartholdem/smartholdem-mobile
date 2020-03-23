@@ -240,10 +240,6 @@ export default {
         eventBus.emit('modal:unlock')
       }
     },
-    clipboardSuccessHandler() {
-      this.toolTipsContent.copy = 'Copied to clipboard';
-      setTimeout(() => (this.toolTipsContent.copy = 'Copy'), 1500);
-    },
   },
   mounted() {
     this.account.label = this.$store.getters['wallet/labels'][this.$route.params.address]

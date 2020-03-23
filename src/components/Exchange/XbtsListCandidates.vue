@@ -25,11 +25,13 @@
       </el-table-column>
 
       <el-table-column
-        className=""
+        :content="mixval.copied"
+        v-clipboard:success="clipboardSuccess"
+        v-clipboard:copy="row.address"
         min-width="100"
         label="Vote Address"
       >
-        <div class="font-weight-bold text-darker" slot-scope="{ row }"  v-clipboard="() => row.address">
+        <div class="font-weight-bold text-darker" slot-scope="{ row }">
           <i class="tim-icons icon-single-copy-04 pointer"></i> {{row.address}}
         </div>
       </el-table-column>

@@ -8,12 +8,14 @@
       <p v-show="label" class="text-center">{{label}}</p>
       <p class="pt-3 text-center">{{$t('APP.ADDR_COPY')}}</p>
       <el-tooltip
-        :content="toolTipsContent.copy"
+        :content="mixval.copied"
+        v-clipboard:success="clipboardSuccess"
+        v-clipboard:copy="address"
         effect="light"
-        :open-delay="300"
-        placement="top"
       >
-      <p class="text-center" v-clipboard="() => address" v-clipboard:success="clipboardSuccessHandler">{{address}}</p>
+      <p class="text-center"
+
+      >{{address}}</p>
       </el-tooltip>
       <div class="text-center mt-4">
         <VueQrcode v-if="address" class="qr-wallet" :value="qrData" :options="{size:192}"/>
@@ -89,12 +91,7 @@ export default {
         label: '',
       }
     },
-    clipboardSuccessHandler({value, event}) {
-      this.toolTipsContent.copy = 'Copied to clipboard';
-      setTimeout(() => (this.toolTipsContent.copy = 'Copy'), 1500);
-    },
   },
-
 }
 </script>
 

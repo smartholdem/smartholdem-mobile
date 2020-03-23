@@ -106,11 +106,6 @@ export default {
       this.$router.push('/wallet/')
 
     },
-    clipboardSuccessHandler({value, event}) {
-      this.toolTipsContent.copy = 'Copied to clipboard';
-      setTimeout(() => (this.toolTipsContent.copy = 'Copy'), 1500);
-      // Copied to clipboard
-    },
     getError(fieldName) {
       return this.errors.first(fieldName)
     },

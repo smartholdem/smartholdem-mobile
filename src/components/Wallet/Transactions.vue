@@ -5,22 +5,24 @@
     <div v-if="!txs.transactions.length" class="text-center">No Transactions</div>
     <table class="table">
       <tr v-for="(item, idx) in txs.transactions" :key="idx">
-        <td style="border-top: none; border-bottom: solid 1px #555;"
-            v-clipboard="() => item"
-        >
+        <td style="border-top: none; border-bottom: solid 1px #555;">
           <span v-show="item.op === '-'" class="badge badge-danger big-badge">{{item.amount}} STH</span>
           <span v-show="item.op === '+'" class="badge badge-success big-badge">{{item.amount}} STH</span>
-          <span class="float-right text-info">
-            <base-button type="info" icon round class="btn-sm">
-              <i class="tim-icons icon-single-copy-04"></i>
-              </base-button>
-
-          </span>
+          <el-tooltip
+            :content="mixval.copied"
+            v-clipboard:success="clipboardSuccess"
+            v-clipboard:copy="item.id"
+            effect="light"
+            :open-delay="300"
+            placement="top"
+          >
+            <span class="float-right badge badge-secondary  big-badge pointer"><i class="tim-icons icon-single-copy-04"></i></span>
+          </el-tooltip>
           <br/>Tx <span class="small font-weight-normal">{{item.id.substr(0, 10)}}...{{item.id.substr(-10)}}</span>
-          <br/><span class="truncate">{{$t('WALLET.CONF')}}
+          <br/>
+          <span class="truncate">{{$t('WALLET.CONF')}}
           <span v-if="item.confirmations < 64">{{item.confirmations}}</span>
           <span v-if="item.confirmations > 64">64+</span>
-
         </span>
           <br/><span class="truncate">{{item.time}}</span>
           <br/><span class="small font-weight-normal">From {{item.senderId}}</span>
@@ -68,7 +70,9 @@ export default {
         for (let i = 0; i < this.txs.transactions.length; i++) {
           if (this.txs.transactions[i].confirmations < 64) {
             timeStop = false
-            this.notifyTx(this.txs.transactions[i].id, this.txs.transactions[i].confirmations)
+            if ((this.settingsData).notify) {
+              this.notifyTx(this.txs.transactions[i].id, this.txs.transactions[i].confirmations)
+            }
             break
           }
         }
@@ -94,6 +98,9 @@ export default {
     }
   },
   computed: {
+    settingsData() {
+      return this.$store.getters['app/settings']
+    },
     txs() {
       let result = {
         count: 0,
@@ -101,7 +108,7 @@ export default {
       }
       const txsData = this.$store.getters['wallet/txs']
       if (txsData.transactions) {
-      result.count = txsData.count
+        result.count = txsData.count
         for (let i = 0; i < this.unconfirmed.length; i++) {
           let remove = false
           for (let j = 0; j < txsData.transactions.length; j++) {
@@ -132,7 +139,6 @@ export default {
       this.unconfirmed.push(data)
       await this.startUpdate()
     })
-
 
 
     await this.startUpdate()

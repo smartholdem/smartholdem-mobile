@@ -94,7 +94,9 @@
           </div>
 
           <el-tooltip
-            :content="toolTipsContent"
+            :content="mixval.copied"
+            v-clipboard:success="clipboardSuccess"
+            v-clipboard:copy="addressDepositCurrent"
             :open-delay="300"
             placement="left"
           >
@@ -103,8 +105,6 @@
               class="w-100"
               type="text"
               v-model="addressDepositCurrent"
-              v-clipboard="() => addressDepositCurrent"
-              v-clipboard:success="clipboardSuccessHandler"
             >
             </base-input>
           </el-tooltip>
@@ -119,7 +119,9 @@
         <!-- DEPOSIT Bitshares -->
         <div v-if="btsAssets[selects.currency]">
           <el-tooltip
-            :content="toolTipsContent"
+            :content="mixval.copied"
+            v-clipboard:success="clipboardSuccess"
+            v-clipboard:copy="currentAddress"
             :open-delay="200"
             placement="left"
           >
@@ -128,8 +130,6 @@
               class="w-100 text-danger"
               type="text"
               :value="currentAddress"
-              v-clipboard="() => currentAddress"
-              v-clipboard:success="clipboardSuccessHandler"
             >
             </base-input>
           </el-tooltip>
@@ -174,12 +174,13 @@
         <table v-if="$root.isMobile" class="table text-white">
           <tr v-for="(item, idx) in depHistory" :key="idx">
             <el-tooltip
-              :content="toolTipsContent"
+              :content="mixval.copied"
+              v-clipboard:success="clipboardSuccess"
+              v-clipboard:copy="item.txIn"
               :open-delay="300"
               placement="left"
             >
-              <td v-clipboard="() => item"
-                  v-clipboard:success="clipboardSuccessHandler">
+              <td>
                 {{$t('WALLET.SENT')}} {{item.amount}} {{item.coin}}
                 <span class="float-right text-success">Copy data <i class="tim-icons icon-single-copy-04"></i></span>
                 <br><span class="small">{{$t('WALLET.FROM')}} {{item.senderId}}</span>
@@ -228,12 +229,13 @@
             </td>
             <td class="truncate pointer">
               <el-tooltip
-                :content="toolTipsContent"
+                :content="mixval.copied"
+                v-clipboard:success="clipboardSuccess"
+                v-clipboard:copy="item.txIn"
                 :open-delay="300"
                 placement="left"
               >
-              <span v-clipboard="() => item.txIn"
-                    v-clipboard:success="clipboardSuccessHandler">
+              <span>
               {{item.txIn}}
                 </span>
               </el-tooltip>
@@ -390,11 +392,6 @@ export default {
 
       }
       this.loading = false
-    },
-    clipboardSuccessHandler({value, event}) {
-      this.toolTipsContent = 'Copied to clipboard';
-      setTimeout(() => (this.toolTipsContent = 'Click Copy'), 1500);
-      // Copied to clipboard
     },
     async iSend() {
       this.exchangeModal = false

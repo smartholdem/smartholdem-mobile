@@ -16,7 +16,10 @@
     <p class="text-warning small text-center">{{$t('APP.MSG_SECURE')}}</p>
     <hr class="bg-primary">
     <p class="text-center">- YOUR SECRET PASSPHRASE -</p>
-    <p class="font-weight-light text-center" title="copy private key" v-clipboard="() => account.secret">
+    <p class="font-weight-light text-center" title="copy private key"
+       v-clipboard:success="clipboardSuccess"
+       v-clipboard:copy="account.secret"
+    >
       <i class="tim-icons icon-single-copy-04 pointer"></i> {{account.secret}}
     </p>
     <hr class="bg-primary">

@@ -117,7 +117,9 @@
 
           <p class="text-black-50">{{$t('APP.YOUR_PUB_ADDR')}}</p>
           <el-tooltip
-            :content="toolTipsContent.copy"
+            :content="mixval.copied"
+            v-clipboard:success="clipboardSuccess"
+            v-clipboard:copy="account.address"
             effect="light"
             :open-delay="300"
             placement="top"
@@ -127,15 +129,16 @@
               readonly
               addon-left-icon="tim-icons icon-single-copy-04"
               class="pointer"
-              v-clipboard="() => account.address"
-              v-clipboard:success="clipboardSuccessHandler"
+
             >
             </base-input>
           </el-tooltip>
 
           <p class="text-black-50">{{$t('APP.YOUR_SECRET')}}</p>
           <el-tooltip
-            :content="toolTipsContent.copy"
+            :content="mixval.copied"
+            v-clipboard:success="clipboardSuccess"
+            v-clipboard:copy="account.secret"
             effect="light"
             :open-delay="300"
             placement="top"
@@ -145,8 +148,6 @@
               readonly
               addon-left-icon="tim-icons icon-single-copy-04"
               class="pointer"
-              v-clipboard="() => account.secret"
-              v-clipboard:success="clipboardSuccessHandler"
             >
             </base-input>
           </el-tooltip>
@@ -184,7 +185,9 @@
           <base-alert v-show="isBip39 === false" type="warning" class="mb-1 small p-1"><i class="tim-icons icon-bell-55"></i> {{$t('APP.NO_BIP39')}}</base-alert>
           <p class="text-black-50">{{$t('APP.YOUR_PUB')}}</p>
           <el-tooltip
-            :content="toolTipsContent.copy"
+            :content="mixval.copied"
+            v-clipboard:success="clipboardSuccess"
+            v-clipboard:copy="account.address"
             effect="light"
             :open-delay="300"
             placement="top"
@@ -194,7 +197,6 @@
               readonly
               addon-left-icon="tim-icons icon-single-copy-04"
               class="pointer"
-              v-clipboard="() => account.address"
             >
             </base-input>
           </el-tooltip>
@@ -355,11 +357,6 @@ export default {
       this.account.secret = null
       await this.$store.dispatch('wallet/setCurrentAddress', this.account.address)
       this.$router.push('/lock/')
-    },
-    clipboardSuccessHandler({value, event}) {
-      this.toolTipsContent.copy = 'Copied to clipboard';
-      setTimeout(() => (this.toolTipsContent.copy = 'Copy'), 1500);
-      // Copied to clipboard
     },
     pinValidate() {
       if (this.model.pin === this.model.pinR) {
