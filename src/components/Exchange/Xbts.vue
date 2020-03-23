@@ -190,7 +190,7 @@
                 <br><span>{{$t('WALLET.PRICE')}} 1 {{item.coin}} = {{item.price}} STH</span>
                 <br><span>{{$t('WALLET.RECEIVED')}} {{item.amountSTH}} STH</span>
                 <br><span v-if="item.txSTH" class="small text-success"
-                          @click="navUrl('https://blockexplorer.smartholdem.io/#/transaction/' + item.txSTH)">STH tx {{item.txSTH.substr(0, 10)}} . . . {{item.txSTH.substr(-10)}}</span>
+                          @click="openLink('https://blockexplorer.smartholdem.io/#/transaction/' + item.txSTH)">STH tx {{item.txSTH.substr(0, 10)}} . . . {{item.txSTH.substr(-10)}}</span>
               </td>
             </el-tooltip>
           </tr>
@@ -256,7 +256,7 @@
                 placement="left"
               >
                 <span v-if="item.txSTH"
-                      @click="navUrl('https://blockexplorer.smartholdem.io/#/transaction/' + item.txSTH)">{{item.txSTH}}</span>
+                      @click="openLink('https://blockexplorer.smartholdem.io/#/transaction/' + item.txSTH)">{{item.txSTH}}</span>
               </el-tooltip>
             </td>
           </tr>
@@ -273,7 +273,6 @@ import {Select, Option} from 'element-ui'
 import {Modal} from '@/components'
 import {exchange, network} from '@/config'
 import axios from 'axios'
-import {openUrl} from 'src/util/url'
 
 export default {
   name: "xbts",
@@ -337,9 +336,6 @@ export default {
     },
   },
   methods: {
-    navUrl(url) {
-      openUrl(url)
-    },
     async getDepositAddress() {
       if (this.btsAssets[this.selects.currency]) {
         this.currency[this.selects.currency].addressDeposit = 'smartholdem'

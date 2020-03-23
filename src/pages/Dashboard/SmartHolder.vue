@@ -8,7 +8,7 @@
           <span class="badge badge-success big-badge">Total Hold <span class="font-weight-bolder p-2">{{(holders.total.realAmount * 1).toFixed(0)}}</span> STH</span>
 
           <span class="btn btn-outline-warning btn-sm float-right pointer m-0"
-                @click="navUrl('https://community.smartholdem.io/topic/530/staking-at-xbts-up-to-50-of-trading-profit')"
+                @click="openLink('https://community.smartholdem.io/topic/530/staking-at-xbts-up-to-50-of-trading-profit')"
           >
             Join Now
           </span>
@@ -70,7 +70,6 @@
 
 <script>
 import {TabPane, Tabs, Collapse, CollapseItem} from 'src/components';
-import {openUrl} from 'src/util/url'
 
 export default {
   name: "SmartHolder",
@@ -81,9 +80,7 @@ export default {
     CollapseItem,
   },
   methods: {
-    navUrl(url) {
-      openUrl(url)
-    },
+
   },
   computed: {
     assetsNoq() {

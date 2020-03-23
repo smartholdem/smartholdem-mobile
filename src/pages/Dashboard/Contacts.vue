@@ -60,7 +60,6 @@
 
 <script>
 import eventBus from '@/plugins/event-bus'
-import {openUrl} from 'src/util/url'
 import ModalAddContact from '@/components/Wallet/ModalAddContact'
 
 export default {
@@ -99,9 +98,6 @@ export default {
       } else {
         this.$eventBus.emit('modal:unlock')
       }
-    },
-    navUrl(url) {
-      openUrl(url)
     },
     async removeContact(key) {
       let accounts = await this.$store.getters['app/contacts']

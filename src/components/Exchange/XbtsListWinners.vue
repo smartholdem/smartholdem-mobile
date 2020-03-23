@@ -65,7 +65,6 @@
 
 <script>
 import {Table, TableColumn} from 'element-ui'
-import {openUrl} from 'src/util/url'
 
 export default {
   name: "XbtsListCandidates",
@@ -75,7 +74,7 @@ export default {
   },
   methods: {
     openTicker(ticker) {
-      openUrl('https://ex.xbts.io/#/market/XBTSX.'+ticker+'_BTS')
+      this.openLink('https://ex.xbts.io/#/market/XBTSX.'+ticker+'_BTS')
     }
   },
   computed: {

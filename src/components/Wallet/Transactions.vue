@@ -16,7 +16,8 @@
             :open-delay="300"
             placement="top"
           >
-            <span class="float-right badge badge-secondary  big-badge pointer"><i class="tim-icons icon-single-copy-04"></i></span>
+            <span class="float-right badge badge-secondary  big-badge pointer"><i
+              class="tim-icons icon-single-copy-04"></i></span>
           </el-tooltip>
           <br/>Tx <span class="small font-weight-normal">{{item.id.substr(0, 10)}}...{{item.id.substr(-10)}}</span>
           <br/>
@@ -36,7 +37,6 @@
 
 <script>
 import {Table, TableColumn} from 'element-ui'
-import {openUrl} from 'src/util/url'
 import eventBus from '@/plugins/event-bus'
 
 export default {
@@ -59,9 +59,6 @@ export default {
     [TableColumn.name]: TableColumn,
   },
   methods: {
-    navUrl(url) {
-      openUrl(url)
-    },
     async startUpdate() {
       clearTimeout(this.timerUpTx);
       let timeStop = true
@@ -82,7 +79,6 @@ export default {
           await this.$store.dispatch('wallet/getTxsByAddress')
           await this.startUpdate()
         }
-
       }, 11000)
     },
     removeUtx(idx) {
@@ -122,12 +118,10 @@ export default {
             result.transactions.push(this.unconfirmed[i])
           }
         }
-
         for (let i = 0; i < txsData.transactions.length; i++) {
           result.transactions.push(txsData.transactions[i])
         }
       }
-
       //console.log(result)
       return result
     },
@@ -139,19 +133,13 @@ export default {
       this.unconfirmed.push(data)
       await this.startUpdate()
     })
-
-
     await this.startUpdate()
     clearInterval(this.timerPeriodic)
     this.timerPeriodic = setInterval(async () => {
       await this.startUpdate()
       await this.$store.dispatch('wallet/getBalances')
     }, 30000)
-
-
-  }
-
-
+  },
 }
 </script>
 

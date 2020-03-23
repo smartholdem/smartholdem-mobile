@@ -49,7 +49,6 @@
 import StatsCard from 'src/components/Cards/StatsCard';
 import {colors} from '@/config';
 import NumberFormat from 'number-format.js'
-import {openUrl} from 'src/util/url'
 
 export default {
   components: {
@@ -73,9 +72,6 @@ export default {
     },
   },
   methods: {
-    navUrl(url) {
-      openUrl(url)
-    },
     numericFormat(format = '# ##0.', amount) {
       return NumberFormat(format, amount)
     }
