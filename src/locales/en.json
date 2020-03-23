@@ -26,7 +26,7 @@
     "SW_OFF": "OFF",
     "SW_ON": "ON",
     "UNLOCK": "Unlock",
-    "NO_BIP39": "The secret phrase is not a BIP39 standard, but you can use",
+    "NO_BIP39": "The secret phrase is not a BIP39 standard",
     "RESET": "Reset All Data",
     "CLOSE": "Close",
     "ALL_DATA_RESET": "All your data, including created accounts, networks and stats will be removed from the app and reset to default.",
