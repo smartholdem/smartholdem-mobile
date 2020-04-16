@@ -35,7 +35,7 @@ export default {
 
     switch (browserLang) {
       case 'ru-RU':
-        this.$i18n.locale = 'en'
+        this.$i18n.locale = 'ru'
         break
 
       default:
