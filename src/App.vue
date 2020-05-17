@@ -33,6 +33,13 @@ export default {
 
     const browserLang = this.getBroLang()
 
+      if (browserLang === 'ru-RU') {
+          this.$i18n.locale = 'ru'
+      } else {
+          this.$i18n.locale = 'en'
+      }
+
+/*
     switch (browserLang) {
       case 'ru-RU':
         this.$i18n.locale = 'ru'
@@ -42,6 +49,7 @@ export default {
         this.$i18n.locale = 'en'
         break
     }
+*/
 
     this.$root.modalColor = 'modal-white'
     this.$root.isMobile = window.innerWidth < 800
