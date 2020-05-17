@@ -18,6 +18,13 @@ export default {
     async pubKeyByAddress(address) {
       return (this.$store.getters['app/accounts'][address]).pubKey || null
     },
+    async addressDecrypt(address, pin) {
+      const secret = await this.$store.dispatch('app/walletDecrypt', {
+        address: address,
+        pin: pin
+      })
+      return secret
+    },
     notify(verticalAlign, horizontalAlign, type = 'success', msg = 'Success') {
       this.$notify({
         message: msg,
