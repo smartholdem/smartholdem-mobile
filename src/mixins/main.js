@@ -15,6 +15,9 @@ export default {
     }
   },
   methods: {
+    async pubKeyByAddress(address) {
+      return (this.$store.getters['app/accounts'][address]).pubKey || null
+    },
     openLink(url, type = '_blank') {
       if (url) {
         if (process.env.IS_ELECTRON) {
