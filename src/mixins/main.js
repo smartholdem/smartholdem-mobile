@@ -18,6 +18,16 @@ export default {
     async pubKeyByAddress(address) {
       return (this.$store.getters['app/accounts'][address]).pubKey || null
     },
+    notify(verticalAlign, horizontalAlign, type = 'success', msg = 'Success') {
+      this.$notify({
+        message: msg,
+        timeout: 5000,
+        icon: 'tim-icons icon-bell-55',
+        horizontalAlign: horizontalAlign,
+        verticalAlign: verticalAlign,
+        type: type
+      });
+    },
     openLink(url, type = '_blank') {
       if (url) {
         if (process.env.IS_ELECTRON) {
