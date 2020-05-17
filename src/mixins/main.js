@@ -25,6 +25,27 @@ export default {
       })
       return secret
     },
+    async signMessage(options) {
+      //msg, address, pin
+      let secret = await this.addressDecrypt(options.address, options.pin)
+      let pubKey = await this.pubKeyByAddress(options.address)
+      let data = null
+      if (options.msg.length > 0 && secret) {
+        data = {
+          msg: options.msg,
+          address: options.address,
+          pubKey: pubKey,
+          signature: (await this.$store.dispatch('wallet/SignMsg', {
+            secret: secret,
+            msg: options.msg,
+          })).signature || null,
+        }
+      }
+      if (!secret) {
+        this.notify('bottom', 'right', 'danger', 'secret key is not valid')
+      }
+      return data
+    },
     notify(verticalAlign, horizontalAlign, type = 'success', msg = 'Success') {
       this.$notify({
         message: msg,
