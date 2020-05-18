@@ -1,7 +1,7 @@
 import {network} from '@/config'
 import axios from "axios/index";
 
-const sthJs = require('sthjs')
+// const sthJs = require('sthjs')
 
 class Network {
 

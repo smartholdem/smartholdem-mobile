@@ -163,7 +163,7 @@
 
 </template>
 <script>
-const soundTxIn = new Audio('sounds/txin.mp3')
+// const soundTxIn = new Audio('sounds/txin.mp3')
 
 /* eslint-disable no-new */
 import PerfectScrollbar from 'perfect-scrollbar';
@@ -324,7 +324,7 @@ export default {
     })
 
     this.$eventBus.on('notify:txin', async (options) => {
-      soundTxIn.play()
+      // soundTxIn.play()
     })
 
     await this.$store.dispatch('network/getSeed')
