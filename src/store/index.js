@@ -13,7 +13,6 @@ import AppNetwork from '@/store/modules/network'
 import AppBlockchain from '@/store/modules/blockchain'
 import AppMarket from '@/store/modules/market'
 import SmartHolderModule from '@/store/modules/smartholder'
-import moneytree from '@/store/modules/moneytree'
 
 Vue.use(Vuex)
 
@@ -25,7 +24,6 @@ const modules = {
   blockchain: AppBlockchain,
   market: AppMarket,
   smartholder: SmartHolderModule,
-  moneytree: moneytree,
 };
 
 // Modules that should not be persisted

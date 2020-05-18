@@ -18,7 +18,7 @@ exports.network = {
   EXPLORER: 'https://blockexplorer.smartholdem.io/#/',
   AGENT: 'sth-wallet',
   ABOUNTY: 'https://abapi.smartholdem.io',
-  WS: 'ws://116.202.22.101:3790',
+  WS: 'wss://abapi.smartholdem.io/ws',
   XBTS_VOTE: 'https://vote.xbts.io/api/',
   SMARTHOLDER: 'https://smartholder.xbts.io',
   NODE: 'node0.smartholdem.io',

@@ -134,7 +134,6 @@ export default {
       commit('UPD_ACCOUNTS', value)
     },
     async walletDecrypt({commit}, value) {
-      //let currentHashPin = (CryptoJS.SHA384(value.pin)).toString()
       const accounts = await this.getters['app/accounts']
       let accountBytes = CryptoJS.AES.decrypt(accounts[value.address].secret.toString(), value.pin)
       return accountBytes.toString(CryptoJS.enc.Utf8)
