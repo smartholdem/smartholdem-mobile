@@ -14,7 +14,7 @@ import AppBlockchain from '@/store/modules/blockchain'
 import AppMarket from '@/store/modules/market'
 import SmartHolderModule from '@/store/modules/smartholder'
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 const modules = {
   app: AppModule,

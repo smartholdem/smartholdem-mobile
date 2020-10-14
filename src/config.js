@@ -23,15 +23,9 @@ exports.network = {
   SMARTHOLDER: 'https://smartholder.xbts.io',
   NODE: 'node0.smartholdem.io',
   PEERS: [
-    '80.211.31.231',
     '212.237.17.171',
     '213.239.207.170',
-    '94.177.213.55',
-    '80.211.32.86',
-    '188.213.168.227',
-    '194.182.68.74',
     '194.182.74.218',
-    '194.182.74.212',
     '194.182.74.130',
     '194.182.74.228',
     '194.182.66.20',
@@ -45,11 +39,12 @@ exports.network = {
     'node3.smartholdem.io',
     'node4.smartholdem.io',
   ]
-}
+};
 
 exports.exchange = {
-  API: 'https://ex.smartholdem.io'
-}
+  API: 'https://ex.smartholdem.io',
+  VERSION: '/v2'
+};
 
 exports.I18N = {
   defaultLocale: 'en',
