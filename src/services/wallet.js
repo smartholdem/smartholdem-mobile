@@ -114,7 +114,22 @@ class Wallet {
   }
 
   async getDepAddress(options) {
-    return (await axios.get(exchange.API + '/' + options.coin + '/deposit-address/' + options.recipientId)).data.address
+    let result = null;
+    let versions = {
+      "btc": exchange.VERSION,
+      "doge": exchange.VERSION,
+      "ltc": exchange.VERSION,
+      "dash": exchange.VERSION,
+      "post": exchange.VERSION,
+      "btg": exchange.VERSION,
+    };
+    let versionURL = versions[options.coin] ? exchange.VERSION : ''; // до полного обновления апи использовать версионность
+    try {
+      result = (await axios.get(exchange.API + versionURL + '/' + options.coin + '/deposit-address/' + options.recipientId)).data.address
+    } catch (e) {
+      result = null
+    }
+    return result
   }
 
   /**
