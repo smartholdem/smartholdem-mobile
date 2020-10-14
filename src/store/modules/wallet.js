@@ -267,16 +267,17 @@ export default {
       commit('SET_TRANSACTIONS', value)
     },
     async getDepAddress({commit}, value) {
-      let address = await this.getters['wallet/depAddrs'][value.coin]
-      if (!address) {
-        address = await Wallet.getDepAddress(value)
+      let address;
+      //let address = await this.getters['wallet/depAddrs'][value.coin]
+      //if (!address) {
+        address = await Wallet.getDepAddress(value);
         if (address) {
           commit('SET_DEP_ADDR', {
             coin: value.coin,
             address: address
           })
         }
-      }
+      //}
       return address
     },
     async getSthMarket({commit}, value) {
