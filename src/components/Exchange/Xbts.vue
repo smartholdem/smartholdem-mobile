@@ -344,7 +344,8 @@ export default {
             } else {
                 this.currency[this.selects.currency].addressDeposit = await this.$store.dispatch('wallet/getDepAddress', {
                     coin: this.selects.currency,
-                    recipientId: this.currentAddress
+                    recipientId: this.currentAddress,
+                    v: this.currency[this.selects.currency].v,
                 }) // depAddress.address
             }
             this.addressDepositCurrent = this.currency[this.selects.currency].addressDeposit
