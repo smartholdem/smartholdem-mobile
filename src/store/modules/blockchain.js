@@ -96,10 +96,10 @@ export default {
         commit('SET_DELEGATES', data)
       }
     },
-    async fetchDelegatesStandby({commit}, value = 64) {
+    async fetchDelegatesStandby({commit}, value = 0) {
       const data = await Blockchain.getDelegates(value);
       if (data.count > 0) {
-        commit('SET_DELEGATES', data)
+        commit('SET_DELEGATES_STANDBY', data)
       }
     },
     async getStatus({commit}) {
