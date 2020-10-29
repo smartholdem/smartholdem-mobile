@@ -21,6 +21,22 @@
         </tr>
         </tbody>
       </table>
+
+      <table class="table w-100">
+        <tbody>
+        <tr v-for="(item, idx) in Delegates.list" :key="idx" class="pointer">
+          <td class="pl-3">
+            {{item.rate}}
+          </td>
+          <td>
+            {{item.username}}
+          </td>
+          <td>
+            {{item.approval}}%
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
 
   </div>
@@ -41,7 +57,7 @@ export default {
       result.list = data.list;
       return result
     },
-      DelegatesStandby() {
+      standbyDelegates() {
           let result = {
               count: 0,
               list: [],
