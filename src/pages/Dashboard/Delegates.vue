@@ -35,7 +35,7 @@ export default {
       let result = {
         count: 0,
         list: [],
-      }
+      };
       const data = this.$store.getters['blockchain/delegates']
       result.count = data.count
       result.list = data.list

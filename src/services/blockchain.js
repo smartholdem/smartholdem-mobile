@@ -15,13 +15,13 @@ class Blockchain {
       count: 0,
     };
     try {
-      const data = (await axios.get('https://' + network.NODE + '/api/delegates?limit=100&offset=' + offset)).data;
+      const data = (await axios.get('https://' + network.NODE + '/api/delegates?limit=64&offset=' + offset)).data;
       result = {
         list: data.delegates,
         count: data.totalCount,
       }
     } catch (e) {
-
+      console.log(e);
     }
     return result
   }

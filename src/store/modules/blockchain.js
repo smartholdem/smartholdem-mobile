@@ -29,7 +29,11 @@ export default {
   state: {
     delegates: {
       list: [],
-      count: 297,
+      count: 0,
+    },
+    standbyDelegates: {
+      list: [],
+      count: 0,
     },
     status: {
       "epoch": "2017-11-21T13:00:00.000Z",
