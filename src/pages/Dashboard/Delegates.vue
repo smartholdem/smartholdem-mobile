@@ -22,7 +22,7 @@
         </tbody>
       </table>
 
-      <h3 class="text-center">Standby Delegates</h3>
+      <h4 class="text-center border border-danger">Standby Delegates</h4>
       <table class="table w-100">
         <tbody>
         <tr :key="idx" class="pointer" v-for="(item, idx) in standbyDelegates.list">
