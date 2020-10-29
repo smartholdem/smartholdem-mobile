@@ -13,9 +13,9 @@ class Blockchain {
     let result = {
       list: [],
       count: 0,
-    }
+    };
     try {
-      const data = (await axios.get('https://' + network.NODE + '/api/delegates?limit=64&offset=' + offset)).data
+      const data = (await axios.get('https://' + network.NODE + '/api/delegates?limit=100&offset=' + offset)).data;
       result = {
         list: data.delegates,
         count: data.totalCount,
@@ -35,15 +35,15 @@ class Blockchain {
       "nethash": "fc46bfaf9379121dd6b09f5014595c7b7bd52a0a6d57c5aff790b42a73c76da7",
       "reward": 200000000,
       "supply": 24167151800000000
-    }
+    };
     try {
-      const data = (await axios.get('https://' + network.NODE + '/api/blocks/getStatus')).data
-      result.height = data.height
-      result.supply = (data.supply / 10 ** 8)
-      result.fee = (data.fee / 10 ** 8).toFixed(2)
-      result.reward = (data.reward / 10 ** 8).toFixed(2)
+      const data = (await axios.get('https://' + network.NODE + '/api/blocks/getStatus')).data;
+      result.height = data.height;
+      result.supply = (data.supply / 10 ** 8);
+      result.fee = (data.fee / 10 ** 8).toFixed(2);
+      result.reward = (data.reward / 10 ** 8).toFixed(2);
 
-      const dataTx = (await axios.get('https://' + network.NODE + '/api/transactions?limit=1&orderBy=timestamp:desc')).data
+      const dataTx = (await axios.get('https://' + network.NODE + '/api/transactions?limit=1&orderBy=timestamp:desc')).data;
       result.txCount = dataTx.count
     } catch (e) {
 
@@ -52,9 +52,9 @@ class Blockchain {
   }
 
   async getAddressBalance(address) {
-    let result = 0
+    let result = 0;
     try {
-      const data = (await axios.get('https://' + network.NODE + '/api/accounts/getBalance?address=' + address)).data
+      const data = (await axios.get('https://' + network.NODE + '/api/accounts/getBalance?address=' + address)).data;
       result = data.balance / 10 ** 8
     } catch (e) {
 
@@ -63,9 +63,9 @@ class Blockchain {
   }
 
   async getVote(address) {
-    let result = null
+    let result = null;
     try {
-      const data = (await axios.get('https://' + network.NODE + '/api/accounts/delegates?address=' + address)).data
+      const data = (await axios.get('https://' + network.NODE + '/api/accounts/delegates?address=' + address)).data;
       if (data.delegates.length > 0) {
         result = data.delegates[0]
       }
@@ -79,13 +79,13 @@ class Blockchain {
     let result = {
       accounts: [],
       totalBalance: 0
-    }
-    let keys = Object.keys(addresses)
-    let total = 0
+    };
+    let keys = Object.keys(addresses);
+    let total = 0;
     for (let i = 0; i < keys.length; i++) {
-      let balance = await this.getAddressBalance(keys[i])
-      let vote = await this.getVote(keys[i])
-      let delegate = null
+      let balance = await this.getAddressBalance(keys[i]);
+      let vote = await this.getVote(keys[i]);
+      let delegate = null;
       if (addresses[keys[i]].pubKey) {
         delegate = await this.getDelegate(addresses[keys[i]].pubKey) || null
       }
@@ -95,34 +95,34 @@ class Blockchain {
         balance: balance,
         vote: vote,
         delegate: delegate
-      }
+      };
       total = total + balance
     }
-    result.totalBalance = total
+    result.totalBalance = total;
     return result
   }
 
 
   async fetchTxsByAddress(address, offset = 0) {
-    const limit = 25
+    const limit = 25;
     const uri = 'https://' + network.NODE + '/api/transactions?orderBy=timestamp:desc&offset=' + offset + '&limit=' + limit + '&recipientId=' + address + '&senderId=' + address
-    const response = (await axios.get(uri)).data
+    const response = (await axios.get(uri)).data;
 
     if (response.success) {
       let result = {
         count: 0,
         transactions: []
-      }
+      };
 
-      let txs = []
+      let txs = [];
 
       //console.log('response', response)
 
       for (let i = 0; i < response.transactions.length; i++) {
         //if (response.transactions[i].type === 0) {
-          let op = response.transactions[i].recipientId === address ? '+' : '-'
-          let tm = moment.unix((1511269200 + response.transactions[i].timestamp))
-          let amount = response.transactions[i].amount > 0 ? response.transactions[i].amount / 10 ** 8 : 0
+          let op = response.transactions[i].recipientId === address ? '+' : '-';
+          let tm = moment.unix((1511269200 + response.transactions[i].timestamp));
+          let amount = response.transactions[i].amount > 0 ? response.transactions[i].amount / 10 ** 8 : 0;
           if (response.transactions[i].type === 3) {
             op = '-'
           }
