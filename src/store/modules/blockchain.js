@@ -69,6 +69,9 @@ export default {
     SET_DELEGATES(state, payload) {
       state.delegates = payload
     },
+    SET_DELEGATES_STANDBY(state, payload) {
+      state.standbyDelegates = payload
+    },
     SET_STATUS(state, payload) {
       state.status = payload
     },
