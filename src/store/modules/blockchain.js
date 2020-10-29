@@ -57,6 +57,7 @@ export default {
 
   getters: {
     delegates: state => state.delegates,
+    standbyDelegates: state => state.standbyDelegates,
     status: state => state.status,
     fees: state => state.fees,
     xbtsCandidates: state => state.xbtsCandidates,
