@@ -43,7 +43,8 @@ export default {
     },
   },
   async created() {
-    await this.$store.dispatch('blockchain/fetchDelegates')
+    await this.$store.dispatch('blockchain/fetchDelegates');
+      await this.$store.dispatch('blockchain/fetchDelegatesStandby');
   }
 }
 </script>
