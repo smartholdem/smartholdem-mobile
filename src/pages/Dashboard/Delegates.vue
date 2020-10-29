@@ -36,11 +36,21 @@ export default {
         count: 0,
         list: [],
       };
-      const data = this.$store.getters['blockchain/delegates']
-      result.count = data.count
-      result.list = data.list
+      const data = this.$store.getters['blockchain/delegates'];
+      result.count = data.count;
+      result.list = data.list;
       return result
     },
+      DelegatesStandby() {
+          let result = {
+              count: 0,
+              list: [],
+          };
+          const data = this.$store.getters['blockchain/standbyDelegates'];
+          result.count = data.count;
+          result.list = data.list;
+          return result
+      },
   },
   async created() {
     await this.$store.dispatch('blockchain/fetchDelegates');
